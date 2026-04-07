@@ -80,9 +80,9 @@ Where:
 
 | Module | Focus | Lead |
 | :--- | :--- | :--- |
-| **Math** | Proof of PG theorem, Log-derivative trick, LaTeX docs | Anh Sơn, Anh Ý |
-| **Code** | Gymnasium Env, PyTorch Policy Network, REINFORCE | Anh Ý, Quỳnh |
-| **Review** | Hyperparameter tuning, Analytics, Report synthesis | Quỳnh, Anh Sơn |
+| **Math** | Proof of PG theorem, Log-derivative trick, LaTeX docs | Sơn, Ý |
+| **Code** | Gymnasium Env, PyTorch Policy Network, REINFORCE | Ý, Quỳnh |
+| **Review** | Hyperparameter tuning, Analytics, Report synthesis | Quỳnh, Sơn |
 
 ---
 
@@ -93,6 +93,15 @@ Where:
 - `reports/`: Weekly updates and experimental analysis.
 - `scripts/`: Helper scripts for training and visualization.
 - `data/`: Model checkpoints and training logs.
+
+## 👥 Team 05 Members
+
+| MSSV | Full Name | Role |
+| :--- | :--- | :--- |
+| **25730067** | **Đặng Chí Thanh** | **Team Leader** |
+| 25730061 | Hoàng Cao Sơn | Math Lead |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Secretary (Thư ký) |
+| 25730094 | Nguyễn Đức Ý | Code Lead |
 
 ---
 

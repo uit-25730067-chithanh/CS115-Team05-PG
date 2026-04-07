@@ -29,7 +29,7 @@ To avoid leaking personal AI configurations and project internal plans, the foll
 
 1. Sync your local `main` with `origin/main` before starting.
 2. If working on a new experimental feature, create a separate branch.
-3. Check with the **Math Lead (Anh Sơn)** or **Code Lead (Anh Ý)** before merging code into `main`.
+3. Check with the **Math Lead (Sơn)** or **Code Lead (Ý)** before merging code into `main`.
 
 ---
 
