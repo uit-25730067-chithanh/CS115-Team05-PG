@@ -1,0 +1,40 @@
+# Git Ignore settings for Team 05 - Policy Gradient for RL
+
+# Specific exclusions requested by the user
+CLAUDE.md
+AGENTS.md
+docs/
+plans/
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+*.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.local
+
+# Build/Dist
+build/
+dist/
+*.egg-info/
