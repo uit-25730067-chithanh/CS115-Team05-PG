@@ -9,6 +9,17 @@ This project explores the mathematical foundations and practical implementation 
 
 ---
 
+## 👥 Team 05 Members
+
+| MSSV         | Full Name          | Role               |
+| :----------- | :----------------- | :----------------- |
+| **25730067** | **Đặng Chí Thanh** | **Team Leader**    |
+| 25730061     | Hoàng Cao Sơn      | Math Lead          |
+| 26210070     | Phạm Vũ Xuân Quỳnh | Secretary (Thư ký) |
+| 25730094     | Nguyễn Đức Ý       | Code Lead          |
+
+---
+
 ## 🗺️ Project Roadmap
 
 ```mermaid
@@ -66,7 +77,7 @@ Our main objective is to optimize the expected reward $J(\theta)$ by adjusting t
 
 ### Key Formula
 
-$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
+$$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \nabla*{\theta} \log \pi*{\theta}(a_t|s_t) \hat{A}\_t \right] $$
 
 Where:
 
@@ -78,11 +89,11 @@ Where:
 
 ## 🛠 Project Structure (WBS)
 
-| Module | Focus | Lead |
-| :--- | :--- | :--- |
-| **Math** | Proof of PG theorem, Log-derivative trick, LaTeX docs | Sơn, Ý |
-| **Code** | Gymnasium Env, PyTorch Policy Network, REINFORCE | Ý, Quỳnh |
-| **Review** | Hyperparameter tuning, Analytics, Report synthesis | Quỳnh, Sơn |
+| Module     | Focus                                                 | Lead  | Member |
+| :--------- | :---------------------------------------------------- | :---- | :----- |
+| **Math**   | Proof of PG theorem, Log-derivative trick, LaTeX docs | Sơn   | Ý      |
+| **Code**   | Gymnasium Env, PyTorch Policy Network, REINFORCE      | Ý     | Quỳnh  |
+| **Review** | Hyperparameter tuning, Analytics, Report synthesis    | Quỳnh | Sơn    |
 
 ---
 
@@ -93,15 +104,6 @@ Where:
 - `reports/`: Weekly updates and experimental analysis.
 - `scripts/`: Helper scripts for training and visualization.
 - `data/`: Model checkpoints and training logs.
-
-## 👥 Team 05 Members
-
-| MSSV | Full Name | Role |
-| :--- | :--- | :--- |
-| **25730067** | **Đặng Chí Thanh** | **Team Leader** |
-| 25730061 | Hoàng Cao Sơn | Math Lead |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Secretary (Thư ký) |
-| 25730094 | Nguyễn Đức Ý | Code Lead |
 
 ---
 
