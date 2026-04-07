@@ -13,10 +13,12 @@ This project explores the mathematical foundations and practical implementation 
 
 Our main objective is to optimize the expected reward $J(\theta)$ by adjusting the parameters $\theta$ of a stochastic policy $\pi_{\theta}(a|s)$.
 
-### Key Formula:
+### Key Formula
+
 $$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
 
 Where:
+
 - $\pi_{\theta}(a_t|s_t)$: Probability of taking action $a_t$ in state $s_t$.
 - $\hat{A}_t$: Advantage estimate or cumulative reward (Return $G_t$).
 - **Log-derivative Trick**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
@@ -53,8 +55,9 @@ Where:
 ---
 
 ## 🤝 Team 05 - Charter
+
 - **Response Time**: 12-24 hours.
-- **Commitment**: No copy-pasting code without understanding. 
+- **Commitment**: No copy-pasting code without understanding.
 - **Tooling**: GitHub Projects for tracking, Python for core logic, LaTeX for reporting.
 
 ---
