@@ -38,3 +38,6 @@ coverage.xml
 build/
 dist/
 *.egg-info/
+
+# Temp
+tmp/
