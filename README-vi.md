@@ -11,12 +11,12 @@ Dự án này khám phá các nền tảng toán học và việc triển khai t
 
 ## 👥 Thành viên Nhóm 05
 
-| MSSV     | Họ và Tên          | Vai trò     |
-| :------- | :----------------- | :---------- |
-| 25730067 | Đặng Chí Thanh     | Trưởng nhóm |
-| 25730061 | Hoàng Cao Sơn      | Math Lead   |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Thư ký      |
-| 25730094 | Nguyễn Đức Ý       | Code Lead   |
+| MSSV     | Họ Tên             | Vai Trò     | GitHub                                                             |
+| :------- | :----------------- | :---------- | :----------------------------------------------------------------- |
+| 25730067 | Đặng Chí Thanh     | Team Leader | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
+| 25730061 | Hoàng Cao Sơn      | Math Lead   | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Thư ký      | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| 25730094 | Nguyễn Đức Ý       | Code Lead   | [@ducy11](https://github.com/ducy11)                               |
 
 ---
 
@@ -99,11 +99,11 @@ Trong đó:
 
 ## 🛠 Cấu trúc Dự án (WBS)
 
-| Mô-đun     | Nội dung trọng tâm                                      | Phụ trách | Hỗ trợ |
-| :--------- | :------------------------------------------------------ | :-------- | :----- |
-| **Toán**   | Chứng minh PG theorem, Log-derivative trick, LaTeX      | Sơn       | Ý      |
-| **Code**   | Môi trường Gymnasium, PyTorch Policy Network, REINFORCE | Ý         | Quỳnh  |
-| **Review** | Hyperparameter tuning, Analytics, Báo cáo tổng hợp      | Quỳnh     | Sơn    |
+| Phân hệ      | Nội dung chi tiết                                  | Lead       | Member     |
+| :----------- | :------------------------------------------------- | :--------- | :--------- |
+| **Toán**     | Chứng minh định lý PG, Log-derivative trick, LaTeX | Hoàng Sơn  | Đức Ý      |
+| **Kỹ thuật** | Gymnasium Env, PyTorch Policy Network, REINFORCE   | Đức Ý      | Xuân Quỳnh |
+| **Review**   | Tinh chỉnh tham số, Analytics, Tổng hợp báo cáo    | Xuân Quỳnh | Hoàng Sơn  |
 
 ---
 

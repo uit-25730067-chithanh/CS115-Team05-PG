@@ -11,12 +11,12 @@ This project explores the mathematical foundations and practical implementation 
 
 ## 👥 Team 05 Members
 
-| MSSV     | Full Name          | Role        |
-| :------- | :----------------- | :---------- |
-| 25730067 | Đặng Chí Thanh     | Team Leader |
-| 25730061 | Hoàng Cao Sơn      | Math Lead   |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Secretary   |
-| 25730094 | Nguyễn Đức Ý       | Code Lead   |
+| MSSV     | Full Name          | Role        | GitHub                                                             |
+| :------- | :----------------- | :---------- | :----------------------------------------------------------------- |
+| 25730067 | Đặng Chí Thanh     | Team Leader | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
+| 25730061 | Hoàng Cao Sơn      | Math Lead   | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Secretary   | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| 25730094 | Nguyễn Đức Ý       | Code Lead   | [@ducy11](https://github.com/ducy11)                               |
 
 ---
 
@@ -99,11 +99,11 @@ Where:
 
 ## 🛠 Project Structure (WBS)
 
-| Module     | Focus                                                 | Lead  | Member |
-| :--------- | :---------------------------------------------------- | :---- | :----- |
-| **Math**   | Proof of PG theorem, Log-derivative trick, LaTeX docs | Sơn   | Ý      |
-| **Code**   | Gymnasium Env, PyTorch Policy Network, REINFORCE      | Ý     | Quỳnh  |
-| **Review** | Hyperparameter tuning, Analytics, Report synthesis    | Quỳnh | Sơn    |
+| Module     | Focus                                                 | Lead       | Member     |
+| :--------- | :---------------------------------------------------- | :--------- | :--------- |
+| **Math**   | Proof of PG theorem, Log-derivative trick, LaTeX docs | Hoàng Sơn  | Đức Ý      |
+| **Code**   | Gymnasium Env, PyTorch Policy Network, REINFORCE      | Đức Ý      | Xuân Quỳnh |
+| **Review** | Hyperparameter tuning, Analytics, Report synthesis    | Xuân Quỳnh | Hoàng Sơn  |
 
 ---
 
