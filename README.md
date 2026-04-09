@@ -11,12 +11,12 @@ This project explores the mathematical foundations and practical implementation 
 
 ## 👥 Team 05 Members
 
-| MSSV         | Full Name          | Role               |
-| :----------- | :----------------- | :----------------- |
-| **25730067** | **Đặng Chí Thanh** | **Team Leader**    |
-| 25730061     | Hoàng Cao Sơn      | Math Lead          |
-| 26210070     | Phạm Vũ Xuân Quỳnh | Secretary (Thư ký) |
-| 25730094     | Nguyễn Đức Ý       | Code Lead          |
+| MSSV     | Full Name          | Role        |
+| :------- | :----------------- | :---------- |
+| 25730067 | Đặng Chí Thanh     | Team Leader |
+| 25730061 | Hoàng Cao Sơn      | Math Lead   |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Secretary   |
+| 25730094 | Nguyễn Đức Ý       | Code Lead   |
 
 ---
 
@@ -26,21 +26,28 @@ This project explores the mathematical foundations and practical implementation 
 gantt
     title [CS115] RL Project Roadmap (Semester Weeks)
     dateFormat  YYYY-MM-DD
-    section Phase 1: Foundation (W3-W5)
-    Math Derivation & Research  :active, des1, 2026-04-06, 14d
-    Environment Setup (Gym)      :des2, after des1, 7d
-    section Phase 2: Core Development (W6-W8)
-    Policy Network (PyTorch)    :des3, after des2, 10d
-    REINFORCE Algorithm         :des4, after des3, 10d
-    section Phase 3: Analytics (W9-W11)
-    Training & Hyperparameters  :des5, after des4, 14d
-    Evaluation & Graphs         :des6, after des5, 7d
-    section Phase 4: Finalization (W12-W13)
-    LaTeX Report Completion     :des7, after des6, 10d
-    Final Presentation          :des8, after des7, 5d
-    section Phase 5: Submission (W14-W15)
-    Feedback Refinement         :des9, after des8, 6d
-    Final Package & Submit      :milestone, des10, after des9, 2026-07-01
+    tickInterval 1w
+    axisFormat  %m/%d
+
+    section Phase 1 (W3-W5)
+    Math Derivation             :active, des1, 2026-04-06, 14d
+    Env Setup (Gym)             :des2, after des1, 7d
+
+    section Phase 2 (W6-W8)
+    Policy Network              :des3, after des2, 10d
+    REINFORCE                   :des4, after des3, 10d
+
+    section Phase 3 (W9-W11)
+    Training & Tuning           :des5, after des4, 14d
+    Evaluation                  :des6, after des5, 7d
+
+    section Phase 4 (W12-W13)
+    LaTeX Report                :des7, after des6, 10d
+    Presentation                :des8, after des7, 5d
+
+    section Phase 5 (W14-W15)
+    Refinement                  :des9, after des8, 6d
+    Final Submit                :milestone, des10, 2026-07-01, 0d
 ```
 
 ---
@@ -111,19 +118,19 @@ Where:
 
 ---
 
-## 🚩 Các Giai đoạn chính (Milestones)
+## 🚩 Key Milestones
 
-Dự án được chia thành 5 giai đoạn (Milestones) chính, bám sát lịch học kỳ:
+The project is divided into 5 main milestones, aligned with the semester schedule:
 
-1. **M1: Foundation (Tuần 3 - 5)**: Thiết lập nền tảng, hoàn thành chứng minh toán PG Theorem và cài đặt môi trường.
-2. **M2: Core Algorithm (Tuần 6 - 8)**: Xây dựng mạng nơ-ron và hiện thực hóa thuật toán REINFORCE cơ bản.
-3. **M3: Training & Analysis (Tuần 9 - 11)**: Huấn luyện mô hình, tối ưu hóa tham số và vẽ các biểu đồ phân tích.
-4. **M4: Report & Slides (Tuần 12 - 13)**: Hoàn thiện báo cáo bản cứng và thiết kế slide thuyết trình.
-5. **M5: Final Submission (Tuần 14 - 15)**: Chỉnh sửa theo góp ý của giảng viên và nộp bài chính thức.
+1. **M1: Foundation (Weeks 3 - 5)**: Establish the foundation, complete the mathematical proof of the PG Theorem, and set up the environment.
+2. **M2: Core Algorithm (Weeks 6 - 8)**: Build the neural network architecture and implement the foundational REINFORCE algorithm.
+3. **M3: Training & Analysis (Weeks 9 - 11)**: Train the model, tune hyperparameters, and plot analytical graphs.
+4. **M4: Report & Slides (Weeks 12 - 13)**: Finalize the hardcopy report and design the presentation slides.
+5. **M5: Final Submission (Weeks 14 - 15)**: Revise based on the instructor's feedback and officially submit the package.
 
 ---
 
-## 📅 Action Plan: Week 3 (Kick-off)
+## 📅 Action Plan: Week 03 (Kick-off)
 
 - [x] Repository initialization & Git setup.
 - [x] Initial project planning & WBS.
@@ -140,22 +147,22 @@ Dự án được chia thành 5 giai đoạn (Milestones) chính, bám sát lị
 
 ---
 
-## 📤 Quy định Nộp đồ án (Học kỳ)
+## 📤 Submission Guidelines (Semester)
 
-### Đồ án cuối kì (Deadline: 30/06/2026)
+### Final Project (Deadline: June 30, 2026)
 
-- **Thời gian mở nộp:** Thứ Bảy, 30/05/2026 (12:00 AM)
-- **Deadline:** Thứ Tư, 01/07/2026 (11:59 PM)
-- **Yêu cầu nộp bài:**
-  - Các nhóm cần chỉnh sửa slides và demo theo góp ý của giảng viên trong buổi báo cáo.
-  - **Thành phần bài nộp:**
-    1. Slides trình bày.
-    2. Demo/kết quả thực nghiệm (figures, tables, plots).
-    3. Source code & data để tái lập kết quả.
-    4. Report (Optional - Khuyến khích).
-    5. Clip thuyết trình (dành cho nhóm chưa báo cáo trực tiếp).
-  - **Format:** Nén vào 1 file `.zip` với tên: `ID_group.zip`.
-  - **Lưu ý:** Chỉ một SV đại diện nộp. Nếu file quá lớn (>100MB), nộp file `.txt` chứa link Google Drive (chế độ Public).
+- **Submission Opens:** Saturday, May 30, 2026 (12:00 AM)
+- **Deadline:** Wednesday, July 01, 2026 (11:59 PM)
+- **Submission Requirements:**
+  - Teams must revise their slides and demo based on the instructor's feedback during the presentation.
+  - **Submission Components:**
+    1. Presentation slides.
+    2. Demo/experimental results (figures, tables, plots).
+    3. Source code & data to reproduce results.
+    4. Report (Optional - Recommended).
+    5. Presentation video (for teams that haven't presented locally).
+  - **Format:** Compress into a single `.zip` file named: `ID_group.zip`.
+  - **Note:** Only one representative student should submit. If the file is too large (>100MB), submit a `.txt` file containing a Google Drive link (Public mode).
 
 ---
 
