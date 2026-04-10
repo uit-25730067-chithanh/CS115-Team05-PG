@@ -142,6 +142,7 @@ The project is divided into 5 main milestones, aligned with the semester schedul
 ## 🤝 Team 05 - Charter
 
 - **Response Time**: 12-24 hours.
+- **Weekly Sprint Deadline**: 23:00 every Sunday of that week (because the Weekly meeting is on Monday evening).
 - **Commitment**: No copy-pasting code without understanding.
 - **Tooling**: GitHub Projects for tracking, Python for core logic, LaTeX for reporting.
 
