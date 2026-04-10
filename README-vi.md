@@ -142,6 +142,7 @@ Dự án được chia thành 5 giai đoạn (Milestones) chính, bám sát lị
 ## 🤝 Bản cam kết Nhóm 05
 
 - **Thời gian phản hồi**: 12-24 giờ.
+- **Deadline mỗi Sprint (mỗi tuần)**: 23:00 tối Chủ nhật của tuần đó (vì họp Weekly vào tối thứ 2).
 - **Cam kết**: Tuyệt đối không copy-paste code nếu không thực sự hiểu.
 - **Công cụ áp dụng**: GitHub Projects để theo dõi, Python cho xử lý chính, LaTeX để viết báo cáo.
 
