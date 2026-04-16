@@ -6,6 +6,16 @@ AGENTS.md
 docs/
 plans/
 
+# ClaudeKit / AI tooling
+.claude/
+!.claude/rules/
+.claude/memory/
+.claude/skills/.venv/
+.claude/hooks/.logs/
+.claude/sessions/
+.claude/backups/
+.claude/*.json
+
 # macOS
 .DS_Store
 
@@ -41,3 +51,4 @@ dist/
 
 # Temp
 tmp/
+notes/cs115/
