@@ -1,0 +1,18 @@
+# CS115 - Policy Gradient for RL - Team 05
+> Project context for LLMs and AI Agents.
+
+## Full Documentation
+- [Installation Guide](docs/installation.md)
+- [Code Standards](docs/code-standards.md)
+- [System Architecture](docs/system-architecture.md)
+- [Project Roadmap](docs/project-roadmap.md)
+
+## Core Commands
+- `pip3 install -r requirements.txt`
+- `python3 sources/train.py`
+
+## Critical Rules
+- Course: CS115 (Math for CS) at UIT.
+- No AI copy-paste of logic (Charter v3.0).
+- Git: branch -> PR -> merge.
+- Use English for code/comments.
