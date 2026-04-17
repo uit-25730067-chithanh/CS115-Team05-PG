@@ -3,8 +3,11 @@
 # Specific exclusions requested by the user
 CLAUDE.md
 AGENTS.md
-docs/
 plans/
+
+# Docs
+docs/meeting_agendas/
+docs/meeting_minutes/
 
 # ClaudeKit / AI tooling
 .claude/
@@ -51,4 +54,4 @@ dist/
 
 # Temp
 tmp/
-notes/cs115/
+notes/
