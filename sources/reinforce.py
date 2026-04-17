@@ -1,0 +1,57 @@
+import torch
+import numpy as np
+
+def compute_returns(rewards, gamma):
+    """
+    Tính Discounted Returns (G_t) cho một episode.
+    
+    Args:
+        rewards (list): Mảng phần thưởng môi trường [R_0, R_1, ..., R_T]
+        gamma (float): Discount factor
+        
+    Returns:
+        list: Returns G_t cho mỗi time step
+    """
+    returns = []
+    G_t = 0
+    # Tính lùi từ bước cuối cùng về đầu
+    for r in reversed(rewards):
+        G_t = r + gamma * G_t
+        returns.insert(0, G_t)
+        
+    return returns
+
+def update_policy(optimizer, log_probs, returns, device="cpu"):
+    """
+    Thực hiện bước cập nhật Gradient Ascent (nhưng trong code là Gradient Descent của Loss âm)
+    dựa trên Policy Gradient Theorem.
+    
+    Args:
+        optimizer: torch.optim optimizer
+        log_probs: list của torch.Tensor log_prob của các action
+        returns: list của G_t
+        device: "cpu" hoặc "cuda"
+    """
+    returns = torch.tensor(returns, dtype=torch.float32).to(device)
+    
+    # Kỹ thuật quan trọng: Chuẩn hóa returns (Baseline cơ bản nhất) để giảm Variance
+    # (G_t - mean(G)) / (std(G) + epsilon)
+    # Epsilon (1e-8) giúp tránh chia cho 0
+    if len(returns) > 1:
+        returns = (returns - returns.mean()) / (returns.std() + 1e-8)
+        
+    policy_loss = []
+    
+    for log_prob, G_t in zip(log_probs, returns):
+        # Loss = - log_prob(a|s) * G_t
+        # Dấu âm vì PyTorch thực hiện Gradient Descent mà ta cần Gradient Ascent
+        policy_loss.append(-log_prob * G_t)
+        
+    # Tính tổng loss của toàn memory (episode)
+    # Cần phải dùng torch.stack để list tensor -> 1D tensor -> tổng hợp gradient graph
+    policy_loss = torch.stack(policy_loss).sum()
+    
+    # Backpropagation
+    optimizer.zero_grad()      # Reset gradient cũ
+    policy_loss.backward()     # Tính toán gradient mới (backprop)
+    optimizer.step()           # Cập nhật weights theta
