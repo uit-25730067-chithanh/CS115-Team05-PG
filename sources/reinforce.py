@@ -1,5 +1,4 @@
 import torch
-import numpy as np
 
 def compute_returns(rewards, gamma):
     """
@@ -17,8 +16,9 @@ def compute_returns(rewards, gamma):
     # Tính lùi từ bước cuối cùng về đầu
     for r in reversed(rewards):
         G_t = r + gamma * G_t
-        returns.insert(0, G_t)
-        
+        returns.append(G_t)
+
+    returns.reverse()
     return returns
 
 def update_policy(optimizer, log_probs, returns, device="cpu"):
@@ -30,7 +30,8 @@ def update_policy(optimizer, log_probs, returns, device="cpu"):
         optimizer: torch.optim optimizer
         log_probs: list của torch.Tensor log_prob của các action
         returns: list của G_t
-        device: "cpu" hoặc "cuda"
+        device (str hoặc torch.device): Thiết bị dùng để đưa tensor lên, ví dụ
+            "cpu", "cuda", hoặc "mps"
     """
     returns = torch.tensor(returns, dtype=torch.float32).to(device)
     

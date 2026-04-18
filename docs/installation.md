@@ -12,7 +12,7 @@ Tài liệu này hướng dẫn cách thiết lập môi trường để chạy 
 Khuyên dùng môi trường ảo (virtual environment) để tránh xung đột với các dự án khác:
 
 ```bash
-# Tao môi trường ảo có tên 'venv'
+# Tạo môi trường ảo có tên 'venv'
 python3 -m venv venv
 
 # Kích hoạt môi trường (MacOS/Linux)

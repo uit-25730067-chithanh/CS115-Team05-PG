@@ -22,7 +22,7 @@ CS115-Team05-PG/
 
 Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuật REINFORCE.
 
-1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training và vẽ `learning_curve.png`.
+1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training và vẽ `training_curve.png`.
 2. **`sources/reinforce.py`**: Chứa thuật toán Policy Gradient thuần tuý.
    - Hàm `compute_returns()`: Tính toán $G_t$ cho từ phần thưởng.
    - Hàm `update_policy()`: Backpropagation cho Gradient Ascent với việc trừ trung bình để giảm variance (Baseline).

@@ -1,4 +1,3 @@
-import os
 import gymnasium as gym
 import torch
 import torch.optim as optim
@@ -93,8 +92,6 @@ def plot_learning_curve(rewards, save_path="training_curve.png"):
     print(f"Đã lưu biểu đồ thành công tại {save_path}")
 
 if __name__ == "__main__":
-    import pathlib
-    
     # Đặt seed để dễ dàng tái lập kết quả (reproducibility)
     torch.manual_seed(42)
     np.random.seed(42)

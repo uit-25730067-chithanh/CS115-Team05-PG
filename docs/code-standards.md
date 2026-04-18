@@ -10,7 +10,7 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 
 ## 2. Tiêu chuẩn Mã nguồn (Python)
 
-- Tuân thủ PEP 8 (khuyến nghị dùng Prettier hoặc công cụ auto-format có liên quan).
+- Tuân thủ PEP 8 (khuyến nghị dùng `black`, `ruff format`, `autopep8` hoặc công cụ auto-format dành cho Python).
 - Đặt tên biến, hàm **hoàn toàn bằng Tiếng Anh**, ví dụ: `compute_returns`, `policy_net` thay vì `tinh_phan_thuong`.
 - Comment code: Giải thích **TẠI SAO (Why)** bạn làm như vậy, thay vì việc dòng code đó đang làm gì. (Ví dụ: `# Epsilon (1e-8) giúp tránh chia cho 0`).
 
