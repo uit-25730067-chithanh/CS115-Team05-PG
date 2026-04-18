@@ -24,4 +24,4 @@ Hệ thống đã chạy thử nghiệm 10 episodes đầu tiên để xác minh
 3. **Môi trường:** Đã xác nhận `CartPole-v1` hoạt động tốt trên máy trạm của Team.
 
 ---
-**KẾT LUẬN:** Mọi thành phần Code đã sẵn sàng cho buổi báo cáo tối nay.
+**KẾT LUẬN:** Mọi thành phần Code đã sẵn sàng cho buổi báo cáo ngày 17/04/2026.
