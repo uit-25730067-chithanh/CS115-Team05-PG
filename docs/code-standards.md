@@ -8,11 +8,13 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 - Thực hiện công việc: Tạo nhánh `feature/<tên-việc>`, ví dụ: `feature/setup-gymnasium`.
 - Hợp nhất: Phải tạo Pull Request (PR) và cho các thành viên khác xem xét (Code Review) trước khi gộp vào `main`.
 
-## 2. Tiêu chuẩn Mã nguồn (Python)
+## 2. Tiêu chuẩn Mã nguồn & Ngôn ngữ (Python)
 
-- Tuân thủ PEP 8 (khuyến nghị dùng `black`, `ruff format`, `autopep8` hoặc công cụ auto-format dành cho Python).
-- Đặt tên biến, hàm **hoàn toàn bằng Tiếng Anh**, ví dụ: `compute_returns`, `policy_net` thay vì `tinh_phan_thuong`.
-- Comment code: Giải thích **TẠI SAO (Why)** bạn làm như vậy, thay vì việc dòng code đó đang làm gì. (Ví dụ: `# Epsilon (1e-8) giúp tránh chia cho 0`).
+- **Đặt tên (Naming):** Biến, hàm, lớp **bắt buộc 100% bằng Tiếng Anh** (ví dụ: `compute_loss`, `policy_net`).
+- **Chú thích (Comments):**
+  - **Tiếng Anh (Ưu tiên):** Dùng cho các chú thích ngắn gọn (What/How), ví dụ: `# Initialize weights`.
+  - **Tiếng Việt (Linh hoạt):** Được phép dùng để giải thích các **logic toán học phức tạp hoặc lý do (Why)** đằng sau các công thức (đối chiếu từ folder `math/`) để đảm bảo các thành viên trong team đều hiểu đúng bản chất toán học.
+- **Định dạng:** Tuân thủ PEP 8 (khuyến nghị dùng `black`, `ruff format` hoặc các công cụ auto-format).
 
 ## 3. Quản lý Tệp
 

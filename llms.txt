@@ -15,4 +15,4 @@
 - Course: CS115 (Math for CS) at UIT.
 - No AI copy-paste of logic (Charter v3.0).
 - Git: branch -> PR -> merge.
-- Use English for code/comments.
+- Use English for code. Comments can be Vietnamese for complex math logic.
