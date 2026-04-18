@@ -1,6 +1,6 @@
 # Kiến trúc Hệ thống (System Architecture)
 
-Giải thuật REINFORCE (Monte Carlo Policy Gradient) cho CartPole-v1.
+Giải thuật REINFORCE (Monte Carlo Policy Gradient) cho CartPole-v1. (Dự án CS115).
 
 ## 1. Môi trường mô phỏng (Environment)
 
@@ -27,8 +27,8 @@ Thuật toán bao gồm 3 bước lặp chính:
    - Sử dụng `Categorical.sample()` để bốc xác suất tạo ra Action.
    - Sinh ra chuỗi trạng thái, log-xác suất và phần thưởng cho đến khi kết thúc (done / truncated).
 2. **Compute Returns (Tính $G_t$)**:
-   - $G_t = R_{t} + \gamma R_{t+1} + \dots + \gamma^{T-t} R_T$
+   - $G\_t = R\_{t} + \gamma R\_{t+1} + \dots + \gamma^{T-t} R\_T$
    - Thuật toán lặp lùi từ phần thưởng cuối cùng về 0 để tối ưu tốc độ.
 3. **Policy Update (Cập nhật Weights $\theta$)**:
-   - Áp dụng trừ Baseline đơn giản: $G_t = \frac{G_t - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance của phương pháp Monte Carlo.
-   - Lan truyền ngược (Backpropagation) sử dụng bộ tối ưu `Adam Optimizer`. Loss: $- \ln \pi(A_t |S_t) \cdot G_t$.
+   - Áp dụng trừ Baseline đơn giản: $G\_t = \frac{G\_t - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
+   - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A\_t |S\_t) \cdot G\_t$.

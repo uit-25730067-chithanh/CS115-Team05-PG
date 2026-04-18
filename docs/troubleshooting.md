@@ -1,6 +1,6 @@
 # Cẩm nang Xử lý Sự cố & Các Vấn đề Đã Biết (Troubleshooting & Known Issues)
 
-Tài liệu này ghi chú lại các rủi ro kỹ thuật và lỗi tiềm tàng có thể xảy ra trong quá trình chạy mã nguồn Policy Gradient (REINFORCE) phiên bản Backup, để team kịp thời nhận diện và xử lý.
+Tài liệu này ghi chú lại các rủi ro kỹ thuật và lỗi tiềm tàng có thể xảy ra trong quá trình triển khai dự án REINFORCE, để team kịp thời nhận diện và xử lý.
 
 ---
 

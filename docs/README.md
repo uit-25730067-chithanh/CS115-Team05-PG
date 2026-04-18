@@ -10,8 +10,8 @@ Chào mừng các bạn Team 05 và các AI Agents! Dự án này sử dụng h�
 | **[codebase-summary.md](./codebase-summary.md)**         | AI Agents       | Bản đồ các file sources, giúp Agent biết nên sửa code ở đâu mà không làm hỏng logic. |
 | **[code-standards.md](./code-standards.md)**             | Cả hai          | Quy tắc đặt tên (Tiếng Anh), Git Flow, và giới hạn Copy-paste từ AI (Charter v3.0).  |
 | **[system-architecture.md](./system-architecture.md)**   | Cả hai          | Chip Mac (MPS) vs CPU, kiến trúc mạng Neural (128 units), REINFORCE logic.           |
-| **[project-roadmap.md](./project-roadmap.md)**           | Team members    | Tiến độ dự án so với lịch trình môn học CS115.                                       |
-| **[project-overview-pdr.md](./project-overview-pdr.md)** | Giảng viên/Team | Tổng quan yêu cầu dự án (PDR).                                                       |
+| **[project-roadmap.md](./project-roadmap.md)**           | Team members    | Lịch trình "Song song hóa" và WBS chi tiết.                                          |
+| **[project-overview-pdr.md](./project-overview-pdr.md)** | Giảng viên/Team | Tổng quan yêu cầu dự án (PDR) và mục tiêu môn học.                                   |
 
 ---
 

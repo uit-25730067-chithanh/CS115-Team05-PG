@@ -1,32 +1,76 @@
 # Lộ trình Dự án (Project Roadmap)
 
-Dưới đây là lịch trình làm việc và lộ trình phát triển chính cho CS115-Team05, bám sát theo Gantt chart trong file gốc.
+Dưới đây là lịch trình làm việc và lộ trình phát triển chính cho CS115-Team05, bám sát theo kế hoạch song song hóa.
 
-## Giai đoạn 1: Nền tảng Lý thuyết & Thiết lập (Tuần 03 - 05) - Đang thực hiện
+## 🗺️ Lộ trình tổng thể (Gantt Chart)
 
-- [x] Tạo Kho lưu trữ (GitHub Repo).
-- [x] Chọn đề tài (Policy Gradient - REINFORCE).
-- [x] Lập Charter Team v3.0 và phân chia WBS.
-- [ ] Chứng minh xong thuật toán log-derivative trên giấy (LaTeX) - **Lead: Sơn**.
-- [x] Thiết lập môi trường và chạy thử CartPole (Gymnasium).
+```mermaid
+gantt
+    title CS115 Lộ trình Dự án RL
+    dateFormat  YYYY-MM-DD
+    tickInterval 1w
+    axisFormat  %m/%d
 
-## Giai đoạn 2: Thuật toán Cốt lõi & Mạng Policy (Tuần 06 - 08)
+    section GĐ 1: Nền tảng
+    Nghiên cứu & Toán (Sơn/Thanh)     :active, des1, 2026-04-06, 21d
+    Cài đặt môi trường (Thanh)        :done, des2, 2026-04-06, 14d
 
-- [x] Thiết kế Policy Network bằng PyTorch (Hoàn thành sớm hơn dự kiến).
-- [x] Implement logic REINFORCE (Hoàn thành sớm hơn dự kiến).
-- [ ] Tinh chỉnh Buffer lưu trữ quỹ đạo (Experience buffer).
+    section GĐ 2: Thuật toán
+    Mạng Policy (Thanh/Sơn)           :active, des3, 2026-04-13, 14d
+    Lập trình REINFORCE (Thanh/Sơn)   :active, des4, 2026-04-15, 15d
 
-## Giai đoạn 3: Huấn luyện & Phân tích (Tuần 09 - 11)
+    section GĐ 3: Huấn luyện
+    Huấn luyện & Tối ưu (Thanh/Sơn)   :des5, 2026-04-20, 21d
+    Đánh giá & Biểu đồ (Thanh/Quỳnh)  :des6, 2026-05-11, 7d
 
-- [ ] Chạy thực nghiệm với các hyper-parameters khác nhau.
-- [ ] So sánh quá trình học của có Baseline vs Không có Baseline.
-- [ ] Vẽ biểu đồ Learning Curve và phân tích hội tụ.
+    section GĐ 4: Báo cáo & Slide
+    Soạn thảo Báo cáo (Quỳnh/Thanh)   :active, des7, 2026-04-13, 60d
+    Slide thuyết trình (Quỳnh)        :des8, 2026-06-15, 10d
 
-## Giai đoạn 4: Báo cáo & Slide (Tuần 12 - 13)
+    section GĐ 5: Hoàn tất
+    Hoàn thiện (Nhóm)                 :des9, 2026-06-25, 5d
+    Nộp bài chính thức                :milestone, des10, 2026-07-01, 0d
+```
 
-- [ ] Tổng hợp báo cáo LaTeX chính thức.
-- [ ] Làm Slide trình chiếu kết quả.
+---
 
-## Giai đoạn 5: Hoàn thiện (Tuần 14 - 15)
+## 📈 Theo dõi Tiến độ (Weekly Tracker)
 
-- [ ] Chỉnh sửa theo góp ý của giảng viên và Nộp bài (Hạn chót: 01/07/2026).
+### Tuần 03 (Khởi động) — 06/04/2026
+
+- [x] Khởi tạo repo & Git setup.
+- [x] Lập kế hoạch & WBS.
+- [x] Hoàn tất Team Charter v3.0.
+- [x] Tạo GitHub Project board.
+- [x] Nghiên cứu: REINFORCE cho không gian hành động rời rạc.
+- [x] Baseline: `CartPole-v1` với hành động ngẫu nhiên.
+
+### Tuần 04 (Mở rộng nền tảng) — 13/04/2026
+
+- [ ] Bản nháp chứng minh PG theorem (LaTeX, `math/`).
+- [ ] Giải thích Log-derivative trick.
+- [x] Thiết kế Policy Network bằng PyTorch (Xong sớm).
+- [x] Logic REINFORCE (Xong sớm).
+- [ ] Experience buffer cho trajectory (S, A, R).
+- [ ] Report: phần Introduction & Math Foundations.
+- [x] Thống nhất quy trình: branch → PR → merge main.
+
+---
+
+## 🏗️ Phân chia Công việc chi tiết (WBS)
+
+| Phân hệ     | Nội dung                                     | Người phụ trách | Hỗ trợ    |
+| :---------- | :------------------------------------------- | :-------------- | :-------- |
+| **Toán**    | Chứng minh PG, Log-derivative trick, LaTeX   | Hoàng Sơn       | Chí Thanh |
+| **Code**    | Gymnasium env, PyTorch policy net, REINFORCE | Chí Thanh       | Hoàng Sơn |
+| **Báo cáo** | Cập nhật tuần, biên bản họp, viết báo cáo    | Xuân Quỳnh      | Chí Thanh |
+
+---
+
+## 🚩 Các cột mốc chính (Milestones)
+
+1. **M1: Nền tảng (W3-W5)** — Chứng minh PG theorem + setup môi trường.
+2. **M2: Thuật toán (W6-W8)** — Mạng nơ-ron + implement REINFORCE.
+3. **M3: Huấn luyện (W9-W11)** — Train, tối ưu tham số, vẽ biểu đồ (Cần song song với M2).
+4. **M4: Báo cáo (W12-W13)** — Hoàn thiện report + slide thuyết trình.
+5. **M5: Nộp bài (W14-W15)** — Chỉnh theo góp ý GV + nộp chính thức.

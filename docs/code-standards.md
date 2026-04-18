@@ -4,9 +4,9 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 
 ## 1. Git Workflow
 
-- Nhánh `main`: Phải luôn sạch sẽ, chứa code có thể chạy được và báo cáo hoàn chỉnh. (Không push thẳng lên nhánh này).
+- Nhánh `main`: Cần luôn sạch sẽ, chứa code có thể chạy được và báo cáo hoàn chỉnh. (Không push thẳng lên nhánh này).
 - Thực hiện công việc: Tạo nhánh `feature/<tên-việc>`, ví dụ: `feature/setup-gymnasium`.
-- Hợp nhất: Phải tạo Pull Request (PR) và cho các thành viên khác xem xét (Code Review) trước khi gộp vào `main`.
+- Hợp nhất: Cần tạo Pull Request (PR) và cho **Code Lead (Chí Thanh)** hoặc các thành viên khác review trước khi gộp vào `main`.
 
 ## 2. Tiêu chuẩn Mã nguồn & Ngôn ngữ (Python)
 
@@ -19,9 +19,10 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 ## 3. Quản lý Tệp
 
 - Mọi file sinh ra tạm thời, nháp cá nhân đặt ở thư mục `tmp/` (được gitignore).
-- Các proof và derivation toán học phải lưu chuẩn LaTeX trong folder `math/`.
+- Các proof và derivation toán học cần được lưu chuẩn LaTeX trong folder `math/`.
+- Các báo cáo hàng tuần cần được lưu trong folder `reports/`.
 
 ## 4. Chính sách AI và Quality Control
 
 - **Charter v3.0**: Chúng ta chỉ dùng AI (Claude/ChatGPT) để nghiên cứu và lấy tài liệu tham khảo. **KHÔNG** copy-paste và uỷ thác 100% cho AI trong các assignment môn Toán.
-- Owner của đoạn code / công thức Toán phải giải thích **đạt 100% logic** cho reviewer trước khi PR được duyệt.
+- Owner của đoạn code / công thức Toán cần giải thích **đạt 100% logic** cho reviewer trước khi PR được duyệt.
