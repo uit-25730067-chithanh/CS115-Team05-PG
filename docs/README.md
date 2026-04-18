@@ -18,5 +18,6 @@ Chào mừng các bạn Team 05 và các AI Agents! Dự án này sử dụng h�
 ## 🤖 Ghi chú cho AI Agents
 
 - **Luôn đọc `CLAUDE.md`** để biết các lệnh chạy chính.
+- **Hãy đọc [`installation.md`](./installation.md) và [`codebase-summary.md`](./codebase-summary.md)** để biết cách chạy dự án và xác định đúng khu vực cần sửa.
 - **Tuân thủ `Installation Guide`** trước khi báo lỗi thiếu thư viện.
 - **Không bao giờ sửa logic Toán** trong `sources/reinforce.py` nếu không khớp với các công thức trong `math/`.
