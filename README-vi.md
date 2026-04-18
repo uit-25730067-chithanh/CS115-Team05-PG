@@ -13,44 +13,26 @@ Khám phá nền tảng toán học và triển khai thực tế **Policy Gradie
 
 ## 👥 Nhóm 05
 
-| MSSV     | Họ Tên             | Vai Trò     | Hỗ Trợ | GitHub                                                             |
-| :------- | :----------------- | :---------- | :----- | :----------------------------------------------------------------- |
-| 25730067 | Đặng Chí Thanh     | Team Leader | All    | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
-| 25730061 | Hoàng Cao Sơn      | Math Lead   | Report | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
-| 25730094 | Nguyễn Đức Ý       | Code Lead   | Math   | [@ducy11](https://github.com/ducy11)                               |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Report Lead | Code   | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| MSSV     | Họ Tên             | Vai Trò                 | Hỗ Trợ              | GitHub                                                             |
+| :------- | :----------------- | :---------------------- | :------------------ | :----------------------------------------------------------------- |
+| 25730067 | Đặng Chí Thanh     | Team Leader & Code Lead | Tất cả              | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
+| 25730061 | Hoàng Cao Sơn      | Math Lead               | Code & Báo cáo      | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Report Lead             | Admin & Hỗ trợ Code | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| 25730094 | Nguyễn Đức Ý       | Supporter               | General (Chung)     | [@ducy11](https://github.com/ducy11)                               |
 
 ---
 
-## 🗺️ Lộ trình (Roadmap)
+## 🗺️ Lộ trình & Tiến độ
 
-```mermaid
-gantt
-    title CS115 Lộ trình Dự án RL
-    dateFormat  YYYY-MM-DD
-    tickInterval 1w
-    axisFormat  %m/%d
+Dự án đang triển khai song song Math & Code.
 
-    section GĐ 1: Nền tảng (W3-W5)
-    Nghiên cứu & Toán           :active, des1, 2026-04-06, 14d
-    Cài đặt môi trường (Gym)    :des2, after des1, 7d
+| Giai đoạn | Nội dung chính                       | Trạng thái     |
+| :-------- | :----------------------------------- | :------------- |
+| **GĐ 1**  | Chứng minh toán & Cài đặt môi trường | Đang thực hiện |
+| **GĐ 2**  | Mạng Policy & REINFORCE              | Xong sớm       |
+| **GĐ 3**  | Huấn luyện & Tối ưu                  | Sắp tới        |
 
-    section GĐ 2: Thuật toán (W6-W8)
-    Policy Network              :des3, after des2, 10d
-    REINFORCE                   :des4, after des3, 10d
-
-    section GĐ 3: Huấn luyện (W9-W11)
-    Training & Tối ưu           :des5, after des4, 14d
-    Đánh giá & Biểu đồ         :des6, after des5, 7d
-
-    section GĐ 4: Báo cáo (W12-W13)
-    Report LaTeX                :des7, after des6, 10d
-    Slide thuyết trình          :des8, after des7, 5d
-
-    section GĐ 5: Hoàn tất (W14-W15)
-    Chỉnh sửa theo góp ý       :des9, after des8, 6d
-    Nộp bài                     :milestone, des10, 2026-07-01, 0d
-```
+🚀 Xem lộ trình chi tiết và biểu đồ Gantt tại: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
 ---
 
@@ -84,7 +66,7 @@ gantt
 
 Tối ưu phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh $\theta$ của policy $\pi_{\theta}(a|s)$.
 
-$$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \nabla*{\theta} \log \pi*{\theta}(a_t|s_t) \hat{A}\_t \right] $$
+$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
 
 - $\pi_{\theta}(a_t|s_t)$: Xác suất hành động $a_t$ ở trạng thái $s_t$.
 - $\hat{A}_t$: Ước lượng Advantage hoặc Return $G_t$.
@@ -92,59 +74,15 @@ $$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \
 
 ---
 
-## 🛠 Phân chia Công việc (WBS)
+## 🛠 Phân chia Công việc (WBS Summary)
 
-| Phân hệ    | Nội dung                                     | Lead       | Hỗ trợ     |
-| :--------- | :------------------------------------------- | :--------- | :--------- |
-| **Toán**   | Chứng minh PG, Log-derivative trick, LaTeX   | Hoàng Sơn  | Đức Ý      |
-| **Code**   | Gymnasium env, PyTorch policy net, REINFORCE | Đức Ý      | Xuân Quỳnh |
-| **Report** | Tối ưu tham số, analytics, viết báo cáo      | Xuân Quỳnh | Hoàng Sơn  |
-
----
-
-## 📂 Cấu trúc Thư mục
-
-```
-├── math/       # LaTeX & công thức toán
-├── sources/    # Code RL agent & mạng nơ-ron
-├── reports/    # Cập nhật hàng tuần & phân tích
-├── scripts/    # Script huấn luyện & vẽ biểu đồ
-├── data/       # Checkpoints & training logs
-├── docs/       # Tài liệu dự án & biên bản họp
-└── notes/      # Ghi chú cá nhân
-```
+| Phân hệ      | Người phụ trách | Hỗ trợ    |
+| :----------- | :-------------- | :-------- |
+| **Toán học** | Hoàng Sơn       | Chí Thanh |
+| **Mã nguồn** | Chí Thanh       | Hoàng Sơn |
+| **Báo cáo**  | Xuân Quỳnh      | Chí Thanh |
 
 ---
-
-## 🚩 Các cột mốc (Milestones)
-
-1. **M1: Nền tảng (W3-W5)** — Chứng minh PG theorem + setup môi trường.
-2. **M2: Thuật toán (W6-W8)** — Mạng nơ-ron + implement REINFORCE.
-3. **M3: Huấn luyện (W9-W11)** — Train, tối ưu tham số, vẽ biểu đồ.
-4. **M4: Báo cáo (W12-W13)** — Hoàn thiện report + slide thuyết trình.
-5. **M5: Nộp bài (W14-W15)** — Chỉnh theo góp ý GV + nộp chính thức.
-
----
-
-## 📅 Tiến độ
-
-### Tuần 03 (Khởi động) — 6/4/2026
-
-- [x] Khởi tạo repo & Git setup.
-- [x] Lập kế hoạch & WBS.
-- [x] Hoàn tất Team Charter v3.0.
-- [x] Tạo GitHub Project board.
-- [ ] Nghiên cứu: REINFORCE cho không gian hành động rời rạc.
-- [ ] Baseline: `CartPole-v1` với hành động ngẫu nhiên.
-
-### Tuần 04 (Mở rộng nền tảng) — 13/4/2026
-
-- [ ] Bản nháp chứng minh PG theorem (LaTeX, `math/`).
-- [ ] Giải thích Log-derivative trick.
-- [ ] Skeleton Policy Network (PyTorch).
-- [ ] Experience buffer cho trajectory (S, A, R).
-- [ ] Report: phần Introduction & Math Foundations.
-- [ ] Thống nhất quy trình: branch → PR → merge main.
 
 ---
 

@@ -13,44 +13,26 @@ Explore math foundations & practical implementation of **Policy Gradient** (REIN
 
 ## 👥 Team 05
 
-| ID       | Name               | Role        | Support | GitHub                                                             |
-| :------- | :----------------- | :---------- | :------ | :----------------------------------------------------------------- |
-| 25730067 | Đặng Chí Thanh     | Team Leader | All     | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
-| 25730061 | Hoàng Cao Sơn      | Math Lead   | Report  | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
-| 25730094 | Nguyễn Đức Ý       | Code Lead   | Math    | [@ducy11](https://github.com/ducy11)                               |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Report Lead | Code    | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| ID       | Name               | Role                    | Support              | GitHub                                                             |
+| :------- | :----------------- | :---------------------- | :------------------- | :----------------------------------------------------------------- |
+| 25730067 | Đặng Chí Thanh     | Team Leader & Code Lead | All                  | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
+| 25730061 | Hoàng Cao Sơn      | Math Lead               | Code & Report        | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
+| 26210070 | Phạm Vũ Xuân Quỳnh | Report Lead             | Admin & Code Support | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| 25730094 | Nguyễn Đức Ý       | Supporter               | General              | [@ducy11](https://github.com/ducy11)                               |
 
 ---
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap & Progress
 
-```mermaid
-gantt
-    title CS115 RL Project Roadmap
-    dateFormat  YYYY-MM-DD
-    tickInterval 1w
-    axisFormat  %m/%d
+Dự án đang trong giai đoạn triển khai song song Math & Code (Tuần 04).
 
-    section Phase 1: Foundation (W3-W5)
-    Math Derivation             :active, des1, 2026-04-06, 14d
-    Env Setup (Gym)             :des2, after des1, 7d
+| Giai đoạn   | Nội dung chính         | Trạng thái          |
+| :---------- | :--------------------- | :------------------ |
+| **Phase 1** | Math proof & Env setup | Đang thực hiện      |
+| **Phase 2** | Policy Net & REINFORCE | Xong sớm (Refining) |
+| **Phase 3** | Training & Tuning      | Sắp tới             |
 
-    section Phase 2: Core Algorithm (W6-W8)
-    Policy Network              :des3, after des2, 10d
-    REINFORCE impl              :des4, after des3, 10d
-
-    section Phase 3: Training (W9-W11)
-    Training & Tuning           :des5, after des4, 14d
-    Evaluation & Plots          :des6, after des5, 7d
-
-    section Phase 4: Report (W12-W13)
-    LaTeX Report                :des7, after des6, 10d
-    Presentation Slides         :des8, after des7, 5d
-
-    section Phase 5: Final (W14-W15)
-    Refinement                  :des9, after des8, 6d
-    Final Submit                :milestone, des10, 2026-07-01, 0d
-```
+🚀 Xem lộ trình chi tiết và biểu đồ Gantt tại: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
 ---
 
@@ -92,59 +74,13 @@ $$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \
 
 ---
 
-## 🛠 WBS (Work Breakdown)
+## 🛠 Phân chia Công việc (WBS Summary)
 
-| Module     | Focus                                          | Lead       | Support    |
-| :--------- | :--------------------------------------------- | :--------- | :--------- |
-| **Math**   | PG theorem proof, Log-derivative trick, LaTeX  | Hoàng Sơn  | Đức Ý      |
-| **Code**   | Gymnasium env, PyTorch policy net, REINFORCE   | Đức Ý      | Xuân Quỳnh |
-| **Report** | Hyperparameter tuning, analytics, report write | Xuân Quỳnh | Hoàng Sơn  |
-
----
-
-## 📂 Repo Structure
-
-```
-├── math/       # LaTeX sources & math derivations
-├── sources/    # RL agent & network implementation
-├── reports/    # Weekly updates & experiment analysis
-├── scripts/    # Training & visualization helpers
-├── data/       # Model checkpoints & training logs
-├── docs/       # Project docs & meeting records
-└── notes/      # Personal study notes
-```
-
----
-
-## 🚩 Milestones
-
-1. **M1: Foundation (W3-W5)** — Math proof of PG theorem + env setup.
-2. **M2: Core Algorithm (W6-W8)** — Neural network + REINFORCE impl.
-3. **M3: Training (W9-W11)** — Train, tune hyperparams, plot analytics.
-4. **M4: Report & Slides (W12-W13)** — Finalize hardcopy report + slides.
-5. **M5: Final Submit (W14-W15)** — Revise per instructor feedback + submit.
-
----
-
-## 📅 Progress Tracker
-
-### Week 03 (Kick-off) — Apr 6, 2026
-
-- [x] Repo init & Git setup.
-- [x] Project planning & WBS.
-- [x] Team Charter v3.0 finalized.
-- [x] GitHub Project board created.
-- [ ] Research: REINFORCE for discrete action spaces.
-- [ ] Baseline: `CartPole-v1` with random actions.
-
-### Week 04 (Foundation Expansion) — Apr 13, 2026
-
-- [ ] Draft PG theorem proof (LaTeX, `math/`).
-- [ ] Log-derivative trick explanation.
-- [ ] Policy network skeleton (PyTorch).
-- [ ] Experience buffer for trajectory (S, A, R).
-- [ ] Report: Introduction & Math Foundations section.
-- [ ] Unified workflow: branch → PR → merge to main.
+| Module       | Phụ trách (Owner) | Hỗ trợ    |
+| :----------- | :---------------- | :-------- |
+| **Toán học** | Hoàng Sơn         | Chí Thanh |
+| **Mã nguồn** | Chí Thanh         | Hoàng Sơn |
+| **Báo cáo**  | Xuân Quỳnh        | Chí Thanh |
 
 ---
 
