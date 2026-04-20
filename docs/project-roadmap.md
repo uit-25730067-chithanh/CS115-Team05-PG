@@ -49,10 +49,10 @@ gantt
 
 - [x] Bản nháp chứng minh PG theorem (LaTeX, `math/`).
 - [x] Giải thích Log-derivative trick.
-- [x] Thiết thiết kế Policy Network bằng PyTorch (Xong sớm).
+- [x] Thiết kế Policy Network bằng PyTorch (Xong sớm).
 - [x] Logic REINFORCE (Xong sớm).
-- [] Experience buffer cho trajectory (S, A, R).
-- [] Report: phần Introduction & Math Foundations.
+- [x] Experience buffer cho trajectory (S, A, R).
+- [x] Report: phần Introduction & Math Foundations.
 - [x] Thống nhất quy trình: branch → PR → merge main.
 
 ---
