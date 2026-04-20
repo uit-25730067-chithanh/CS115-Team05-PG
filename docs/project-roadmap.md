@@ -12,7 +12,7 @@ gantt
     axisFormat  %m/%d
 
     section GĐ 1: Nền tảng
-    Nghiên cứu & Toán (Sơn/Thanh)     :active, des1, 2026-04-06, 21d
+    Nghiên cứu & Toán (Sơn/Thanh)     :done, des1, 2026-04-06, 21d
     Cài đặt môi trường (Thanh)        :done, des2, 2026-04-06, 14d
 
     section GĐ 2: Thuật toán
@@ -20,7 +20,7 @@ gantt
     Lập trình REINFORCE (Thanh/Sơn)   :active, des4, 2026-04-15, 15d
 
     section GĐ 3: Huấn luyện
-    Huấn luyện & Tối ưu (Thanh/Sơn)   :des5, 2026-04-20, 21d
+    Huấn luyện & Tối ưu (Thanh/Sơn)   :active, des5, 2026-04-20, 21d
     Đánh giá & Biểu đồ (Thanh/Quỳnh)  :des6, 2026-05-11, 7d
 
     section GĐ 4: Báo cáo & Slide
@@ -47,12 +47,12 @@ gantt
 
 ### Tuần 04 (Mở rộng nền tảng) — 13/04/2026
 
-- [ ] Bản nháp chứng minh PG theorem (LaTeX, `math/`).
-- [ ] Giải thích Log-derivative trick.
-- [x] Thiết kế Policy Network bằng PyTorch (Xong sớm).
+- [x] Bản nháp chứng minh PG theorem (LaTeX, `math/`).
+- [x] Giải thích Log-derivative trick.
+- [x] Thiết thiết kế Policy Network bằng PyTorch (Xong sớm).
 - [x] Logic REINFORCE (Xong sớm).
-- [ ] Experience buffer cho trajectory (S, A, R).
-- [ ] Report: phần Introduction & Math Foundations.
+- [] Experience buffer cho trajectory (S, A, R).
+- [] Report: phần Introduction & Math Foundations.
 - [x] Thống nhất quy trình: branch → PR → merge main.
 
 ---
