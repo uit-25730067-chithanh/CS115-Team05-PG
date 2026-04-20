@@ -56,3 +56,6 @@ dist/
 tmp/
 notes/
 scratch/
+
+# GitHub Project Management
+.github-management/
