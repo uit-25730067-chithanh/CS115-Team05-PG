@@ -1,7 +1,7 @@
 # Week 04 — Foundation Expansion (Apr 13-19, 2026)
 
 **Phase**: 1 — Foundation (W3-W5)
-**Status**: 🔄 In Progress
+**Status**: ✅ Completed
 
 ---
 
@@ -36,11 +36,11 @@
 
 ## In Progress
 
-- [ ] PG theorem proof draft (LaTeX, `math/`).
-- [ ] Log-derivative trick detailed explanation.
-- [ ] Policy network skeleton (PyTorch).
-- [ ] Experience buffer for trajectory storage (S, A, R).
-- [ ] Report: Introduction & Math Foundations sections.
+- [x] PG theorem proof draft (LaTeX, `math/`).
+- [x] Log-derivative trick detailed explanation.
+- [x] Policy network skeleton (PyTorch).
+- [x] Experience buffer for trajectory storage (S, A, R).
+- [x] Report: Introduction & Math Foundations sections.
 
 ## Blockers
 
