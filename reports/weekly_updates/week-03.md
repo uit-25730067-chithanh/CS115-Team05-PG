@@ -1,7 +1,7 @@
 # Week 03 — Kick-off (Apr 6-12, 2026)
 
 **Phase**: 1 — Foundation (W3-W5)
-**Status**: ✅ On Track
+**Status**: ✅ Completed
 
 ---
 
@@ -36,10 +36,10 @@
 
 ## Action Items (Due: Sun Apr 12, 23:00)
 
-- [ ] All: Read & understand REINFORCE algorithm.
+- [x] All: Read & understand REINFORCE algorithm.
 - [x] Thanh: Send detailed task assignments by 21h Apr 7.
-- [ ] Sơn: Begin reading PG theorem materials.
-- [ ] Ý: Setup Gymnasium environment locally.
+- [x] Sơn: Begin reading PG theorem materials.
+- [x] Ý: Setup Gymnasium environment locally.
 
 ## Blockers
 
