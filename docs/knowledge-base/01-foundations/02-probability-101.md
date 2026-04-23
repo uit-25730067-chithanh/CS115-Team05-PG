@@ -35,13 +35,15 @@ graph LR
 
 ## 2. Xác suất của một Trajectory $P(\tau | \theta)$
 
-Dưới một chính sách $\pi_\theta$, xác suất để một trajectory cụ thể $\tau$ xảy ra phụ thuộc vào cả chính sách của Agent và xác suất chuyển trạng thái của môi trường:
+Dưới một chính sách $\pi_{\theta}$, xác suất để một trajectory cụ thể $\tau$ xảy ra phụ thuộc vào cả chính sách của Agent và xác suất chuyển trạng thái của môi trường:
 
-$$P(\tau | \theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t | s_t) P(s_{t+1} | s_t, a_t)$$
+$$
+P(\tau | \theta) = \mu(s_0) \prod_{t=0}^{T} \pi_{\theta}(a_t | s_t) P(s_{t+1} | s_t, a_t)
+$$
 
 Trong đó:
 *   $\mu(s_0)$: Xác suất trạng thái khởi đầu.
-*   $\pi_\theta(a_t | s_t)$: Chính sách của chúng ta (phụ thuộc vào $\theta$).
+*   $\pi_{\theta}(a_t | s_t)$: Chính sách của chúng ta (phụ thuộc vào $\theta$).
 *   $P(s_{t+1} | s_t, a_t)$: Dynamics của môi trường (không phụ thuộc vào $\theta$).
 
 **Điểm mấu chốt:** Khi chúng ta lấy đạo hàm theo $\theta$, các thành phần không phụ thuộc vào $\theta$ (như $P(s_{t+1} | s_t, a_t)$) sẽ biến mất. Đây là lý do tại sao chúng ta có thể tối ưu hóa chính sách mà không cần biết mô hình vật lý của môi trường.
@@ -50,7 +52,9 @@ Trong đó:
 
 Mục tiêu là tối đa hóa tổng phần thưởng trên quỹ đạo đó:
 
-$$R(\tau) = \sum_{t=0}^{T} \gamma^t r_{t+1}$$
+$$
+R(\tau) = \sum_{t=0}^{T} \gamma^t r_{t+1}
+$$
 
 Lưu ý: $R(\tau)$ là một giá trị cố định cho một quỹ đạo đã thực hiện xong. Tuy nhiên, vì $\tau$ là một biến ngẫu nhiên (do chính sách ngẫu nhiên), nên $R(\tau)$ cũng là một biến ngẫu nhiên.
 
@@ -58,6 +62,8 @@ Lưu ý: $R(\tau)$ là một giá trị cố định cho một quỹ đạo đã
 
 Bây giờ, chúng ta có thể viết lại hàm mục tiêu $J(\theta)$ một cách gọn gàng nhất:
 
-$$J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)] = \int P(\tau | \theta) R(\tau) d\tau$$
+$$
+J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} [R(\tau)] = \int P(\tau | \theta) R(\tau) d\tau
+$$
 
 Công thức này nói rằng: Chúng ta muốn giá trị trung bình của tổng phần thưởng trên tất cả các quỹ đạo có thể xảy ra là lớn nhất. Thuật toán REINFORCE sẽ tìm cách tăng xác suất $P(\tau | \theta)$ của những quỹ đạo có $R(\tau)$ cao và giảm xác suất của những quỹ đạo có $R(\tau)$ thấp.

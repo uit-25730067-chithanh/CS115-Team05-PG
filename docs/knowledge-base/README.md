@@ -8,18 +8,18 @@ Tài liệu này phục vụ mục đích lưu trữ và truyền đạt tri th�
 
 - **Xác suất (Probability):**
   - Định nghĩa biến ngẫu nhiên (Random Variable).
-  - Giá trị kỳ vọng (Expectation) $E_{x \sim P}[f(x)]$: Cách tính và tính chất tuyến tính.
+  - Giá trị kỳ vọng (Expectation) $\mathbb{E}_{x \sim P}[f(x)]$: Cách tính và tính chất tuyến tính.
   - Phân phối xác suất rời rạc và hàm mật độ xác suất (PDF).
   - Xác suất có điều kiện và Quy tắc Bayes (Bayes' Rule).
 - **Giải tích (Calculus):**
   - Đạo hàm hàm hợp (Chain Rule).
-  - Gradient $\nabla_\theta$ và ý nghĩa hình học của nó (hướng tăng nhanh nhất của hàm số).
+  - Gradient $\nabla_{\theta}$ và ý nghĩa hình học của nó (hướng tăng nhanh nhất của hàm số).
   - Đạo hàm của hàm Logarit: $\frac{d}{dx} \ln(f(x)) = \frac{f'(x)}{f(x)}$.
 - **Học sâu (Deep Learning):**
   - Cấu trúc mạng Neural đơn giản (MLP).
   - Cơ chế lan truyền ngược (Backpropagation) và tối ưu hóa bằng Stochastic Gradient Descent (SGD).
 - **RL cơ bản:**
-  - Nắm vững các thuật ngữ: State ($s$), Action ($a$), Reward ($r$), Policy ($\pi$).
+  - Nắm vững các thuật ngữ: State ($s$), Action ($a$), Reward ($r$), Policy ($\pi_{\theta}$).
 
 ## 1. Cấu trúc Hệ thống (Knowledge Architecture)
 

@@ -21,7 +21,7 @@ Mọi bài toán RL đều được mô hình hóa dưới dạng một bộ 5 t
 
 Agent tương tác với môi trường thông qua một **Policy** (Chính sách). Trong thuật toán REINFORCE, chúng ta sử dụng một chính sách ngẫu nhiên (stochastic policy) được tham số hóa bởi $\theta$:
 
-$$\pi_\theta(a|s) = P(A_t = a | S_t = s; \theta)$$
+$$\pi_{\theta}(a|s) = P(A_t = a | S_t = s; \theta)$$
 
 Điều này có nghĩa là: Tại trạng thái $s$, Agent sẽ chọn hành động $a$ với xác suất được tính toán bởi mạng neural có trọng số $\theta$.
 
@@ -29,7 +29,9 @@ $$\pi_\theta(a|s) = P(A_t = a | S_t = s; \theta)$$
 
 Mục tiêu tối thượng là tìm ra bộ tham số $\theta$ sao cho **Expected Return** (Kỳ vọng tổng phần thưởng) là lớn nhất:
 
-$$J(\theta) = \mathbb{E}_{\pi_\theta} \left[ \sum_{t=0}^{\infty} \gamma^t R_{t+1} \right]$$
+$$
+J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{\infty} \gamma^t R_{t+1} \right]
+$$
 
 Trong đó, $J(\theta)$ được gọi là hàm mục tiêu (objective function). Công việc của chúng ta là thực hiện Gradient Ascent trên $J(\theta)$ để cập nhật mạng neural.
 
