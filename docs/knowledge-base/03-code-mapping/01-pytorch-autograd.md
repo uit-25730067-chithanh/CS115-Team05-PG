@@ -5,16 +5,28 @@ Trong toán học, chúng ta thực hiện **Gradient Ascent** để tối đa h
 ## 1. Tại sao lại có dấu âm (-) trong hàm Loss?
 
 Trong bài toán phân loại (Supervised Learning), chúng ta cực tiểu hóa Negative Log Likelihood (NLL):
-$$\text{Loss} = -\ln P(\text{label} | \text{input})$$
+
+$$
+\text{Loss} = -\ln P(\text{label} | \text{input})
+$$
 
 Trong RL (REINFORCE), chúng ta muốn cực đại hóa:
-$$\nabla_\theta J(\theta) \approx \nabla_\theta \ln \pi_\theta(a|s) G_t$$
+
+$$
+\nabla_{\theta} J(\theta) \approx \nabla_{\theta} \ln \pi_{\theta}(a|s) G_t
+$$
 
 Để sử dụng trình tối ưu hóa (Optimizer) của PyTorch, chúng ta định nghĩa một hàm Loss giả lập sao cho đạo hàm của nó ngược hướng với hướng chúng ta muốn đi:
-$$\text{Loss}_{RL} = - \ln \pi_\theta(a|s) G_t$$
 
-Khi PyTorch tính `loss.backward()`, nó sẽ tính $\nabla_\theta \text{Loss}_{RL} = - \nabla_\theta \ln \pi_\theta(a|s) G_t$. Sau đó, Optimizer thực hiện bước cập nhật:
-$$\theta \leftarrow \theta - \alpha \nabla_\theta \text{Loss}_{RL} \implies \theta \leftarrow \theta + \alpha (\nabla_\theta \ln \pi_\theta(a|s) G_t)$$
+$$
+\text{Loss}_{RL} = - \ln \pi_{\theta}(a|s) G_t
+$$
+
+Khi PyTorch tính `loss.backward()`, nó sẽ tính $\nabla_{\theta} \text{Loss}_{RL} = - \nabla_{\theta} \ln \pi_{\theta}(a|s) G_t$. Sau đó, Optimizer thực hiện bước cập nhật:
+
+$$
+\theta \leftarrow \theta - \alpha \nabla_{\theta} \text{Loss}_{RL} \implies \theta \leftarrow \theta + \alpha (\nabla_{\theta} \ln \pi_{\theta}(a|s) G_t)
+$$
 
 **Kết quả:** Việc cực tiểu hóa $-\ln \pi \cdot G$ tương đương với việc cực đại hóa $\ln \pi \cdot G$.
 
@@ -42,7 +54,7 @@ def update_policy(optimizer, log_probs, returns, device="cpu"):
     optimizer.step()
 ```
 
-- `log_prob`: Chính là $\ln \pi_\theta(a_t|s_t)$ thu được từ `m.log_prob(action)`.
+- `log_prob`: Chính là $\ln \pi_{\theta}(a_t|s_t)$ thu được từ `m.log_prob(action)`.
 - `G_t`: Chính là $G_t$ đã được tính toán và chuẩn hóa.
 - `-log_prob * G_t`: Chính là thành phần của hàm Loss cho mỗi bước thời gian.
 

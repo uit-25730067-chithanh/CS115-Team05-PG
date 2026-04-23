@@ -8,13 +8,13 @@
 | :--- | :--- | :--- | :--- |
 | $s$ | Trạng thái (State) | `state` | `sources/train.py` |
 | $a$ | Hành động (Action) | `action` | `sources/train.py` |
-| $\pi_\theta(a \mid s)$ | Chính sách (Policy) | `probs` hoặc `action_probs` | `sources/models/policy.py` |
-| $\ln \pi_\theta(a \mid s)$ | Log-policy | `log_prob` | `sources/models/policy.py` |
+| $\pi_{\theta}(a \mid s)$ | Chính sách (Policy) | `probs` hoặc `action_probs` | `sources/models/policy.py` |
+| $\ln \pi_{\theta}(a \mid s)$ | Log-policy | `log_prob` | `sources/models/policy.py` |
 | $r_t$ | Phần thưởng tức thời | `reward` | `sources/train.py` |
 | $G_t$ | Tổng phần thưởng | `returns` hoặc `G` | `sources/reinforce.py` |
 | $\gamma$ | Hệ số chiết khấu | `gamma` | Tham số của `train_reinforce` |
 | $\alpha$ | Learning rate | `lr` | Tham số của `train_reinforce` |
-| $\nabla_\theta J(\theta)$ | Gradient | `policy_loss.backward()` | `sources/reinforce.py` |
+| $\nabla_{\theta} J(\theta)$ | Gradient | `policy_loss.backward()` | `sources/reinforce.py` |
 
 ## 2. Sơ đồ Luồng Công việc (REINFORCE Workflow)
 
