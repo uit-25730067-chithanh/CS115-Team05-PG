@@ -56,11 +56,11 @@ Giải thích các hiện tượng quan sát được trong quá trình huấn l
 - [01. Case Study: Phân tích hội tụ trên môi trường CartPole-v1](./04-application-analysis/01-cartpole-case-study.md)
 - [02. Mở rộng hệ thống và giới hạn của REINFORCE](./04-application-analysis/02-scaling-up.md)
 
-## 3. Tài liệu Tham khảo (Core References)
+## 2. Tài liệu Tham khảo (Core References)
 
 Để có cái nhìn sâu sắc và học thuật hơn, Team 05 khuyến khích tham khảo các nguồn sau:
 
 1. **Sutton & Barto, "Reinforcement Learning: An Introduction" (2nd Ed)** - [Chapter 13: Policy Gradient Methods](http://incompleteideas.net/book/the-book-2nd.html)
-2. **Stanford CS234: Reinforcement Learning** - [Lecture Slides (Policy Gradients)](http://web.stanford.edu/class/cs234/slides/lecture5post.pdf) _Sao tài liệu này quen vậy trời_
+2. **Stanford CS234: Reinforcement Learning** - [Course Lectures & Notes](https://web.stanford.edu/class/cs234/modules.html) _Tài liệu tham khảo chính thức_
 3. **OpenAI Spinning Up** - [Part 3: Intro to Policy Optimization](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
 4. **UC Berkeley CS285** - [Lecture 5: Policy Gradients](http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-5.pdf)

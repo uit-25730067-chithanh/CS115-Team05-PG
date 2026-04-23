@@ -6,15 +6,15 @@
 
 | Ký hiệu Toán học          | Ý nghĩa                   | Tên biến trong Code         | Vị trí (File)                        |
 | :------------------------ | :------------------------ | :-------------------------- | :----------------------------------- |
-| $s$                       | Trạng thái (State)        | `state`                     | `train.py`, `reinforce.py`           |
-| $a$                       | Hành động (Action)        | `action`                    | `train.py`, `reinforce.py`           |
-| $\pi_\theta(a\|s)$        | Chính sách (Policy)       | `probs` hoặc `action_probs` | `reinforce.py` (Hàm `forward`)       |
-| $\ln \pi_\theta(a\|s)$    | Log-policy                | `log_prob`                  | `reinforce.py` (Hàm `select_action`) |
-| $r_t$                     | Phần thưởng tức thời      | `reward`                    | `train.py` (Vòng lặp episode)        |
-| $G_t$                     | Tổng phần thưởng tích lũy | `returns` hoặc `G`          | `reinforce.py` (Hàm `update_policy`) |
+| $s$                       | Trạng thái (State)        | `state`                     | `sources/train.py`, `sources/reinforce.py` |
+| $a$                       | Hành động (Action)        | `action`                    | `sources/train.py`, `sources/reinforce.py` |
+| $\pi_\theta(a\mid s)$     | Chính sách (Policy)       | `probs` hoặc `action_probs` | `sources/models/policy.py` (Hàm `forward`) |
+| $\ln \pi_\theta(a\mid s)$ | Log-policy                | `log_prob`                  | `sources/models/policy.py` (Hàm `select_action`) |
+| $r_t$                     | Phần thưởng tức thời      | `reward`                    | `sources/train.py` (Vòng lặp episode) |
+| $G_t$                     | Tổng phần thưởng tích lũy | `returns` hoặc `G`          | `sources/reinforce.py` (Hàm `update_policy`) |
 | $\gamma$                  | Hệ số chiết khấu          | `gamma`                     | Tham số hàm `train_reinforce`        |
 | $\alpha$                  | Learning rate             | `lr`                        | Tham số hàm `train_reinforce`        |
-| $\nabla_\theta J(\theta)$ | Gradient hàm mục tiêu     | `policy_loss.backward()`    | `reinforce.py` (Hàm `update_policy`) |
+| $\nabla_\theta J(\theta)$ | Gradient hàm mục tiêu     | `policy_loss.backward()`    | `sources/reinforce.py` (Hàm `update_policy`) |
 
 ## 2. Sơ đồ Luồng Công việc (REINFORCE Workflow)
 
@@ -26,7 +26,7 @@ Dưới đây là chu trình từ khi Agent quan sát môi trường cho đến 
 
 ### Bước 1: Thu thập Trajectory (Sampling)
 
-Trong `train.py`, vòng lặp `while not done` thực hiện việc lấy mẫu:
+Trong `train.py`, vòng lặp `while not (done or truncated)` thực hiện việc lấy mẫu:
 
 ```python
 action, log_prob = policy_net.select_action(state, device)
@@ -39,10 +39,11 @@ rewards.append(reward)
 
 ### Bước 2: Tính toán Return ($G_t$)
 
-Trong `reinforce.py`, hàm `update_policy` tính ngược từ cuối episode:
-
 ```python
+# Trong sources/train.py
 returns = compute_returns(rewards, gamma)
+# Trong sources/reinforce.py
+update_policy(optimizer, log_probs, returns, device)
 ```
 
 - Tương ứng với công thức $G_t = \sum_{k=t}^T \gamma^{k-t} r_{k+1}$.
@@ -66,7 +67,7 @@ for log_prob, G_t in zip(log_probs, returns):
 
 - Tương ứng với việc lập biểu thức $\nabla \ln \pi \cdot G$.
 
-## 3. Tại sao cấu trúc code lại như vậy?
+## 4. Tại sao cấu trúc code lại như vậy?
 
 1.  **Lưu trữ `log_probs`:** Chúng ta phải lưu lại `log_prob` tại mỗi bước vì đó là một phần của đồ thị tính toán (computational graph). Nếu không lưu, PyTorch sẽ không biết cách tính đạo hàm ngược lại các trọng số mạng neural đã sinh ra xác suất đó.
 2.  **Tính `returns` ngược:** Tính ngược từ dưới lên (từ $T$ về $0$) hiệu quả hơn về mặt tính toán ($O(T)$ thay vì $O(T^2)$).

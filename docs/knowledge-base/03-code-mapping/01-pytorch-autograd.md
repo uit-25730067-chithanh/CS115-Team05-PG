@@ -23,15 +23,23 @@ $$\theta \leftarrow \theta - \alpha \nabla_\theta \text{Loss}_{RL} \implies \the
 Trong file `sources/reinforce.py`, hàm `update_policy` chứa logic:
 
 ```python
-policy_loss = []
-for log_prob, G_t in zip(log_probs, returns):
-    policy_loss.append(-log_prob * G_t)
-
-# Cập nhật mạng neural
-policy_loss = torch.stack(policy_loss).sum()
-optimizer.zero_grad()
-policy_loss.backward()
-optimizer.step()
+# Trong sources/reinforce.py
+def update_policy(optimizer, log_probs, returns, device="cpu"):
+    returns = torch.tensor(returns, dtype=torch.float32).to(device)
+    
+    # Bước quan trọng: Chuẩn hóa returns để giảm phương sai
+    if len(returns) > 1:
+        returns = (returns - returns.mean()) / (returns.std() + 1e-8)
+        
+    policy_loss = []
+    for log_prob, G_t in zip(log_probs, returns):
+        policy_loss.append(-log_prob * G_t)
+        
+    # Tính tổng loss và thực hiện backprop
+    policy_loss = torch.stack(policy_loss).sum()
+    optimizer.zero_grad()
+    policy_loss.backward()
+    optimizer.step()
 ```
 
 - `log_prob`: Chính là $\ln \pi_\theta(a_t|s_t)$ thu được từ `m.log_prob(action)`.

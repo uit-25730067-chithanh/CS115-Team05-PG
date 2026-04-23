@@ -30,7 +30,7 @@ Một hiện tượng tiêu biểu trong báo cáo của team là sự sụt gi�
 
 Trong code, chúng ta thực hiện:
 ```python
-returns = (returns - returns.mean()) / (returns.std() + 1e-9)
+returns = (returns - returns.mean()) / (returns.std() + 1e-8)
 ```
 Việc này chuyển đổi bài toán từ "tối đa hóa phần thưởng tuyệt đối" sang "tối đa hóa phần thưởng tương đối so với trung bình của chính nó".
 *   Nếu một ván chơi đạt 500 điểm nhưng trung bình gần đây cũng là 500, thì `return` sau chuẩn hóa sẽ xấp xỉ 0. Điều này ngăn chặn việc mạng neural bị cập nhật quá mức khi đã đạt đến trạng thái bão hòa, giúp duy trì sự ổn định ở giai đoạn cuối quá trình huấn luyện.
