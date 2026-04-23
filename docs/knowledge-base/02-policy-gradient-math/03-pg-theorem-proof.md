@@ -36,7 +36,7 @@ $$\nabla_\theta J(\theta) \approx \frac{1}{N} \sum_{i=1}^N \left( \sum_{t=0}^T \
 
 ## 4. Chứng minh Bổ đề Nhân quả (Causality)
 
-Trong REINFORCE, chúng ta thay thế tổng phần thưởng cả trajectory $R(\tau)$ bằng phần thưởng tương lai (reward-to-go) $G_t = \sum_{k=t}^T r_{k+1}$. Tại sao ta có thể bỏ qua các phần thưởng trong quá khứ ($r_{k \le t}$)?
+Trong REINFORCE, chúng ta thay thế tổng phần thưởng cả trajectory $R(\tau)$ bằng phần thưởng tương lai (reward-to-go) $G_t = \sum_{k=t}^T \gamma^{k-t} r_{k+1}$. Tại sao ta có thể bỏ qua các phần thưởng trong quá khứ ($r_{k < t}$)?
 
 **Chứng minh:**
 Ta cần chứng minh rằng phần thưởng quá khứ không đóng góp vào gradient kỳ vọng:
@@ -51,9 +51,9 @@ $$\mathbb{E}_{a_t \sim \pi} [\nabla_\theta \ln \pi(a_t|s_t) | s_t] = \sum_{a} \p
 Vì số hạng này luôn bằng 0, các phần thưởng quá khứ $r_{k+1}$ ($k < t$) không làm thay đổi kỳ vọng của gradient, nhưng việc loại bỏ chúng giúp giảm phương sai (variance) đáng kể.
 
 Do đó, ta có thể rút gọn tổng bên trong:
-$$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta} \left[ \sum_{t=0}^{T} \nabla_\theta \ln \pi_\theta(a_t | s_t) \left( \sum_{k=t}^{T} r_{k+1} \right) \right]$$
+$$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta} \left[ \sum_{t=0}^{T} \nabla_\theta \ln \pi_\theta(a_t | s_t) \left( \sum_{k=t}^{T} \gamma^{k-t} r_{k+1} \right) \right]$$
 
-Biểu thức $\sum_{k=t}^{T} r_{k+1}$ chính là $G_t$ (nếu không xét discount factor $\gamma$).
+Biểu thức $\sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$ chính là $G_t$ như đã định nghĩa ở Mục 1.
 
 ## 5. Thuật toán REINFORCE
 

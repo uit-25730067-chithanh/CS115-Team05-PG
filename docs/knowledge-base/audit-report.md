@@ -12,8 +12,7 @@ Tài liệu rất tốt về mặt toán học và sự nhất quán. Tuy nhiên
 3.  **Khái niệm Return ($G_t$)**: [ĐÃ XỬ LÝ SÂU] Đã có mục giải thích sự khác biệt giữa $R(\tau)$ và $G_t$ và chứng minh Bổ đề Nhân quả (Causality) để giải thích tại sao dùng Reward-to-go.
 4.  **Tính trực quan của Gradient Ascent**: [ĐÃ XỬ LÝ SÂU] Đã thay đổi cách giải thích sang mô hình "Leo dốc" kết hợp sơ đồ luồng dữ liệu REINFORCE từ Inference đến Training.
 
-## 3. Đề xuất bổ sung (Phối hợp với Phase 3)
-1.  **README**: Thêm phần "Prerequisites".
-2.  **Foundations**: Thêm sơ đồ Agent-Environment loop.
-3.  **Math Proofs**: Thêm mục "Intuition" (Trực giác toán học) sau mỗi chứng minh.
-4.  **References**: Chèn các link từ Stanford CS234 và Sutton & Barto vào cuối các file quan trọng.
+## 3. Các hạng mục ưu tiên tiếp theo (Roadmap update)
+1.  **Math Proofs**: Thêm mục "Intuition" (Trực giác toán học) sau mỗi chứng minh để giúp người học không chỉ biết công thức mà còn hiểu tại sao nó hoạt động.
+2.  **Cross-linking**: Bổ sung liên kết chéo từ `README.md` sang phần Foundations và ngược lại để người mới dễ dàng điều hướng.
+3.  **Visualization Enhancement**: Tiếp tục duy trì phong cách vẽ tay "Chalkboard style" cho các sơ đồ mới để tạo cảm giác gần gũi như học trên lớp.

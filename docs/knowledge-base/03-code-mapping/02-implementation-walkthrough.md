@@ -4,17 +4,17 @@
 
 ## 1. Bảng đối chiếu Ký hiệu (Symbol Mapping)
 
-| Ký hiệu Toán học          | Ý nghĩa                   | Tên biến trong Code         | Vị trí (File)                        |
-| :------------------------ | :------------------------ | :-------------------------- | :----------------------------------- |
-| $s$                       | Trạng thái (State)        | `state`                     | `sources/train.py`, `sources/reinforce.py` |
-| $a$                       | Hành động (Action)        | `action`                    | `sources/train.py`, `sources/reinforce.py` |
-| $\pi_\theta(a\mid s)$     | Chính sách (Policy)       | `probs` hoặc `action_probs` | `sources/models/policy.py` (Hàm `forward`) |
-| $\ln \pi_\theta(a\mid s)$ | Log-policy                | `log_prob`                  | `sources/models/policy.py` (Hàm `select_action`) |
-| $r_t$                     | Phần thưởng tức thời      | `reward`                    | `sources/train.py` (Vòng lặp episode) |
-| $G_t$                     | Tổng phần thưởng tích lũy | `returns` hoặc `G`          | `sources/reinforce.py` (Hàm `update_policy`) |
-| $\gamma$                  | Hệ số chiết khấu          | `gamma`                     | Tham số hàm `train_reinforce`        |
-| $\alpha$                  | Learning rate             | `lr`                        | Tham số hàm `train_reinforce`        |
-| $\nabla_\theta J(\theta)$ | Gradient hàm mục tiêu     | `policy_loss.backward()`    | `sources/reinforce.py` (Hàm `update_policy`) |
+| Ký hiệu | Ý nghĩa | Biến trong Code | Vị trí (File) |
+| :--- | :--- | :--- | :--- |
+| $s$ | Trạng thái (State) | `state` | `sources/train.py` |
+| $a$ | Hành động (Action) | `action` | `sources/train.py` |
+| $\pi_\theta(a \mid s)$ | Chính sách (Policy) | `probs` hoặc `action_probs` | `sources/models/policy.py` |
+| $\ln \pi_\theta(a \mid s)$ | Log-policy | `log_prob` | `sources/models/policy.py` |
+| $r_t$ | Phần thưởng tức thời | `reward` | `sources/train.py` |
+| $G_t$ | Tổng phần thưởng | `returns` hoặc `G` | `sources/reinforce.py` |
+| $\gamma$ | Hệ số chiết khấu | `gamma` | Tham số của `train_reinforce` |
+| $\alpha$ | Learning rate | `lr` | Tham số của `train_reinforce` |
+| $\nabla_\theta J(\theta)$ | Gradient | `policy_loss.backward()` | `sources/reinforce.py` |
 
 ## 2. Sơ đồ Luồng Công việc (REINFORCE Workflow)
 
@@ -37,20 +37,12 @@ rewards.append(reward)
 
 - Tương ứng với việc lấy mẫu $\tau \sim \pi_\theta$.
 
-### Bước 2: Tính toán Return ($G_t$)
+### Bước 2: Từ $R(\tau)$ đến Reward-to-go ($G_t$)
 
 ```python
 # Trong sources/train.py
 returns = compute_returns(rewards, gamma)
 # Trong sources/reinforce.py
-update_policy(optimizer, log_probs, returns, device)
-```
-
-- Tương ứng với công thức $G_t = \sum_{k=t}^T \gamma^{k-t} r_{k+1}$.
-
-### Bước 3: Chuẩn hóa Baseline (Variance Reduction)
-
-```python
 returns = torch.tensor(returns, dtype=torch.float32).to(device)
 if len(returns) > 1:
     returns = (returns - returns.mean()) / (returns.std() + 1e-8)
@@ -58,16 +50,22 @@ if len(returns) > 1:
 
 - Tương ứng với việc áp dụng Baseline $b = \text{mean}(G)$ và chuẩn hóa phương sai.
 
-### Bước 4: Tính Loss và Backward
-
+### Bước 3: Tính Loss và Backward
+Trong `sources/reinforce.py`, hàm `update_policy` thực hiện:
 ```python
+policy_loss = []
 for log_prob, G_t in zip(log_probs, returns):
     policy_loss.append(-log_prob * G_t)
+policy_loss = torch.stack(policy_loss).sum()
+
+### Bước 4: Cập nhật Trọng số (Weight Update)
+```python
+optimizer.zero_grad()
+policy_loss.backward()
+optimizer.step()
 ```
 
-- Tương ứng với việc lập biểu thức $\nabla \ln \pi \cdot G$.
-
-## 4. Tại sao cấu trúc code lại như vậy?
+## 5. Tại sao cấu trúc code lại như vậy?
 
 1.  **Lưu trữ `log_probs`:** Chúng ta phải lưu lại `log_prob` tại mỗi bước vì đó là một phần của đồ thị tính toán (computational graph). Nếu không lưu, PyTorch sẽ không biết cách tính đạo hàm ngược lại các trọng số mạng neural đã sinh ra xác suất đó.
 2.  **Tính `returns` ngược:** Tính ngược từ dưới lên (từ $T$ về $0$) hiệu quả hơn về mặt tính toán ($O(T)$ thay vì $O(T^2)$).
