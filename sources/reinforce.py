@@ -9,7 +9,7 @@ def compute_returns(rewards, gamma):
         gamma (float): Discount factor
         
     Returns:
-        list: Returns G_t cho mỗi time step
+        list: Returns G_t cho mỗi time step, trong đó G_t = sum_{k=t}^T (gamma^{k-t} * R_k)
     """
     returns = []
     G_t = 0
@@ -44,8 +44,9 @@ def update_policy(optimizer, log_probs, returns, device="cpu"):
     policy_loss = []
     
     for log_prob, G_t in zip(log_probs, returns):
-        # Loss = - log_prob(a|s) * G_t
-        # Dấu âm vì PyTorch thực hiện Gradient Descent mà ta cần Gradient Ascent
+        # Loss = - log_prob(a|s, theta) * G_t
+        # Đây là log-derivative trick: gradient of J(theta) = E[ grad log pi(a|s) * G_t ]
+        # Dấu âm vì PyTorch thực hiện Gradient Descent mà ta cần Gradient Ascent cho J(theta)
         policy_loss.append(-log_prob * G_t)
         
     # Tính tổng loss của toàn memory (episode)
