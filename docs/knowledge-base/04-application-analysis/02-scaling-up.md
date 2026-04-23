@@ -4,7 +4,7 @@ Kiến thức về Policy Gradient và thuật toán REINFORCE mà Team 05 thự
 
 ## 1. RLHF trong Large Language Models (LLMs)
 
-Các mô hình như ChatGPT hay Claude sử dụng một kỹ thuật gọi là **Reinforcement Learning from Human Feedback (RLHF)** để căn chỉnh (align) câu trả lời của AI với mong muốn của con người.
+Các mô hình như ChatGPT sử dụng **Reinforcement Learning from Human Feedback (RLHF)**, còn Claude (Anthropic) sử dụng **RLAIF (RL from AI Feedback)** theo phương pháp Constitutional AI — cả hai đều nhằm căn chỉnh (align) câu trả lời của AI với mong muốn của con người.
 
 *   **Policy:** Chính là mô hình ngôn ngữ (Transformer).
 *   **Action:** Việc sinh ra một từ (token) tiếp theo.

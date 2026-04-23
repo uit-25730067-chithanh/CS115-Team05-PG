@@ -73,13 +73,31 @@ $$
 
 Ta có $R(\tau) = \sum_{t=0}^{T} \gamma^t r_{t+1}$.
 
-## 3. Cơ chế "Push-Pull" của Gradient
+Thay vào biểu thức gradient ở Bước 1:
 
-Công thức Gradient cho ta một chỉ dẫn hình học:
+$$
+\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \left( \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) \right) \left( \sum_{t=0}^{T} \gamma^t r_{t+1} \right) \right]
+$$
+
+Áp dụng **Bổ đề Nhân quả** (Causality Lemma, xem Mục 4 bên dưới): hành động tại thời điểm $t$ chỉ ảnh hưởng đến phần thưởng từ $t$ trở đi, nên ta thay $R(\tau)$ bằng **Reward-to-go** $G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$:
+
+$$
+\boxed{\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) \cdot G_t \right]}
+$$
+
+Đây là dạng cuối cùng của **Policy Gradient Theorem** mà thuật toán REINFORCE sử dụng.
+
+## 3. Ước lượng thực tế (Monte Carlo Estimator)
+
+> **Lưu ý:** Phần này KHÔNG thuộc chứng minh định lý mà là bước chuyển từ lý thuyết sang thực hành.
+
+Vì ta không thể tính kỳ vọng $\mathbb{E}_{\pi_\theta}[\cdot]$ một cách chính xác (trajectory space quá lớn), ta xấp xỉ bằng trung bình $N$ trajectory đã lấy mẫu:
 
 $$
 \nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i=1}^N \left( \sum_{t=0}^T \nabla_{\theta} \ln \pi_{\theta}(a_t^i | s_t^i) \cdot G_t^i \right)
 $$
+
+### Trực giác "Push-Pull"
 
 ![Policy Gradient Update](../assets/probability-pushing.png)
 

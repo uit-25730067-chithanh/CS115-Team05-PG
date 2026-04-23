@@ -115,7 +115,7 @@ Mục tiêu của Baseline là làm cho $G_t - b(s_t)$ có giá trị nhỏ hơn
 
 - **Ổn định:** Gradient chỉ hướng về việc "tốt hơn trung bình" hoặc "tệ hơn trung bình".
 - **Hội tụ nhanh hơn:** Mạng neural không bị nhiễu bởi các giá trị Reward tuyệt đối quá lớn.
-- **Giải thích hiện tượng tập 600:** Nếu không có Baseline tốt hoặc kích thước batch quá nhỏ, phương sai tích lũy có thể khiến Gradient rơi vào vùng bão hòa hoặc đi ngược hướng, gây ra hiện tượng giảm hiệu suất đột ngột.
+- **Giải thích hiện tượng tập 600 (giả thuyết):** Nếu không có Baseline tốt hoặc kích thước batch quá nhỏ, phương sai tích lũy có thể khiến Gradient rơi vào vùng bão hòa hoặc đi ngược hướng, gây ra hiện tượng giảm hiệu suất đột ngột. *(Lưu ý: đây là giải thích lý thuyết dựa trên tính chất của REINFORCE, chưa được xác minh bằng gradient norm logs từ training run cụ thể của Team 05.)*
 
 ---
 

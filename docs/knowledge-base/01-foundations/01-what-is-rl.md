@@ -40,7 +40,7 @@ Trong đó, $J(\theta)$ được gọi là hàm mục tiêu (objective function)
 Khác với Supervised Learning (Học có giám sát), nơi chúng ta biết rõ "nhãn" đúng để tính đạo hàm trực tiếp, trong RL:
 1.  Chúng ta không biết hành động nào là tối ưu ngay lập tức (Sparse rewards).
 2.  Hành động hiện tại ảnh hưởng đến các trạng thái tương lai (Sequential dependencies).
-3.  Hàm mục tiêu $J(\theta)$ là một kỳ vọng trên các quỹ đạo (trajectories), và chúng ta không thể tính đạo hàm trực tiếp qua các xác suất chuyển trạng thái $P(s'|s, a)$ của môi trường vì chúng thường là ẩn (unknown environment dynamics).
+3.  Hàm mục tiêu $J(\theta)$ là một kỳ vọng trên các quỹ đạo (trajectories), và chúng ta không thể tính đạo hàm trực tiếp vì hai lý do: (a) xác suất chuyển trạng thái $P(s'|s, a)$ thường là ẩn (unknown environment dynamics), và (b) ngay cả khi biết dynamics, việc tính tổng/tích phân trên toàn bộ không gian trajectory vẫn intractable — đây là lý do cốt lõi khiến ta cần ước lượng Monte Carlo (lấy mẫu) thay vì tính trực tiếp.
 
 ---
 

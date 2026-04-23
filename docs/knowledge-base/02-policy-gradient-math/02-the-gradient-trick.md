@@ -75,7 +75,9 @@ Thuật toán REINFORCE không cố gắng tìm "nhãn đúng" như Supervised L
 2.  **Đánh giá (Evaluate):** Môi trường trả về phần thưởng $R(\tau)$.
 3.  **Điều chỉnh (Adjust):**
     - Nếu $R(\tau) > 0$: Gradient $\nabla_{\theta} \ln \pi_{\theta}$ sẽ kéo tham số $\theta$ về hướng làm **tăng** xác suất $\pi_{\theta}(a|s)$.
-    - Nếu $R(\tau) < 0$: Gradient sẽ đẩy tham số $\theta$ theo hướng làm **giảm** xác suất của hành động đó.
+    - Nếu $R(\tau) < 0$ (hoặc $G_t - b < 0$ sau khi trừ Baseline): Gradient sẽ đẩy tham số $\theta$ theo hướng làm **giảm** xác suất của hành động đó.
+
+> **Lưu ý cho CartPole:** Trong CartPole-v1, reward luôn $\geq 0$ nên $R(\tau)$ không bao giờ âm. Hiệu ứng "kéo xuống" chỉ xảy ra khi ta áp dụng kỹ thuật **Variance Reduction** (trừ Baseline $b$), khiến $G_t - b$ có thể mang giá trị âm. Xem chi tiết tại [04-variance-reduction.md](../02-policy-gradient-math/04-variance-reduction.md).
 
 ![Probability Pushing Intuition](../assets/probability-pushing.png)
 
