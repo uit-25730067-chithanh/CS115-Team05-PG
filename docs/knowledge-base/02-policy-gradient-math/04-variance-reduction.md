@@ -75,7 +75,7 @@ $$= \sum_{a} \nabla_\theta \pi_\theta(a|s) b(s) = b(s) \nabla_\theta \sum_{a} \p
 Vì $\sum_{a} \pi_\theta(a|s) = 1$ (tổng xác suất luôn bằng 1), nên đạo hàm của nó bằng 0:
 $$= b(s) \nabla_\theta (1) = b(s) \cdot 0 = 0$$
 
-## 3. Lựa chọn Baseline trong thực tế
+## 5. Lựa chọn Baseline trong thực tế
 
 Mục tiêu của Baseline là làm cho $G_t - b(s_t)$ có giá trị nhỏ hơn và ổn định hơn. Các lựa chọn phổ biến:
 
@@ -90,7 +90,7 @@ Mục tiêu của Baseline là làm cho $G_t - b(s_t)$ có giá trị nhỏ hơn
         returns = (returns - returns.mean()) / (returns.std() + 1e-8)
     ```
 
-## 4. Kết quả của việc giảm phương sai
+## 6. Kết quả của việc giảm phương sai
 
 - **Ổn định:** Gradient chỉ hướng về việc "tốt hơn trung bình" hoặc "tệ hơn trung bình".
 - **Hội tụ nhanh hơn:** Mạng neural không bị nhiễu bởi các giá trị Reward tuyệt đối quá lớn.

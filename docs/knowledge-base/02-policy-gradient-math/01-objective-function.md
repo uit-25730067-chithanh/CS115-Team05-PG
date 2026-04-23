@@ -54,4 +54,4 @@ $$G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$$
 
 **Tại sao lại dùng $G_t$ thay vì $R(\tau)$?**
 - **Tính nhân quả (Causality):** Hành động tại thời điểm $t$ chỉ có thể ảnh hưởng đến các phần thưởng từ $t$ trở về sau. Việc bao gồm các phần thưởng trong quá khứ (từ $0$ đến $t-1$) vào công thức tính gradient tại $t$ chỉ làm tăng **phương sai (variance)** mà không giúp ích gì cho việc học (vì action $a_t$ không gây ra $r_{0 \dots t-1}$).
-- **Mapping vào Code:** Trong file `train.py`, bạn sẽ thấy bước tính `discounted_rewards` chính là tính chuỗi $G_t$ này cho mỗi step trước khi thực hiện backpropagation.
+- **Mapping vào Code:** Trong file `sources/train.py`, bạn sẽ thấy bước tính `returns = compute_returns(...)` chính là phần hiện thực chuỗi $G_t$ này cho mỗi step trước khi thực hiện backpropagation.

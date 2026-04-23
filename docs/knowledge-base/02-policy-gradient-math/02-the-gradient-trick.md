@@ -69,15 +69,15 @@ Thuật toán REINFORCE không cố gắng tìm "nhãn đúng" như Supervised L
 
 ```mermaid
 graph TD
-    A[Bắt đầu: theta_init] --> B{Thực hiện Trajectory}
-    B --> C[Tính G_t: Reward-to-go]
-    C --> D[Tính Gradient: grad_ln_pi * G_t]
-    D --> E[Cập nhật: theta = theta + alpha * Gradient]
-    E -->|Leo lên đỉnh cao hơn| B
+    A[Start: initial_theta] --> B{Execute Trajectory}
+    B --> C[Compute G_t: Reward-to-go]
+    C --> D[Compute Gradient: grad_ln_pi * G_t]
+    D --> E[Update: theta = theta + alpha * Gradient]
+    E -->|Climb higher| B
 
     subgraph Hill_Climbing
-    H[Đỉnh cao: J_theta Max]
-    S[Sườn dốc: Gradient hướng lên]
+    H[Peak: J_theta Max]
+    S[Slope: Gradient points up]
     end
 ```
 

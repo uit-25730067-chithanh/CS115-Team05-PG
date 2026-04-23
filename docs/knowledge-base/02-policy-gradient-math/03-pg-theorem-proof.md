@@ -22,7 +22,7 @@ $$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta} \left[ R(\tau) \left( \sum_{
 
 ### Bước 2: Khai triển tổng phần thưởng $R(\tau)$
 
-Ta có $R(\tau) = \sum_{t=0}^{T} r_{t+1}$.
+Ta có $R(\tau) = \sum_{t=0}^{T} \gamma^t r_{t+1}$.
 
 ## 3. Cơ chế "Push-Pull" của Gradient
 
