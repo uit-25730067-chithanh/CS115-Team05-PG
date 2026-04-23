@@ -1,9 +1,9 @@
 # 📋 Knowledge Base Verification Report
 
-**Ngày kiểm định:** 24/04/2026
-**Cập nhật lần 2:** 24/04/2026 — Đã fix toàn bộ 8 concerns
-**Reviewer:** Claude Opus 4.6 (Thinking) (cross-reference Sutton & Barto, Spinning Up, CS285)
-**Scope:** Toàn bộ 11 files trong `docs/knowledge-base/`
+* **Ngày kiểm định:** 24/04/2026
+* **Cập nhật lần 2:** 24/04/2026 — Đã fix toàn bộ 8 concerns
+* **Reviewer:** Claude Opus 4.6 (Thinking) (cross-reference Sutton & Barto, Spinning Up, CS285)
+* **Scope:** Toàn bộ 11 files trong `docs/knowledge-base/`
 
 ## Tóm tắt Tổng quan
 
@@ -84,7 +84,7 @@
 | $J(\theta) = \mathbb{E} _ { \tau \sim \pi _ { \theta } } [R(\tau)]$ | ✅ Chính xác | Sutton & Barto §13.2 |
 | $P(\tau \mid \theta)$ factorization | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up |
 | Lý do tối ưu kỳ vọng thay vì 1 episode | ✅ Giải thích hợp lý | Spinning Up "loss function" caveat |
-| CartPole: $R(\tau) = $ số bước sống sót, max 500 | ✅ Chính xác | Gymnasium docs: CartPole-v1 `max_episode_steps=500` |
+| CartPole: $R( \tau ) = \text{số bước sống sót}$, max 500 | ✅ Chính xác | Gymnasium docs: CartPole-v1 `max_episode_steps=500` |
 | Reward-to-go $G_{t} = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$ | ✅ Chính xác | Sutton & Barto §13.3, Spinning Up "Don't Let the Past Distract You" |
 
 ---

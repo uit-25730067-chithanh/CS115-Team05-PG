@@ -4,13 +4,13 @@
 
 ## 1. Phát biểu Định lý
 
-Cho một hàm mục tiêu $J(\theta) = \mathbb{E}_{\pi_{\theta}} [R(\tau)]$, đạo hàm của nó theo $\theta$ được tính bởi:
+Cho một hàm mục tiêu $J( \theta ) = \mathbb{E} _ { \pi _ { \theta } } [R( \tau )]$, đạo hàm của nó theo $\theta$ được tính bởi:
 
 $$
 \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) G_t \right]
 $$
 
-Trong đó $G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$ là Return tính từ thời điểm $t$.
+Trong đó $G _ { t } = \sum _ { k=t } ^ { T } \gamma ^ { k-t } r _ { k+1 }$ là Return tính từ thời điểm $t$.
 
 ## 2. Các bước chứng minh
 
@@ -37,7 +37,7 @@ $$
 \begin{aligned}
 \nabla_{\theta} J(\theta) &= \sum_{\tau} P(\tau|\theta) \frac{\nabla_{\theta} P(\tau|\theta)}{P(\tau|\theta)} R(\tau) \\
 &= \sum_{\tau} P(\tau|\theta) \nabla_{\theta} \ln P(\tau|\theta) R(\tau) \\
-&= \mathbb{E}_{\tau \sim \pi_{\theta}} [R(\tau) \nabla_{\theta} \ln P(\tau|\theta)]
+&= \mathbb{E} _ { \tau \sim \pi _ { \theta } } [R( \tau ) \nabla _ { \theta } \ln P( \tau \mid \theta )]
 \end{aligned}
 $$
 
@@ -71,7 +71,7 @@ $$
 
 ### Bước 2: Khai triển tổng phần thưởng $R(\tau)$
 
-Ta có $R(\tau) = \sum_{t=0}^{T} \gamma^t r_{t+1}$.
+Ta có $R( \tau ) = \sum _ { t=0 } ^ { T } \gamma ^ { t } r _ { t+1 }$.
 
 Thay vào biểu thức gradient ở Bước 1:
 
@@ -79,7 +79,7 @@ $$
 \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \left( \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) \right) \left( \sum_{t=0}^{T} \gamma^t r_{t+1} \right) \right]
 $$
 
-Áp dụng **Bổ đề Nhân quả** (Causality Lemma, xem Mục 4 bên dưới): hành động tại thời điểm $t$ chỉ ảnh hưởng đến phần thưởng từ $t$ trở đi, nên ta thay $R(\tau)$ bằng **Reward-to-go** $G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$:
+Áp dụng **Bổ đề Nhân quả** (Causality Lemma, xem Mục 4 bên dưới): hành động tại thời điểm $t$ chỉ ảnh hưởng đến phần thưởng từ $t$ trở đi, nên ta thay $R( \tau )$ bằng **Reward-to-go** $G _ { t } = \sum _ { k=t } ^ { T } \gamma ^ { k-t } r _ { k+1 }$:
 
 $$
 \boxed{\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) \cdot G_t \right]}
@@ -91,7 +91,7 @@ $$
 
 > **Lưu ý:** Phần này KHÔNG thuộc chứng minh định lý mà là bước chuyển từ lý thuyết sang thực hành.
 
-Vì ta không thể tính kỳ vọng $\mathbb{E}_{\pi_\theta}[\cdot]$ một cách chính xác (trajectory space quá lớn), ta xấp xỉ bằng trung bình $N$ trajectory đã lấy mẫu:
+Vì ta không thể tính kỳ vọng $\mathbb{E} _ { \pi _ { \theta } } [\cdot]$ một cách chính xác (trajectory space quá lớn), ta xấp xỉ bằng trung bình $N$ trajectory đã lấy mẫu:
 
 $$
 \nabla_{\theta} J(\theta) \approx \frac{1}{N} \sum_{i=1}^N \left( \sum_{t=0}^T \nabla_{\theta} \ln \pi_{\theta}(a_t^i | s_t^i) \cdot G_t^i \right)
@@ -106,7 +106,7 @@ $$
 
 ## 4. Chứng minh Bổ đề Nhân quả (Causality)
 
-Trong REINFORCE, chúng ta thay thế tổng phần thưởng cả trajectory $R(\tau)$ bằng phần thưởng tương lai (reward-to-go) $G_t = \sum_{k=t}^T \gamma^{k-t} r_{k+1}$. Tại sao ta có thể bỏ qua các phần thưởng trong quá khứ ($r_{k < t}$)?
+Trong REINFORCE, chúng ta thay thế tổng phần thưởng cả trajectory $R( \tau )$ bằng phần thưởng tương lai (reward-to-go) $G _ { t } = \sum _ { k=t } ^ { T } \gamma ^ { k-t } r _ { k+1 }$. Tại sao ta có thể bỏ qua các phần thưởng trong quá khứ ($r _ { k < t }$)?
 
 **Chứng minh:**
 
@@ -128,7 +128,7 @@ $$
 \mathbb{E}_{a_t \sim \pi_{\theta}} [\nabla_{\theta} \ln \pi_{\theta}(a_t|s_t) | s_t] = \sum_{a} \pi_{\theta}(a|s_t) \frac{\nabla_{\theta} \pi_{\theta}(a|s_t)}{\pi_{\theta}(a|s_t)} = \nabla_{\theta} \sum_{a} \pi_{\theta}(a|s_t) = \nabla_{\theta} (1) = 0
 $$
 
-Vì số hạng này luôn bằng 0, các phần thưởng quá khứ $r_{k+1}$ ($k < t$) không làm thay đổi kỳ vọng của gradient, nhưng việc loại bỏ chúng giúp giảm phương sai (variance) đáng kể.
+Vì số hạng này luôn bằng 0, các phần thưởng quá khứ $r _ { k+1 }$ ($k < t$) không làm thay đổi kỳ vọng của gradient, nhưng việc loại bỏ chúng giúp giảm phương sai (variance) đáng kể.
 
 Do đó, ta có thể rút gọn tổng bên trong:
 
@@ -136,7 +136,7 @@ $$
 \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) \left( \sum_{k=t}^{T} \gamma^{k-t} r_{k+1} \right) \right]
 $$
 
-Biểu thức $\sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$ chính là $G_t$ như đã định nghĩa ở Mục 1.
+Biểu thức $\sum _ { k=t } ^ { T } \gamma ^ { k-t } r _ { k+1 }$ chính là $G _ { t }$ như đã định nghĩa ở Mục 1.
 
 ## 5. Thuật toán REINFORCE
 
