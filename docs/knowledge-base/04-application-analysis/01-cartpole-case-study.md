@@ -38,3 +38,12 @@ Việc này chuyển đổi bài toán từ "tối đa hóa phần thưởng tuy
 ## 4. Kết luận từ thực nghiệm
 
 Kết quả huấn luyện cho thấy thuật toán REINFORCE của Team 05 đã thực thi đúng các nguyên lý toán học. Hiện tượng dao động là một đặc tính tự nhiên của thuật toán này. Để đạt được sự ổn định cao hơn, các nghiên cứu tiếp theo có thể áp dụng các biến thể như **Actor-Critic** (sử dụng thêm mạng thứ hai để dự đoán Baseline một cách chính xác hơn cho từng trạng thái).
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.3–13.4 REINFORCE variance analysis (p.328-331), §3.3 Discount factor $\gamma$ (p.55). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **Williams, R.J. (1992).** "Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning." *Machine Learning*, 8, 229-256.
+- **Gymnasium Documentation.** CartPole-v1 — Environment specs, reward structure, termination conditions. [Link](https://gymnasium.farama.org/environments/classic_control/cart_pole/)
+- **French, R.M. (1999).** "Catastrophic Forgetting in Connectionist Networks." *Trends in Cognitive Sciences*, 3(4), 128-135. — Lý thuyết nền tảng cho hiện tượng suy giảm hiệu suất đột ngột.

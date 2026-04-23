@@ -116,3 +116,12 @@ Mục tiêu của Baseline là làm cho $G_t - b(s_t)$ có giá trị nhỏ hơn
 - **Ổn định:** Gradient chỉ hướng về việc "tốt hơn trung bình" hoặc "tệ hơn trung bình".
 - **Hội tụ nhanh hơn:** Mạng neural không bị nhiễu bởi các giá trị Reward tuyệt đối quá lớn.
 - **Giải thích hiện tượng tập 600:** Nếu không có Baseline tốt hoặc kích thước batch quá nhỏ, phương sai tích lũy có thể khiến Gradient rơi vào vùng bão hòa hoặc đi ngược hướng, gây ra hiện tượng giảm hiệu suất đột ngột.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.4 REINFORCE with Baseline (p.330-331). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **Williams, R.J. (1992).** "Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning." — Eq.15: Optimal constant baseline $b^*$.
+- **OpenAI Spinning Up.** Part 3 — "Baselines in Policy Gradients" section + "Expected Grad-Log-Prob Lemma". [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#baselines-in-policy-gradients)
+- **Greensmith, E., Bartlett, P.L. & Baxter, J. (2004).** "Variance Reduction Techniques for Gradient Estimates in Reinforcement Learning." *JMLR*, 5, 1471-1530. — Phân tích lý thuyết chi tiết về optimal baseline.

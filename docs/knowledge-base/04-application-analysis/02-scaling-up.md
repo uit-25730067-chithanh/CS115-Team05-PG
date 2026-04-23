@@ -29,3 +29,13 @@ Dự án CS115 này đã giúp chúng ta xây dựng nền tảng vững chắc 
 *   Cách phân tích và xử lý các vấn đề thực tế như phương sai và hội tụ.
 
 Dù CartPole là một môi trường đơn giản, nhưng các nguyên lý về MDP, Trajectory, và Log-derivative trick là những tri thức bất biến trong thế giới AI hiện đại.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.5 Actor-Critic Methods (p.332). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **Schulman, J. et al. (2017).** "Proximal Policy Optimization Algorithms." [arXiv:1707.06347](https://arxiv.org/abs/1707.06347) — PPO algorithm.
+- **Mnih, V. et al. (2015).** "Human-level Control through Deep Reinforcement Learning." *Nature*, 518, 529-533. — DQN paper.
+- **Ouyang, L. et al. (2022).** "Training Language Models to Follow Instructions with Human Feedback." [arXiv:2203.02155](https://arxiv.org/abs/2203.02155) — InstructGPT/RLHF.
+- **Christiano, P. et al. (2017).** "Deep Reinforcement Learning from Human Preferences." NIPS. [arXiv:1706.03741](https://arxiv.org/abs/1706.03741) — RLHF foundations.

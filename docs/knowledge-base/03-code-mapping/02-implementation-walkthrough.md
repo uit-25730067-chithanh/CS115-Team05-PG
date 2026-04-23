@@ -71,3 +71,11 @@ optimizer.step()
 1.  **Lưu trữ `log_probs`:** Chúng ta phải lưu lại `log_prob` tại mỗi bước vì đó là một phần của đồ thị tính toán (computational graph). Nếu không lưu, PyTorch sẽ không biết cách tính đạo hàm ngược lại các trọng số mạng neural đã sinh ra xác suất đó.
 2.  **Tính `returns` ngược:** Tính ngược từ dưới lên (từ $T$ về $0$) hiệu quả hơn về mặt tính toán ($O(T)$ thay vì $O(T^2)$).
 3.  **Xóa bộ nhớ:** Ở đầu mỗi episode, chúng ta khởi tạo lại danh sách `rewards = []` và `log_probs = []`. Điều này tương ứng với việc chúng ta đang thực hiện On-policy learning (học dựa trên dữ liệu mới nhất).
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.3 REINFORCE pseudocode (p.328), §13.4 REINFORCE with Baseline (p.330). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Vanilla Policy Gradient — Implementation walkthrough + source code. [Link](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+- **PyTorch Documentation.** `torch.distributions.Categorical` — `sample()`, `log_prob()`. [Link](https://pytorch.org/docs/stable/distributions.html#categorical)

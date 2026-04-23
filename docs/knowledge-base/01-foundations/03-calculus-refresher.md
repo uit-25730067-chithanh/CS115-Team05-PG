@@ -49,3 +49,10 @@ $$
 $$
 
 **Kết luận quan trọng:** Nhờ Log-derivative trick, chúng ta đã biến đạo hàm của một kỳ vọng thành **kỳ vọng của một đạo hàm log**. Điều này cho phép chúng ta chỉ cần cho Agent "chơi thử" (lấy mẫu $\tau$), tính $\nabla_{\theta} \log P$ và nhân với phần thưởng nhận được để cập nhật mạng neural. Đây chính là nền tảng của thuật toán REINFORCE.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.2–13.3 Gradient Ascent and Policy Gradient (p.326-328). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Part 3 — "Deriving the Simplest Policy Gradient", Eq.1–5. [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)

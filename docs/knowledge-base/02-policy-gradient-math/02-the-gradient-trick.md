@@ -105,3 +105,11 @@ Log-derivative trick giúp chúng ta giải quyết được hai vấn đề c�
 2.  **Tính toán được:** Chúng ta có thể dùng các giá trị $\ln \pi_{\theta}$ thu được từ mạng neural và nhân với phần thưởng thực tế thu được từ môi trường để cập nhật tham số.
 
 Trong code PyTorch, điều này tương ứng với việc tính `log_prob` của hành động đã thực hiện và sử dụng nó trong hàm Loss.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.3 Log-derivative trick and Policy Gradient derivation (p.327-328). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Part 3 — "Deriving the Simplest Policy Gradient", Eq.1–5 (Log-Derivative Trick, Grad-Log-Prob of Trajectory). [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
+- **Schulman, J. (2016).** *Optimizing Expectations: From Deep Reinforcement Learning to Stochastic Computation Graphs.* PhD Thesis, UC Berkeley — Ch.2 (Policy Gradient theory). [PDF](http://joschu.net/docs/thesis.pdf)

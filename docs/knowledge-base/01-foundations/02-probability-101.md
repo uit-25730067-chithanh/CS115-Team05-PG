@@ -67,3 +67,10 @@ J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} [R(\tau)] = \int P(\tau | \theta
 $$
 
 Công thức này nói rằng: Chúng ta muốn giá trị trung bình của tổng phần thưởng trên tất cả các quỹ đạo có thể xảy ra là lớn nhất. Thuật toán REINFORCE sẽ tìm cách tăng xác suất $P(\tau | \theta)$ của những quỹ đạo có $R(\tau)$ cao và giảm xác suất của những quỹ đạo có $R(\tau)$ thấp.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §3.3 Returns (p.55), §13.2 Trajectory probability (p.326). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Part 3: Intro to Policy Optimization — "Deriving the Simplest Policy Gradient" section. [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)

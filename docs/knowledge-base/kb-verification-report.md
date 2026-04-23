@@ -1,0 +1,248 @@
+# 📋 Knowledge Base Verification Report
+
+**Ngày kiểm định:** 24/04/2026
+**Reviewer:** Claude Opus 4.6 (Thinking) (cross-reference Sutton & Barto, Spinning Up, CS285)
+**Scope:** Toàn bộ 11 files trong `docs/knowledge-base/`
+
+## Tóm tắt Tổng quan
+
+| Layer | File | Verdict | Vấn đề |
+|:------|:-----|:--------|:-------|
+| L1 | 01-what-is-rl.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L1 | 02-probability-101.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L1 | 03-calculus-refresher.md | ✅ Verified | 0 error, 0 concern |
+| L2 | 01-objective-function.md | ✅ Verified | 0 error, 0 concern |
+| L2 | 02-the-gradient-trick.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L2 | 03-pg-theorem-proof.md | ⚠️ Concern | 0 error, 2 concerns |
+| L2 | 04-variance-reduction.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L3 | 01-pytorch-autograd.md | ✅ Verified | 0 error, 0 concern |
+| L3 | 02-implementation-walkthrough.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L4 | 01-cartpole-case-study.md | ✅ Verified | 0 error, 1 concern nhỏ |
+| L4 | 02-scaling-up.md | ✅ Verified | 0 error, 1 concern nhỏ |
+
+**Tổng kết: ❌ 0 Errors | ⚠️ 8 Concerns (đều là nuance, không sai) | ✅ Toàn bộ kiến thức cốt lõi CHÍNH XÁC**
+
+---
+
+## Layer 1: Foundations
+
+### 📄 01-what-is-rl.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| MDP = bộ 5 thành phần $(S, A, P, R, \gamma)$ | ✅ Chính xác | Sutton & Barto §3.1, p.48 |
+| Tính chất Markov: $P(S_{t+1}\|S_t,A_t,\dots)=P(S_{t+1}\|S_t,A_t)$ | ✅ Chính xác | Sutton & Barto §3.1, p.49 |
+| CartPole state = $[x,\dot{x},\theta,\dot{\theta}]$ | ✅ Chính xác | [Gymnasium CartPole-v1 docs](https://gymnasium.farama.org/environments/classic_control/cart_pole/) |
+| Stochastic policy $\pi_\theta(a\|s) = P(A_t=a\|S_t=s;\theta)$ | ✅ Chính xác | Sutton & Barto §13.1, p.322 |
+| $J(\theta) = \mathbb{E}_{\pi_\theta}\left[\sum_{t=0}^{\infty} \gamma^t R_{t+1}\right]$ | ✅ Chính xác | Sutton & Barto §13.2, p.326 |
+
+> [!NOTE]
+> **Concern nhỏ (Mục 4, điểm 3):** Tài liệu viết "chúng ta không thể tính đạo hàm trực tiếp qua các xác suất chuyển trạng thái... vì chúng thường là ẩn". Điều này đúng nhưng lý do chính xác hơn là: ngay cả khi biết dynamics, việc sum/integrate trên toàn bộ không gian trajectory vẫn intractable — đây mới là lý do cần Monte Carlo sampling. Tham khảo: Spinning Up, "Deriving the Simplest Policy Gradient" section.
+
+---
+
+### 📄 02-probability-101.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Trajectory $\tau = (s_0, a_0, r_1, s_1, \dots)$ | ✅ Chính xác | Spinning Up Part 3, "Deriving" section |
+| $P(\tau\|\theta) = \mu(s_0)\prod_{t=0}^{T}\pi_\theta(a_t\|s_t)P(s_{t+1}\|s_t,a_t)$ | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up Eq.1 |
+| $R(\tau) = \sum_{t=0}^{T}\gamma^t r_{t+1}$ | ✅ Chính xác | Sutton & Barto §3.3, p.55 |
+| $J(\theta) = \mathbb{E}_{\tau\sim\pi_\theta}[R(\tau)] = \int P(\tau\|\theta) R(\tau) d\tau$ | ✅ Chính xác | Spinning Up Part 3, opening equation |
+
+> [!NOTE]
+> **Concern nhỏ (Mục 1):** Trajectory notation dùng $r_1, r_2, \dots, r_{T+1}$ (reward index bắt đầu từ 1), đây khớp convention Sutton & Barto (reward $R_{t+1}$ nhận được sau action $A_t$). Tuy nhiên, Spinning Up dùng convention $r_0, r_1, \dots, r_T$ (undiscounted, index bắt đầu từ 0). Cả hai đều hợp lệ nhưng cần nhất quán trong toàn bộ KB. → **KB đã nhất quán** dùng convention Sutton & Barto.
+
+---
+
+### 📄 03-calculus-refresher.md
+
+**Verdict: ✅ VERIFIED — Không có concern**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Gradient Ascent: $\theta_{new} = \theta_{old} + \alpha\nabla_\theta J(\theta)$ | ✅ Chính xác | Sutton & Barto §13.2, p.326; Spinning Up Part 3 |
+| $\nabla_\theta P$ không phải PDF → không thể sample | ✅ Chính xác | Spinning Up "Deriving" section, chính xác giải thích này |
+| Log-derivative trick: $f'(x) = f(x)\frac{d}{dx}\log(f(x))$ | ✅ Chính xác | Spinning Up Eq.2, "Log-Derivative Trick" |
+| Kết quả cuối: $\nabla_\theta J = \mathbb{E}_{\tau\sim\pi_\theta}[\nabla_\theta\log P(\tau\|\theta) R(\tau)]$ | ✅ Chính xác | Spinning Up Part 3, final result of derivation |
+
+---
+
+## Layer 2: Math Proofs
+
+### 📄 01-objective-function.md
+
+**Verdict: ✅ VERIFIED — Không có concern**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| $J(\theta) = \mathbb{E}_{\tau\sim\pi_\theta}[R(\tau)]$ | ✅ Chính xác | Sutton & Barto §13.2 |
+| $P(\tau\|\theta)$ factorization | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up |
+| Lý do tối ưu kỳ vọng thay vì 1 episode | ✅ Giải thích hợp lý | Spinning Up "loss function" caveat |
+| CartPole: $R(\tau) = $ số bước sống sót, max 500 | ✅ Chính xác | Gymnasium docs: CartPole-v1 `max_episode_steps=500` |
+| Reward-to-go $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$ | ✅ Chính xác | Sutton & Barto §13.3, Spinning Up "Don't Let the Past Distract You" |
+
+---
+
+### 📄 02-the-gradient-trick.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Log-derivative trick identity | ✅ Chính xác | Spinning Up Part 3, Eq.2 |
+| $\nabla_\theta\pi_\theta(a\|s) = \pi_\theta(a\|s)\nabla_\theta\ln\pi_\theta(a\|s)$ | ✅ Chính xác | Sutton & Barto §13.3, p.327 |
+| Phân tách $\nabla_\theta\ln P(\tau\|\theta) = \sum_{t}\nabla_\theta\ln\pi_\theta(a_t\|s_t)$ | ✅ Chính xác | Spinning Up Part 3, Eq.5 "Grad-Log-Prob of a Trajectory" |
+| Dynamics và $\mu(s_0)$ biến mất khi lấy $\nabla_\theta$ | ✅ Chính xác | Spinning Up: "Gradients of Environment Functions" |
+| Ý nghĩa $\ln$: tốc độ thay đổi tương đối $\nabla\pi/\pi$ | ✅ Insight hợp lý | Schulman 2016a, Ch.2 |
+
+> [!NOTE]
+> **Concern nhỏ (Mục 4.1, điểm 3):** Viết "Nếu $R(\tau) < 0$: Gradient sẽ đẩy tham số $\theta$ theo hướng làm giảm xác suất." Trong CartPole, reward luôn $\geq 0$ nên $R(\tau)$ không bao giờ âm. Nhưng khi dùng Baseline (trừ mean), thì $G_t - b$ có thể âm. Tài liệu nên clarify rằng hiệu ứng "kéo xuống" xảy ra **sau khi trừ Baseline**, không phải với raw reward. Xem: Spinning Up "Baselines in Policy Gradients" section.
+
+---
+
+### 📄 03-pg-theorem-proof.md
+
+**Verdict: ⚠️ VERIFIED WITH CONCERNS**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Phát biểu định lý PG | ✅ Chính xác | Sutton & Barto Theorem 13.1, p.327 |
+| Bước 1: Log-derivative trick → kỳ vọng | ✅ Chính xác | Spinning Up Part 3, full derivation |
+| Khai triển $\ln P(\tau\|\theta)$ thành tổng | ✅ Chính xác | Spinning Up Eq.3-5 |
+| Dynamics biến mất | ✅ Chính xác | Spinning Up "Gradients of Environment Functions" |
+| Bổ đề Nhân quả (Causality Lemma) | ✅ Chính xác | Spinning Up "Don't Let the Past Distract You" + EGLP Lemma |
+| $\mathbb{E}_{a\sim\pi}[\nabla_\theta\ln\pi(a\|s)] = \nabla_\theta\sum_a\pi(a\|s) = \nabla_\theta(1) = 0$ | ✅ Chính xác | Spinning Up "Expected Grad-Log-Prob Lemma" |
+| Thuật toán REINFORCE 3 bước | ✅ Chính xác | Sutton & Barto §13.3 Algorithm box, p.328; Williams 1992 |
+
+> [!WARNING]
+> **Concern 1 (Bước 2, Mục 2):** Chứng minh dừng đột ngột tại "Bước 2: Khai triển tổng phần thưởng $R(\tau)$". Chỉ viết "$R(\tau) = \sum_{t=0}^{T}\gamma^t r_{t+1}$" rồi nhảy sang mục 3 mà không hoàn thành bước thay thế $R(\tau)$ bằng $G_t$ trong biểu thức gradient. Phần chứng minh Bổ đề Nhân quả ở Mục 4 **bù lại** cho khoảng trống này, nhưng flow logic bị gián đoạn. **Đề xuất:** Thêm 1-2 dòng nối Bước 2 với Mục 4 để hoàn chỉnh chain of reasoning.
+
+> [!NOTE]
+> **Concern 2 (Mục 3, công thức xấp xỉ):** Công thức Monte Carlo estimator $\nabla_\theta J \approx \frac{1}{N}\sum_{i=1}^{N}(\dots)$ là chính xác, tuy nhiên đây là **ước lượng sample** chứ không phải phần của chứng minh định lý. Nên tách rõ phần "Chứng minh" và phần "Ước lượng thực tế" để tránh nhầm lẫn.
+
+---
+
+### 📄 04-variance-reduction.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| REINFORCE có variance cao | ✅ Chính xác | Sutton & Barto §13.4, p.330; Williams 1992 |
+| Baseline $b(s_t)$ không thay đổi kỳ vọng gradient | ✅ Chính xác | Spinning Up "Baselines in Policy Gradients" |
+| Chứng minh: $\mathbb{E}[\nabla\ln\pi\cdot b(s)] = b(s)\nabla_\theta\sum_a\pi(a\|s) = 0$ | ✅ Chính xác | Spinning Up EGLP Lemma, Sutton & Barto §13.4 |
+| Optimal baseline $b^* = \frac{\mathbb{E}[\|\nabla\ln\pi\|^2 G]}{\mathbb{E}[\|\nabla\ln\pi\|^2]}$ | ✅ Chính xác | Williams 1992, Eq.15; Greensmith et al. 2004 |
+| Standardization trong code: $(G - \text{mean})/(\text{std}+\epsilon)$ | ✅ Khớp source code | `sources/reinforce.py` L41-42 |
+| Actor-Critic = dùng neural net cho $b(s)$ | ✅ Chính xác | Sutton & Barto §13.5 |
+
+> [!NOTE]
+> **Concern nhỏ (Mục 6):** Giải thích "hiện tượng tập 600" qua variance là hợp lý nhưng hơi speculative vì không có evidence cụ thể từ training logs. Tuy nhiên giải thích mechanism là đúng về mặt lý thuyết.
+
+---
+
+## Layer 3: Code Mapping
+
+### 📄 01-pytorch-autograd.md
+
+**Verdict: ✅ VERIFIED — Không có concern**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Dấu âm: min $-\ln\pi\cdot G$ ≡ max $\ln\pi\cdot G$ | ✅ Chính xác | Spinning Up implementation, code snippet L247 |
+| $\theta \leftarrow \theta - \alpha\nabla(-\ln\pi\cdot G) = \theta + \alpha\nabla\ln\pi\cdot G$ | ✅ Toán đúng | Standard PyTorch gradient descent → ascent trick |
+| Code snippet khớp `sources/reinforce.py` | ✅ **KHỚP 100%** | Verified trực tiếp: `reinforce.py` L24-59 |
+| Giải thích tại sao không dùng MSE | ✅ Đúng | RL không có "true label" cho action |
+
+---
+
+### 📄 02-implementation-walkthrough.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| Symbol mapping table (14 entries) | ✅ **KHỚP 100%** | Verified trực tiếp với `policy.py`, `train.py`, `reinforce.py` |
+| `action, log_prob = policy_net.select_action(state, device)` | ✅ Khớp | `train.py` L59 |
+| `returns = compute_returns(rewards, gamma)` | ✅ Khớp | `train.py` L74 |
+| Standardization code | ✅ Khớp | `reinforce.py` L41-42 |
+| `policy_loss.append(-log_prob * G_t)` | ✅ Khớp | `reinforce.py` L50 |
+| Tính returns ngược = $O(T)$ thay vì $O(T^2)$ | ✅ Chính xác | `reinforce.py` L17-21, dùng accumulator ngược |
+
+> [!NOTE]
+> **Concern nhỏ:** Bảng mapping ghi `$\ln\pi_\theta(a|s)$` → `log_prob` → vị trí `sources/models/policy.py`. Thực tế `log_prob` được **return** từ `policy.py` nhưng được **sử dụng** trong `train.py` (L64) và `reinforce.py` (L46-50). Nên clarify rằng biến này xuyên suốt 3 files.
+
+---
+
+## Layer 4: Application Analysis
+
+### 📄 01-cartpole-case-study.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| High variance → instability | ✅ Chính xác | Sutton & Barto §13.4 |
+| Catastrophic forgetting giải thích | ✅ Hợp lý | Hiện tượng documented trong RL literature; French 1999 |
+| $\gamma=0.99$ → tầm nhìn dài hạn | ✅ Chính xác | Sutton & Barto §3.3, p.55 |
+| LR quá lớn → vọt qua optimum | ✅ Chính xác | Standard optimization theory |
+| Normalization trong code khớp | ✅ Khớp | `reinforce.py` L41-42 |
+
+> [!NOTE]
+> **Concern nhỏ (Mục 2):** Viết "$\gamma = 0.99$" và "$\alpha = 0.001$" nhưng không reference trực tiếp đến dòng code cụ thể nơi chúng được set. Thực tế: `train.py` L14 (`gamma=0.99`, `lr=1e-3`). Nên thêm line reference.
+
+---
+
+### 📄 02-scaling-up.md
+
+**Verdict: ✅ VERIFIED**
+
+| Claim | Đánh giá | Nguồn tham chiếu |
+|:------|:---------|:-----------------|
+| RLHF dùng RL để align LLMs | ✅ Chính xác | Ouyang et al. 2022 "InstructGPT"; Christiano et al. 2017 |
+| PPO = ổn định hơn REINFORCE | ✅ Chính xác | Schulman et al. 2017 |
+| Actor-Critic = dùng Critic network cho baseline | ✅ Chính xác | Sutton & Barto §13.5 |
+| DQN = value-based approach | ✅ Chính xác | Mnih et al. 2015 |
+
+> [!NOTE]
+> **Concern nhỏ:** Phát biểu "ChatGPT hay Claude sử dụng RLHF" — đúng cho ChatGPT (OpenAI công bố rõ), nhưng Anthropic (Claude) sử dụng **RLAIF** (RL from AI Feedback) + Constitutional AI, không hoàn toàn giống RLHF truyền thống. Tuy nhiên, bản chất vẫn là Policy Gradient, nên claim cốt lõi không sai.
+
+---
+
+## 🏁 Kết luận Tổng thể
+
+### Verdict: ✅ KIẾN THỨC CHÍNH XÁC
+
+Toàn bộ 11 files trong knowledge base **không chứa bất kỳ lỗi toán học hay lỗi khái niệm nào**. Các chứng minh đều tuân theo đúng logic từ:
+- **Sutton & Barto (2018)** Chapter 13: Policy Gradient Methods
+- **OpenAI Spinning Up** Part 3: Intro to Policy Optimization
+- **Williams (1992)** REINFORCE algorithm paper
+
+Các "concerns" tìm thấy đều là **nuance** hoặc **thiếu clarification nhỏ**, không ảnh hưởng đến tính đúng đắn của kiến thức.
+
+### Đánh giá theo Tiêu chí
+
+| Tiêu chí | Score |
+|:---------|:------|
+| **Math Proof Correctness** | 9.5/10 — Chứng minh đúng, chỉ thiếu 1 bước nối ở PG theorem |
+| **Notational Consistency** | 10/10 — Nhất quán convention Sutton & Barto xuyên suốt |
+| **Code-Math Alignment** | 10/10 — Code snippets khớp 100% với source thực |
+| **Factual Accuracy** | 9.5/10 — 1 nuance nhỏ về RLHF/RLAIF |
+| **Pedagogical Flow** | 9/10 — L1→L2→L3→L4 logic tốt, bước 2 PG proof hơi gấp |
+
+---
+
+## Tài liệu Tham chiếu Chính thức (đã dùng để verify)
+
+1. **Sutton, R.S. & Barto, A.G. (2018).** *Reinforcement Learning: An Introduction* (2nd Ed). MIT Press. — Ch.3 (MDP), Ch.13 (Policy Gradient). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+2. **Williams, R.J. (1992).** "Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning." *Machine Learning*, 8, 229-256.
+3. **OpenAI Spinning Up.** Part 3: Intro to Policy Optimization. [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
+4. **OpenAI Spinning Up.** Vanilla Policy Gradient. [Link](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+5. **Schulman, J. (2016).** *Optimizing Expectations: From Deep Reinforcement Learning to Stochastic Computation Graphs.* PhD Thesis, UC Berkeley. [PDF](http://joschu.net/docs/thesis.pdf)
+6. **Schulman, J. et al. (2016).** "High-Dimensional Continuous Control Using Generalized Advantage Estimation." ICLR. [arXiv:1506.02438](https://arxiv.org/abs/1506.02438)
+7. **Sutton, R.S. et al. (2000).** "Policy Gradient Methods for Reinforcement Learning with Function Approximation." NIPS.
+8. **Gymnasium CartPole-v1 Documentation.** [Link](https://gymnasium.farama.org/environments/classic_control/cart_pole/)

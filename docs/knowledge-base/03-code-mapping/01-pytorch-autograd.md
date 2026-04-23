@@ -73,3 +73,11 @@ Khi gọi `policy_loss.backward()`, PyTorch thực hiện:
 3.  Lưu trữ Gradient vào thuộc tính `.grad` của các Tensor trọng số.
 
 Optimizer sau đó chỉ việc lấy các giá trị `.grad` này để cập nhật trọng số.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.3 REINFORCE algorithm (p.328). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Vanilla Policy Gradient — Implementation section (negative log-prob trick for gradient ascent). [Link](https://spinningup.openai.com/en/latest/algorithms/vpg.html)
+- **PyTorch Documentation.** Autograd mechanics — Computational graph, `.backward()`, `.grad`. [Link](https://pytorch.org/docs/stable/notes/autograd.html)

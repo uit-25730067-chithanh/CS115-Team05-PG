@@ -134,3 +134,12 @@ Dựa trên định lý này, thuật toán REINFORCE thực hiện các bước
 - Nếu $G_t < 0$ (kết quả xấu): Chúng ta đẩy $\theta$ theo hướng ngược lại, tức là **giảm** xác suất chọn hành động đó.
 
 Đây chính là cơ chế "Học tăng cường" (Reinforcement) được cụ thể hóa bằng toán học.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — Theorem 13.1: Policy Gradient Theorem (p.327), §13.3 REINFORCE algorithm (p.328). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **Williams, R.J. (1992).** "Simple Statistical Gradient-Following Algorithms for Connectionist Reinforcement Learning." *Machine Learning*, 8, 229-256. — Bài báo gốc đề xuất thuật toán REINFORCE.
+- **OpenAI Spinning Up.** Part 3 — Full derivation + "Expected Grad-Log-Prob Lemma" (cơ sở cho Bổ đề Nhân quả) + "Don't Let the Past Distract You" (Reward-to-go). [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
+- **Sutton, R.S. et al. (2000).** "Policy Gradient Methods for Reinforcement Learning with Function Approximation." NIPS. — Chứng minh chính thức PG Theorem cho function approximation.

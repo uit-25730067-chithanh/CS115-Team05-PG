@@ -61,3 +61,11 @@ $$G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$$
 **Tại sao lại dùng $G_t$ thay vì $R(\tau)$?**
 - **Tính nhân quả (Causality):** Hành động tại thời điểm $t$ chỉ có thể ảnh hưởng đến các phần thưởng từ $t$ trở về sau. Việc bao gồm các phần thưởng trong quá khứ (từ $0$ đến $t-1$) vào công thức tính gradient tại $t$ chỉ làm tăng **phương sai (variance)** mà không giúp ích gì cho việc học (vì action $a_t$ không gây ra $r_{0 \dots t-1}$).
 - **Mapping vào Code:** Trong file `sources/train.py`, bạn sẽ thấy bước tính `returns = compute_returns(...)` chính là phần hiện thực chuỗi $G_t$ này cho mỗi step trước khi thực hiện backpropagation.
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §13.2 Performance Measure $J(\theta)$ (p.326), §13.3 Reward-to-go (p.327-328). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **OpenAI Spinning Up.** Part 3 — "Don't Let the Past Distract You" (Reward-to-go justification). [Link](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html#don-t-let-the-past-distract-you)
+- **Gymnasium Documentation.** CartPole-v1 — max 500 steps per episode. [Link](https://gymnasium.farama.org/environments/classic_control/cart_pole/)

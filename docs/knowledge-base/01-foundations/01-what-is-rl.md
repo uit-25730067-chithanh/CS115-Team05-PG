@@ -41,3 +41,10 @@ Khác với Supervised Learning (Học có giám sát), nơi chúng ta biết r�
 1.  Chúng ta không biết hành động nào là tối ưu ngay lập tức (Sparse rewards).
 2.  Hành động hiện tại ảnh hưởng đến các trạng thái tương lai (Sequential dependencies).
 3.  Hàm mục tiêu $J(\theta)$ là một kỳ vọng trên các quỹ đạo (trajectories), và chúng ta không thể tính đạo hàm trực tiếp qua các xác suất chuyển trạng thái $P(s'|s, a)$ của môi trường vì chúng thường là ẩn (unknown environment dynamics).
+
+---
+
+## Nguồn tham khảo
+
+- **Sutton & Barto (2018).** *Reinforcement Learning: An Introduction*, 2nd Ed. — §3.1 MDP definition (p.48-49), §13.1 Policy parameterization (p.322), §13.2 Objective function (p.326). [Online](http://incompleteideas.net/book/the-book-2nd.html)
+- **Gymnasium Documentation.** CartPole-v1 environment specs. [Link](https://gymnasium.farama.org/environments/classic_control/cart_pole/)
