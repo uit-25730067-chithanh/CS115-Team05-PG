@@ -34,9 +34,9 @@
 | Claim | Đánh giá | Nguồn tham chiếu |
 |:------|:---------|:-----------------|
 | MDP = bộ 5 thành phần $(S, A, P, R, \gamma)$ | ✅ Chính xác | Sutton & Barto §3.1, p.48 |
-| Tính chất Markov: $P(S_{t+1}|S_{t},A_{t},\dots)=P(S_{t+1}|S_{t},A_{t})$ | ✅ Chính xác | Sutton & Barto §3.1, p.49 |
+| Tính chất Markov: $P(S_{t+1} \mid S_{t},A_{t},\dots)=P(S_{t+1} \mid S_{t},A_{t})$ | ✅ Chính xác | Sutton & Barto §3.1, p.49 |
 | CartPole state = $[x,\dot{x},\theta,\dot{\theta}]$ | ✅ Chính xác | [Gymnasium CartPole-v1 docs](https://gymnasium.farama.org/environments/classic_control/cart_pole/) |
-| Stochastic policy $\pi_{\theta}(a|s) = P(A_{t}=a|S_{t}=s;\theta)$ | ✅ Chính xác | Sutton & Barto §13.1, p.322 |
+| Stochastic policy $\pi_{\theta}(a \mid s) = P(A_{t}=a \mid S_{t}=s;\theta)$ | ✅ Chính xác | Sutton & Barto §13.1, p.322 |
 | $J(\theta) = \mathbb{E}_{\pi_{\theta}}[\sum_{t=0}^{\infty} \gamma^{t} R_{t+1}]$ | ✅ Chính xác | Sutton & Barto §13.2, p.326 |
 
 > [!TIP]
@@ -51,9 +51,9 @@
 | Claim | Đánh giá | Nguồn tham chiếu |
 |:------|:---------|:-----------------|
 | Trajectory $\tau = (s_{0}, a_{0}, r_{1}, s_{1}, \dots)$ | ✅ Chính xác | Spinning Up Part 3, "Deriving" section |
-| $P(\tau|\theta) = \mu(s_{0})\prod_{t=0}^{T}\pi_{\theta}(a_{t}|s_{t})P(s_{t+1}|s_{t},a_{t})$ | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up Eq.1 |
+| $P(\tau \mid \theta) = \mu(s_{0})\prod_{t=0}^{T}\pi_{\theta}(a_{t} \mid s_{t})P(s_{t+1} \mid s_{t},a_{t})$ | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up Eq.1 |
 | $R(\tau) = \sum_{t=0}^{T}\gamma^{t} r_{t+1}$ | ✅ Chính xác | Sutton & Barto §3.3, p.55 |
-| $J(\theta) = \mathbb{E}_{\tau\sim\pi_{\theta}}[R(\tau)] = \int P(\tau|\theta) R(\tau) d\tau$ | ✅ Chính xác | Spinning Up Part 3, opening equation |
+| $J(\theta) = \mathbb{E}_{\tau\sim\pi_{\theta}}[R(\tau)] = \int P(\tau \mid \theta) R(\tau) d\tau$ | ✅ Chính xác | Spinning Up Part 3, opening equation |
 
 > [!NOTE]
 > **Concern nhỏ (Mục 1):** Trajectory notation dùng $r_{1}, r_{2}, \dots, r_{T+1}$ (reward index bắt đầu từ 1), đây khớp convention Sutton & Barto (reward $R_{t+1}$ nhận được sau action $A_{t}$). Tuy nhiên, Spinning Up dùng convention $r_{0}, r_{1}, \dots, r_{T}$ (undiscounted, index bắt đầu từ 0). Cả hai đều hợp lệ nhưng cần nhất quán trong toàn bộ KB. → **KB đã nhất quán** dùng convention Sutton & Barto.
@@ -69,7 +69,7 @@
 | Gradient Ascent: $\theta_{new} = \theta_{old} + \alpha\nabla_{\theta} J(\theta)$ | ✅ Chính xác | Sutton & Barto §13.2, p.326; Spinning Up Part 3 |
 | $\nabla_{\theta} P$ không phải PDF → không thể sample | ✅ Chính xác | Spinning Up "Deriving" section, chính xác giải thích này |
 | Log-derivative trick: $f'(x) = f(x)\frac{d}{dx}\log(f(x))$ | ✅ Chính xác | Spinning Up Eq.2, "Log-Derivative Trick" |
-| Kết quả cuối: $\nabla_{\theta} J = \mathbb{E}_{\tau\sim\pi_{\theta}}[\nabla_{\theta}\log P(\tau|\theta) R(\tau)]$ | ✅ Chính xác | Spinning Up Part 3, final result of derivation |
+| Kết quả cuối: $\nabla_{\theta} J = \mathbb{E}_{\tau\sim\pi_{\theta}}[\nabla_{\theta}\log P(\tau \mid \theta) R(\tau)]$ | ✅ Chính xác | Spinning Up Part 3, final result of derivation |
 
 ---
 
@@ -82,7 +82,7 @@
 | Claim | Đánh giá | Nguồn tham chiếu |
 |:------|:---------|:-----------------|
 | $J(\theta) = \mathbb{E}_{\tau\sim\pi_{\theta}}[R(\tau)]$ | ✅ Chính xác | Sutton & Barto §13.2 |
-| $P(\tau|\theta)$ factorization | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up |
+| $P(\tau \mid \theta)$ factorization | ✅ Chính xác | Sutton & Barto §13.2, Spinning Up |
 | Lý do tối ưu kỳ vọng thay vì 1 episode | ✅ Giải thích hợp lý | Spinning Up "loss function" caveat |
 | CartPole: $R(\tau) = $ số bước sống sót, max 500 | ✅ Chính xác | Gymnasium docs: CartPole-v1 `max_episode_steps=500` |
 | Reward-to-go $G_{t} = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$ | ✅ Chính xác | Sutton & Barto §13.3, Spinning Up "Don't Let the Past Distract You" |
@@ -96,8 +96,8 @@
 | Claim | Đánh giá | Nguồn tham chiếu |
 |:------|:---------|:-----------------|
 | Log-derivative trick identity | ✅ Chính xác | Spinning Up Part 3, Eq.2 |
-| $\nabla_{\theta}\pi_{\theta}(a|s) = \pi_{\theta}(a|s)\nabla_{\theta}\ln\pi_{\theta}(a|s)$ | ✅ Chính xác | Sutton & Barto §13.3, p.327 |
-| Phân tách $\nabla_{\theta}\ln P(\tau|\theta) = \sum_{t}\nabla_{\theta}\ln\pi_{\theta}(a_{t}|s_{t})$ | ✅ Chính xác | Spinning Up Part 3, Eq.5 "Grad-Log-Prob of a Trajectory" |
+| $\nabla_{\theta}\pi_{\theta}(a \mid s) = \pi_{\theta}(a \mid s)\nabla_{\theta}\ln\pi_{\theta}(a \mid s)$ | ✅ Chính xác | Sutton & Barto §13.3, p.327 |
+| Phân tách $\nabla_{\theta}\ln P(\tau \mid \theta) = \sum_{t}\nabla_{\theta}\ln\pi_{\theta}(a_{t} \mid s_{t})$ | ✅ Chính xác | Spinning Up Part 3, Eq.5 "Grad-Log-Prob of a Trajectory" |
 | Dynamics và $\mu(s_{0})$ biến mất khi lấy $\nabla_{\theta}$ | ✅ Chính xác | Spinning Up: "Gradients of Environment Functions" |
 | Ý nghĩa $\ln$: tốc độ thay đổi tương đối $\nabla\pi/\pi$ | ✅ Insight hợp lý | Schulman 2016a, Ch.2 |
 
@@ -114,10 +114,10 @@
 |:------|:---------|:-----------------|
 | Phát biểu định lý PG | ✅ Chính xác | Sutton & Barto Theorem 13.1, p.327 |
 | Bước 1: Log-derivative trick → kỳ vọng | ✅ Chính xác | Spinning Up Part 3, full derivation |
-| Khai triển $\ln P(\tau|\theta)$ thành tổng | ✅ Chính xác | Spinning Up Eq.3-5 |
+| Khai triển $\ln P(\tau \mid \theta)$ thành tổng | ✅ Chính xác | Spinning Up Eq.3-5 |
 | Dynamics biến mất | ✅ Chính xác | Spinning Up "Gradients of Environment Functions" |
 | Bổ đề Nhân quả (Causality Lemma) | ✅ Chính xác | Spinning Up "Don't Let the Past Distract You" + EGLP Lemma |
-| $\mathbb{E}_{a\sim\pi}[\nabla_{\theta}\ln\pi(a|s)] = \nabla_{\theta}\sum_{a}\pi(a|s) = \nabla_{\theta}(1) = 0$ | ✅ Chính xác | Spinning Up "Expected Grad-Log-Prob Lemma" |
+| $\mathbb{E}_{a\sim\pi}[\nabla_{\theta}\ln\pi(a \mid s)] = \nabla_{\theta}\sum_{a}\pi(a \mid s) = \nabla_{\theta}(1) = 0$ | ✅ Chính xác | Spinning Up "Expected Grad-Log-Prob Lemma" |
 | Thuật toán REINFORCE 3 bước | ✅ Chính xác | Sutton & Barto §13.3 Algorithm box, p.328; Williams 1992 |
 
 > [!TIP]
@@ -136,8 +136,8 @@
 |:------|:---------|:-----------------|
 | REINFORCE có variance cao | ✅ Chính xác | Sutton & Barto §13.4, p.330; Williams 1992 |
 | Baseline $b(s_{t})$ không thay đổi kỳ vọng gradient | ✅ Chính xác | Spinning Up "Baselines in Policy Gradients" |
-| Chứng minh: $\mathbb{E}[\nabla\ln\pi\cdot b(s)] = b(s)\nabla_{\theta}\sum_{a}\pi(a|s) = 0$ | ✅ Chính xác | Spinning Up EGLP Lemma, Sutton & Barto §13.4 |
-| Optimal baseline $b^* = \frac{\mathbb{E}[\|\nabla\ln\pi\|^2 G]}{\mathbb{E}[\|\nabla\ln\pi\|^2]}$ | ✅ Chính xác | Williams 1992, Eq.15; Greensmith et al. 2004 |
+| Chứng minh: $\mathbb{E}[\nabla\ln\pi\cdot b(s)] = b(s)\nabla_{\theta}\sum_{a}\pi(a \mid s) = 0$ | ✅ Chính xác | Spinning Up EGLP Lemma, Sutton & Barto §13.4 |
+| Optimal baseline $b^* = \frac{\mathbb{E}[\Vert \nabla\ln\pi \Vert^2 G]}{\mathbb{E}[\Vert \nabla\ln\pi \Vert^2]}$ | ✅ Chính xác | Williams 1992, Eq.15; Greensmith et al. 2004 |
 | Standardization trong code: $(G - \text{mean})/(\text{std}+\epsilon)$ | ✅ Khớp source code | `sources/reinforce.py` L41-42 |
 | Actor-Critic = dùng neural net cho $b(s)$ | ✅ Chính xác | Sutton & Barto §13.5 |
 

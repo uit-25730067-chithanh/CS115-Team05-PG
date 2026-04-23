@@ -59,7 +59,7 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 - **Lệnh phổ biến:**
   - `\theta`: Tham số chính sách.
   - `\nabla_{\theta}`: Gradient theo theta.
-  - `\pi_{\theta}(a|s)`: Chính sách (Policy).
+  - `\pi_{\theta}(a|s)`: Chính sách (Policy). (**Lưu ý:** Trong Markdown Table phải dùng `\mid` thay vì `|` để tránh vỡ bảng).
   - `\tau`: Quỹ đạo (Trajectory).
   - `\mathbb{E}`: Kỳ vọng (Expectation).
 
