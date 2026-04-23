@@ -52,6 +52,6 @@ Giải thích các hiện tượng quan sát được trong quá trình huấn l
 
 Để có cái nhìn sâu sắc và học thuật hơn, Team 05 khuyến khích tham khảo các nguồn sau:
 1. **Sutton & Barto, "Reinforcement Learning: An Introduction" (2nd Ed)** - [Chapter 13: Policy Gradient Methods](http://incompleteideas.net/book/the-book-2nd.html)
-2. **Stanford CS234: Reinforcement Learning** - [Lecture 8: Policy Gradient](https://web.stanford.edu/class/cs234/slides/lecture8.pdf)
+2. **Stanford CS234: Reinforcement Learning** - [Lecture Slides (Policy Gradients)](http://web.stanford.edu/class/cs234/lectures/lecture5.pdf)
 3. **OpenAI Spinning Up** - [Part 3: Intro to Policy Optimization](https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html)
 4. **UC Berkeley CS285** - [Lecture 5: Policy Gradients](http://rail.eecs.berkeley.edu/deeprlcourse/static/slides/lec-5.pdf)
