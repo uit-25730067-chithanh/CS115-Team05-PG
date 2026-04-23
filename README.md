@@ -24,15 +24,15 @@ Explore math foundations & practical implementation of **Policy Gradient** (REIN
 
 ## 🗺️ Roadmap & Progress
 
-Dự án đang trong giai đoạn triển khai song song Math & Code (Tuần 04).
+The project is currently in the parallel implementation phase of Math & Code (Week 04).
 
-| Giai đoạn   | Nội dung chính         | Trạng thái          |
-| :---------- | :--------------------- | :------------------ |
-| **Phase 1** | Math proof & Env setup | Đang thực hiện      |
-| **Phase 2** | Policy Net & REINFORCE | Xong sớm (Refining) |
-| **Phase 3** | Training & Tuning      | Sắp tới             |
+| Phase       | Main Content           | Status               |
+| :---------- | :--------------------- | :------------------- |
+| **Phase 1** | Math proof & Env setup | In Progress          |
+| **Phase 2** | Policy Net & REINFORCE | Completed (Refining) |
+| **Phase 3** | Training & Tuning      | Upcoming             |
 
-🚀 Xem lộ trình chi tiết và biểu đồ Gantt tại: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
+🚀 View detailed roadmap and Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
 ---
 
@@ -62,11 +62,19 @@ Dự án đang trong giai đoạn triển khai song song Math & Code (Tuần 04)
 
 ---
 
+## 🚀 Usage
+
+For detailed instructions on environment setup and training the REINFORCE algorithm, please refer to our:
+
+👉 **[Installation & Usage Guide](./docs/installation.md)**
+
+---
+
 ## 📐 Policy Gradient Theorem
 
 Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
 
-$$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \nabla*{\theta} \log \pi*{\theta}(a_t|s_t) \hat{A}\_t \right] $$
+$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
 
 - $\pi_{\theta}(a_t|s_t)$: Prob of action $a_t$ in state $s_t$.
 - $\hat{A}_t$: Advantage estimate or cumulative return $G_t$.
@@ -74,13 +82,13 @@ $$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \
 
 ---
 
-## 🛠 Phân chia Công việc (WBS Summary)
+## 🛠 Work Breakdown Structure (WBS Summary)
 
-| Module       | Phụ trách (Owner) | Hỗ trợ    |
-| :----------- | :---------------- | :-------- |
-| **Toán học** | Hoàng Sơn         | Chí Thanh |
-| **Mã nguồn** | Chí Thanh         | Hoàng Sơn |
-| **Báo cáo**  | Xuân Quỳnh        | Chí Thanh |
+| Module     | Owner              | Support       |
+| :--------- | :----------------- | :------------ |
+| **Math**   | Hoàng Cao Sơn      | Chí Thanh     |
+| **Code**   | Đặng Chí Thanh     | Hoàng Cao Sơn |
+| **Report** | Phạm Vũ Xuân Quỳnh | Chí Thanh     |
 
 ---
 

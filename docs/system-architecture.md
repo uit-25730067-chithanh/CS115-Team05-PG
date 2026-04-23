@@ -1,34 +1,51 @@
-# Kiến trúc Hệ thống (System Architecture)
+# 🏗️ Kiến trúc Hệ thống (System Architecture)
 
-Giải thuật REINFORCE (Monte Carlo Policy Gradient) cho CartPole-v1. (Dự án CS115).
+Tài liệu này giải thích luồng logic của dự án Team 05: Từ các công thức Toán học đến mã nguồn thực thi và kết quả cuối cùng.
 
-## 1. Môi trường mô phỏng (Environment)
+## 1. Luồng Logic Tổng thể (Math-to-Code Pipeline)
 
-- **Library**: `Gymnasium`.
-- **Game**: `CartPole-v1`.
-- **State Space**: Vector 4 chiều (Position, Velocity, Pole Angle, Pole Angular Velocity).
-- **Action Space**: Rời rạc với 2 hành động (Đẩy xe sang trái `0` / Đẩy sang phải `1`).
-- **Reward**: Mỗi khung hình con lắc trụ được sẽ được `+1`. Win là đạt 500.
+Dự án được xây dựng theo mô hình "Toán học dẫn dắt Lập trình":
 
-## 2. Kiến trúc Mạng nơ-ron (PolicyNetwork)
+```mermaid
+graph TD
+    A[Toán học: math/] -->|Chứng minh PG Theorem| B[Thuật toán: reinforce.py]
+    B -->|Triển khai Policy Network| C[Mô hình: policy.py]
+    C -->|Thực thi huấn luyện| D[Training: train.py]
+    D -->|Tương tác| E[Môi trường: CartPole-v1]
+    E -->|Sinh dữ liệu| D
+    D -->|Kết quả| F[training_curve.png]
+```
 
-Là một hàm Policy $\pi(a | s, \theta)$ parameterized bởi Neural Network truyền thẳng (MLP).
+### Tại sao cần chứng minh toán học trước?
+1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_\theta J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng Log-derivative trick trong code.
+2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi, G_t, \theta$) khớp hoàn toàn với lý thuyết.
 
-- **Input Dimension**: `4` (Kích thước State).
-- **Hidden Layer**: `128` neurons, hàm kích hoạt `ReLU`.
-- **Output Layer**: `2` neurons (Xác suất cho Action `0` và `1`).
-- **Activation Output**: Hàm `Softmax` để đảm bảo tổng xác suất của 2 action = 1.0.
+## 2. Các thành phần chính
 
-## 3. Khối điều khiển thuật toán (REINFORCE)
+### A. Core Algorithm (`sources/reinforce.py`)
+Triển khai công thức cập nhật: $\theta \leftarrow \theta + \alpha G_t \nabla_\theta \ln \pi(A_t|S_t)$.
+- **Discounted Returns**: Tính toán tổng phần thưởng từ cuối tập (episode) về đầu để tối ưu $O(T)$.
+- **Baseline**: Sử dụng chuẩn hóa (normalization) cho $G_t$ để giảm phương sai (variance), giúp Agent học ổn định hơn.
 
-Thuật toán bao gồm 3 bước lặp chính:
+### B. Policy Network (`sources/models/policy.py`)
+- Sử dụng mạng Multi-Layer Perceptron (MLP) đơn giản.
+- Output là một lớp `Softmax` tạo ra phân bố xác suất cho các hành động (Trái/Phải).
+- Hàm `select_action()` sử dụng `torch.distributions.Categorical` để sample hành động, đảm bảo tính khám phá (exploration).
 
-1. **Rollout (Generate Episode)**:
-   - Sử dụng `Categorical.sample()` để bốc xác suất tạo ra Action.
-   - Sinh ra chuỗi trạng thái, log-xác suất và phần thưởng cho đến khi kết thúc (done / truncated).
-2. **Compute Returns (Tính $G_t$)**:
-   - $G\_t = R\_{t} + \gamma R\_{t+1} + \dots + \gamma^{T-t} R\_T$
-   - Thuật toán lặp lùi từ phần thưởng cuối cùng về 0 để tối ưu tốc độ.
-3. **Policy Update (Cập nhật Weights $\theta$)**:
-   - Áp dụng trừ Baseline đơn giản: $G\_t = \frac{G\_t - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
-   - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A\_t |S\_t) \cdot G\_t$.
+### C. Training Loop (`sources/train.py`)
+- Quản lý tương tác với `gymnasium`.
+- Thu thập dữ liệu theo từng Episode (Trajectory).
+- Gọi hàm `update_policy` sau mỗi Episode.
+- Lưu trữ Model Checkpoints (`.pth`) và vẽ đồ thị.
+
+## 3. Cách thức đánh giá (Evaluation)
+
+Chúng ta đánh giá sự thành công của hệ thống dựa trên:
+1. **Đường cong hội tụ**: Reward trung bình tăng dần và tiệm cận mức tối đa (500 cho CartPole-v1).
+2. **Độ ổn định**: Sau khi "giải" được bài toán, Agent không bị sụt giảm hiệu suất đột ngột.
+
+---
+
+## 🤖 Hướng dẫn cho AI Agents
+- Khi chỉnh sửa `reinforce.py`, hãy đảm bảo các biến `log_probs` và `returns` luôn được xử lý dưới dạng Tensor để tận dụng Autograd.
+- Tuyệt đối không thay đổi cấu trúc mạng trong `policy.py` mà không cập nhật lại tài liệu này.

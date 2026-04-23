@@ -3,12 +3,21 @@ import torch
 import torch.optim as optim
 import matplotlib.pyplot as plt
 import numpy as np
+import os
+
+from datetime import datetime
 
 # Sử dụng paths tương đối đối với module gốc
 from models.policy import PolicyNetwork
 from reinforce import compute_returns, update_policy
 
-def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.99):
+def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.99, save_dir=None):
+    # Nếu không cung cấp save_dir, tự động tạo thư mục timestamp trong 'outputs/' 
+    # để tránh xung đột với package 'models' của dự án.
+    if save_dir is None:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        save_dir = os.path.join("outputs", f"run_{timestamp}")
+
     print(f"Bắt đầu huấn luyện REINFORCE trên môi trường {env_name}...")
     
     # Thiết lập device (Mac M-series có MPS, Windows/Linux có CUDA, fallback là CPU)
@@ -30,7 +39,9 @@ def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.
     policy_net = PolicyNetwork(state_dim, action_dim).to(device)
     optimizer = optim.Adam(policy_net.parameters(), lr=lr)
     
-    # Mảng để vẽ đồ thị
+    # Tạo thư mục lưu kết quả cho lượt chạy này
+    os.makedirs(save_dir, exist_ok=True)
+    best_reward = -float('inf')
     episode_rewards = []
     
     # Vòng lặp chính huấn luyện
@@ -63,12 +74,22 @@ def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.
         returns = compute_returns(rewards, gamma)
         update_policy(optimizer, log_probs, returns, device)
         
-        # In log ra màn hình sau mỗi 50 tập
+        # Lưu model tốt nhất dựa trên tổng phần thưởng (total_reward) của tập đó.
+        # Việc lưu 'best_policy' giúp ta giữ lại trạng thái mạng neural đạt hiệu suất cao nhất 
+        # trước khi bị ảnh hưởng bởi tính ngẫu nhiên của các episode sau.
+        if total_reward > best_reward:
+            best_reward = total_reward
+            torch.save(policy_net.state_dict(), os.path.join(save_dir, "best_policy.pth"))
+            
+        # In log sau mỗi 50 tập: Khoảng cách này đủ để quan sát sự hội tụ trung bình 
+        # mà không gây loãng (spam) cửa sổ console.
         if episode % 50 == 0:
             avg_reward = np.mean(episode_rewards[-50:])
-            print(f"Episode {episode}\t Tính trung bình 50 tập: {avg_reward:.2f}")
+            print(f"Episode {episode}\t Tính trung bình 50 tập: {avg_reward:.2f}\t Best: {best_reward:.2f}")
             
-    print("Huấn luyện hoàn tất!")
+    # Lưu model cuối cùng
+    torch.save(policy_net.state_dict(), os.path.join(save_dir, "final_policy.pth"))
+    print(f"Huấn luyện hoàn tất! Kết quả lưu tại: {save_dir}")
     env.close()
     return episode_rewards
 
@@ -96,8 +117,12 @@ if __name__ == "__main__":
     torch.manual_seed(42)
     np.random.seed(42)
     
-    # Chạy cấu hình cơ bản (1000 tập là đủ để CartPole solve nếu thuật toán chạy tốt)
-    rewards_history = train_reinforce(max_episodes=1000)
+    # Tạo folder output theo timestamp
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    run_dir = os.path.join("outputs", f"run_{timestamp}")
     
-    # Lưu đồ thị vào thư mục hiện tại (hoặc có thể chỉnh sửa dời sang data/figures)
-    plot_learning_curve(rewards_history)
+    # Chạy huấn luyện và lưu vào folder tương ứng
+    rewards_history = train_reinforce(max_episodes=1000, save_dir=run_dir)
+    
+    # Lưu đồ thị vào cùng folder kết quả
+    plot_learning_curve(rewards_history, save_path=os.path.join(run_dir, "training_curve.png"))
