@@ -9,6 +9,7 @@ CS115-Team05-PG/
 ├── data/       # Lưu trữ dữ liệu log, checkpoints (được ignore)
 ├── docs/       # Tài liệu dự án (PDR, standards, architecture)
 ├── math/       # Các file tĩnh LaTeX (chứng minh công thức toán học)
+├── outputs/    # Kết quả training (model checkpoints, training curve) theo timestamp
 ├── notes/      # Ghi chú cá nhân & Nhật ký tiến độ/Journal (được ignore)
 ├── plans/      # Theo dõi lộ trình Agile/Kanban (được ignore)
 ├── reports/    # Báo cáo hàng tuần (Word/Markdown)
@@ -30,4 +31,5 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
    - Áp dụng trừ Baseline đơn giản: $G\_t = \frac{G\_t - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
    - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A\_t |S\_t) \cdot G\_t$.
 4. **`sources/models/policy.py`**: Chứa định nghĩa kiến trúc mạng nơ-ron `PolicyNetwork`. Trả về Softmax phân bố ngẫu nhiên để Sample hành động. Cung cấp hàm `select_action()`.
-5. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+5. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy `train.py`, chứa `best_policy.pth`, `final_policy.pth` và `training_curve.png`.
+6. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.

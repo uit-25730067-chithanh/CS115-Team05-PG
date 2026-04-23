@@ -13,7 +13,7 @@ graph TD
     C -->|Thực thi huấn luyện| D[Training: train.py]
     D -->|Tương tác| E[Môi trường: CartPole-v1]
     E -->|Sinh dữ liệu| D
-    D -->|Kết quả| F[training_curve.png]
+    D -->|Kết quả: outputs/run_timestamp/| F[Checkpoints & Curves]
 ```
 
 ### Tại sao cần chứng minh toán học trước?
