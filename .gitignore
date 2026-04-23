@@ -5,9 +5,10 @@ CLAUDE.md
 AGENTS.md
 plans/
 
-# Docs
-docs/meeting_agendas/
-docs/meeting_minutes/
+# Reports
+reports/meeting_agendas/
+reports/meeting_minutes/
+reports/meeting_records/
 
 # ClaudeKit / AI tooling
 .claude/
