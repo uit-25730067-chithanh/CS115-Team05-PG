@@ -11,7 +11,13 @@ from datetime import datetime
 from models.policy import PolicyNetwork
 from reinforce import compute_returns, update_policy
 
-def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.99, save_dir="models"):
+def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.99, save_dir=None):
+    # Nếu không cung cấp save_dir, tự động tạo thư mục timestamp trong 'outputs/' 
+    # để tránh xung đột với package 'models' của dự án.
+    if save_dir is None:
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        save_dir = os.path.join("outputs", f"run_{timestamp}")
+
     print(f"Bắt đầu huấn luyện REINFORCE trên môi trường {env_name}...")
     
     # Thiết lập device (Mac M-series có MPS, Windows/Linux có CUDA, fallback là CPU)
@@ -68,12 +74,15 @@ def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.
         returns = compute_returns(rewards, gamma)
         update_policy(optimizer, log_probs, returns, device)
         
-        # Lưu model tốt nhất
+        # Lưu model tốt nhất dựa trên tổng phần thưởng (total_reward) của tập đó.
+        # Việc lưu 'best_policy' giúp ta giữ lại trạng thái mạng neural đạt hiệu suất cao nhất 
+        # trước khi bị ảnh hưởng bởi tính ngẫu nhiên của các episode sau.
         if total_reward > best_reward:
             best_reward = total_reward
             torch.save(policy_net.state_dict(), os.path.join(save_dir, "best_policy.pth"))
             
-        # In log ra màn hình sau mỗi 50 tập
+        # In log sau mỗi 50 tập: Khoảng cách này đủ để quan sát sự hội tụ trung bình 
+        # mà không gây loãng (spam) cửa sổ console.
         if episode % 50 == 0:
             avg_reward = np.mean(episode_rewards[-50:])
             print(f"Episode {episode}\t Tính trung bình 50 tập: {avg_reward:.2f}\t Best: {best_reward:.2f}")

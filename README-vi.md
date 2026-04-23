@@ -74,7 +74,7 @@ Dự án đang trong giai đoạn triển khai song song Toán học & Mã ngu�
 
 Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh các tham số $\theta$ của chính sách ngẫu nhiên (stochastic policy) $\pi_{\theta}(a|s)$.
 
-$$ \nabla*{\theta} J(\theta) = \mathbb{E}*{\pi*{\theta}} \left[ \sum*{t=0}^{T} \nabla*{\theta} \log \pi*{\theta}(a_t|s_t) \hat{A}\_t \right] $$
+$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
 
 - $\pi_{\theta}(a_t|s_t)$: Xác suất của hành động $a_t$ trong trạng thái $s_t$.
 - $\hat{A}_t$: Ước lượng lợi thế (Advantage) hoặc lợi nhuận tích lũy $G_t$.

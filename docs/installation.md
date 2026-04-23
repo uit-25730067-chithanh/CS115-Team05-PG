@@ -38,6 +38,8 @@ _Lưu ý: Nếu bạn dùng Mac chip M1/M2/M3, PyTorch sẽ tự động hỗ tr
 
 ## 3. Huấn luyện REINFORCE (Training)
 
+### Bước 3: Thiết lập PYTHONPATH & chạy training
+
 Để bắt đầu quá trình huấn luyện thuật toán REINFORCE trên CartPole-v1:
 
 ```bash
