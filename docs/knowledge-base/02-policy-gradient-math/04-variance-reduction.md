@@ -5,7 +5,10 @@ Thuật toán REINFORCE cơ bản có một nhược điểm chí mạng: **Phư
 ## 1. Tại sao phương sai lại cao?
 
 Trong công thức Gradient:
-$$\nabla_\theta J(\theta) = \mathbb{E} [\sum \nabla \ln \pi G_t]$$
+
+$$
+\nabla_{\theta} J(\theta) = \mathbb{E} \left[ \sum \nabla_{\theta} \ln \pi_{\theta} G_t \right]
+$$
 
 Giá trị $G_t$ có thể dao động rất lớn giữa các episode khác nhau, ngay cả khi Agent thực hiện cùng một hành động tốt. Ví dụ:
 
@@ -48,9 +51,11 @@ _Nhận xét:_ Khi không có Baseline, mọi hành động đều được khuy
 
 Dù bất kỳ $b$ nào không phụ thuộc vào $a_t$ cũng không làm chệch gradient, nhưng có một giá trị $b^*$ giúp giảm phương sai nhiều nhất.
 
-Xét phương sai của gradient ước lượng $g(\theta) = \nabla_\theta \ln \pi(a|s) (G - b)$. Để tối thiểu hóa $Var(g)$, ta đạo hàm theo $b$ và cho bằng 0:
+Xét phương sai của gradient ước lượng $g(\theta) = \nabla_{\theta} \ln \pi_{\theta}(a|s) (G - b)$. Để tối thiểu hóa $Var(g)$, ta đạo hàm theo $b$ và cho bằng 0:
 
-$$b^* = \frac{\mathbb{E} [\|\nabla_\theta \ln \pi(a|s)\|^2 G]}{\mathbb{E} [\|\nabla_\theta \ln \pi(a|s)\|^2]}$$
+$$
+b^* = \frac{\mathbb{E} [\|\nabla_{\theta} \ln \pi_{\theta}(a|s)\|^2 G]}{\mathbb{E} [\|\nabla_{\theta} \ln \pi_{\theta}(a|s)\|^2]}
+$$
 
 Đây là trung bình có trọng số của phần thưởng $G$, trong đó trọng số là độ lớn của gradient. Trong thực tế, chúng ta thường dùng:
 
@@ -61,19 +66,35 @@ $$b^* = \frac{\mathbb{E} [\|\nabla_\theta \ln \pi(a|s)\|^2 G]}{\mathbb{E} [\|\na
 
 Chúng ta có thể trừ đi một giá trị $b(s_t)$ (gọi là Baseline) khỏi $G_t$ mà không làm thay đổi kỳ vọng của Gradient:
 
-$$\nabla_\theta J(\theta) = \mathbb{E} \left[ \sum_{t=0}^{T} \nabla_\theta \ln \pi_\theta(a_t | s_t) (G_t - b(s_t)) \right]$$
+$$
+\nabla_{\theta} J(\theta) = \mathbb{E} \left[ \sum_{t=0}^{T} \nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) (G_t - b(s_t)) \right]
+$$
 
 ### Chứng minh tính bất biến của kỳ vọng:
 
 Để công thức trên đúng, ta cần chứng minh:
-$$\mathbb{E} [\nabla_\theta \ln \pi_\theta(a_t | s_t) b(s_t)] = 0$$
+
+$$
+\mathbb{E} [\nabla_{\theta} \ln \pi_{\theta}(a_t | s_t) b(s_t)] = 0
+$$
 
 Ta có:
-$$\mathbb{E}_{a \sim \pi} [\nabla_\theta \ln \pi_\theta(a|s) b(s)] = \sum_{a} \pi_\theta(a|s) \nabla_\theta \ln \pi_\theta(a|s) b(s)$$
+
+$$
+\mathbb{E}_{a \sim \pi} [\nabla_{\theta} \ln \pi_{\theta}(a|s) b(s)] = \sum_{a} \pi_{\theta}(a|s) \nabla_{\theta} \ln \pi_{\theta}(a|s) b(s)
+$$
+
 Sử dụng Log-derivative trick ngược lại:
-$$= \sum_{a} \nabla_\theta \pi_\theta(a|s) b(s) = b(s) \nabla_\theta \sum_{a} \pi_\theta(a|s)$$
-Vì $\sum_{a} \pi_\theta(a|s) = 1$ (tổng xác suất luôn bằng 1), nên đạo hàm của nó bằng 0:
-$$= b(s) \nabla_\theta (1) = b(s) \cdot 0 = 0$$
+
+$$
+= \sum_{a} \nabla_{\theta} \pi_{\theta}(a|s) b(s) = b(s) \nabla_{\theta} \sum_{a} \pi_{\theta}(a|s)
+$$
+
+Vì $\sum_{a} \pi_{\theta}(a|s) = 1$ (tổng xác suất luôn bằng 1), nên đạo hàm của nó bằng 0:
+
+$$
+= b(s) \nabla_{\theta} (1) = b(s) \cdot 0 = 0
+$$
 
 ## 5. Lựa chọn Baseline trong thực tế
 

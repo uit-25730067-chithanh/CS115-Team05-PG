@@ -4,15 +4,19 @@ Trong Reinforcement Learning, mục tiêu của chúng ta là tìm một chính 
 
 ## 1. Định nghĩa toán học của $J(\theta)$
 
-Hàm mục tiêu $J(\theta)$ được định nghĩa là kỳ vọng của tổng phần thưởng tích lũy (Return) trên tất cả các quỹ đạo (trajectories) có thể xảy ra dưới chính sách $\pi_\theta$:
+Hàm mục tiêu $J(\theta)$ được định nghĩa là kỳ vọng của tổng phần thưởng tích lũy (Return) trên tất cả các quỹ đạo (trajectories) có thể xảy ra dưới chính sách $\pi_{\theta}$:
 
-$$J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)]$$
+$$
+J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} [R(\tau)]
+$$
 
 ![J(theta) Chalkboard Explanation](../assets/j-theta-chalkboard.png)
 
 Triển khai dưới dạng tích phân (hoặc tổng đối với không gian rời rạc):
 
-$$J(\theta) = \int_{\mathbb{T}} P(\tau | \theta) R(\tau) d\tau$$
+$$
+J(\theta) = \int_{\mathbb{T}} P(\tau | \theta) R(\tau) d\tau
+$$
 
 Trong đó:
 *   $\mathbb{T}$: Không gian của tất cả các quỹ đạo có thể có.
@@ -23,11 +27,13 @@ Trong đó:
 
 Xác suất của một quỹ đạo $\tau = (s_0, a_0, s_1, a_1, \dots, s_T, a_T)$ được tính bằng quy tắc nhân xác suất (Chain Rule of Probability):
 
-$$P(\tau | \theta) = \mu(s_0) \prod_{t=0}^{T} \pi_\theta(a_t | s_t) P(s_{t+1} | s_t, a_t)$$
+$$
+P(\tau | \theta) = \mu(s_0) \prod_{t=0}^{T} \pi_{\theta}(a_t | s_t) P(s_{t+1} | s_t, a_t)
+$$
 
 Trong đó:
 *   $\mu(s_0)$: Phân phối trạng thái khởi đầu.
-*   $\pi_\theta(a_t | s_t)$: Mô hình chính sách (Policy Model) - đây là phần chúng ta kiểm soát.
+*   $\pi_{\theta}(a_t | s_t)$: Mô hình chính sách (Policy Model) - đây là phần chúng ta kiểm soát.
 *   $P(s_{t+1} | s_t, a_t)$: Mô hình chuyển trạng thái của môi trường (Environment Dynamics) - đây là phần chúng ta **không** kiểm soát và thường không biết trước.
 
 ## 3. Ý nghĩa của việc tối ưu hóa $J(\theta)$
@@ -43,7 +49,7 @@ Trong môi trường CartPole:
 *   $R(\tau) = \text{Số bước sống sót}$ (vì mỗi bước được +1 reward).
 *   Nếu $J(\theta) = 500$, điều đó có nghĩa là trung bình Agent của chúng ta có thể giữ thanh gỗ đứng vững trong toàn bộ thời gian cho phép của môi trường.
 
-Mục tiêu của thuật toán REINFORCE là tính toán $\nabla_\theta J(\theta)$ để thực hiện cập nhật $\theta \leftarrow \theta + \alpha \nabla_\theta J(\theta)$.
+Mục tiêu của thuật toán REINFORCE là tính toán $\nabla_{\theta} J(\theta)$ để thực hiện cập nhật $\theta \leftarrow \theta + \alpha \nabla_{\theta} J(\theta)$.
 
 ## 5. Từ $R(\tau)$ đến Reward-to-go ($G_t$)
 
