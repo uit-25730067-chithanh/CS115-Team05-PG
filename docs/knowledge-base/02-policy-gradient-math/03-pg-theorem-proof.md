@@ -14,10 +14,28 @@ Trong đó $G_t = \sum_{k=t}^{T} \gamma^{k-t} r_{k+1}$ là Return tính từ th�
 
 ### Bước 1: Chuyển đạo hàm vào trong kỳ vọng (sử dụng Log-derivative Trick)
 
-Như đã chứng minh ở file trước:
-$$\nabla_\theta J(\theta) = \nabla_\theta \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau)] = \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau) \nabla_\theta \ln P(\tau | \theta)]$$
+Ta bắt đầu từ định nghĩa của kỳ vọng:
+$$J(\theta) = \sum_\tau P(\tau|\theta) R(\tau)$$
 
-Thay biểu thức của $\nabla_\theta \ln P(\tau | \theta)$ vào:
+Lấy đạo hàm hai vế:
+$$\nabla_\theta J(\theta) = \nabla_\theta \sum_\tau P(\tau|\theta) R(\tau)$$
+$$= \sum_\tau \nabla_\theta P(\tau|\theta) R(\tau)$$
+
+Áp dụng Log-derivative trick $\nabla_\theta P = P \nabla_\theta \ln P$:
+$$\nabla_\theta J(\theta) = \sum_\tau P(\tau|\theta) \frac{\nabla_\theta P(\tau|\theta)}{P(\tau|\theta)} R(\tau)$$
+$$= \sum_\tau P(\tau|\theta) \nabla_\theta \ln P(\tau|\theta) R(\tau)$$
+$$= \mathbb{E}_{\tau \sim \pi_\theta} [R(\tau) \nabla_\theta \ln P(\tau|\theta)]$$
+
+Tiếp theo, ta khai triển biểu thức $\nabla_\theta \ln P(\tau|\theta)$. Với $\tau = (s_0, a_0, \dots, s_T, a_T)$:
+$$\ln P(\tau|\theta) = \ln \left( \mu(s_0) \prod_{t=0}^T \pi_\theta(a_t|s_t) P(s_{t+1}|s_t, a_t) \right)$$
+$$\ln P(\tau|\theta) = \ln \mu(s_0) + \sum_{t=0}^T \ln \pi_\theta(a_t|s_t) + \sum_{t=0}^T \ln P(s_{t+1}|s_t, a_t)$$
+
+Lấy đạo hàm theo $\theta$:
+$$\nabla_\theta \ln P(\tau|\theta) = \nabla_\theta \ln \mu(s_0) + \sum_{t=0}^T \nabla_\theta \ln \pi_\theta(a_t|s_t) + \nabla_\theta \sum_{t=0}^T \ln P(s_{t+1}|s_t, a_t)$$
+Vì $\mu(s_0)$ và dynamics $P(s_{t+1}|s_t, a_t)$ không phụ thuộc vào $\theta$, đạo hàm của chúng bằng 0:
+$$\nabla_\theta \ln P(\tau|\theta) = 0 + \sum_{t=0}^T \nabla_\theta \ln \pi_\theta(a_t|s_t) + 0$$
+
+Thay vào biểu thức trên:
 $$\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta} \left[ R(\tau) \left( \sum_{t=0}^{T} \nabla_\theta \ln \pi_\theta(a_t | s_t) \right) \right]$$
 
 ### Bước 2: Khai triển tổng phần thưởng $R(\tau)$

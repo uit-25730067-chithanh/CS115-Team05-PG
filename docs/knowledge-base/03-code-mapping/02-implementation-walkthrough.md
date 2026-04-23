@@ -57,6 +57,7 @@ policy_loss = []
 for log_prob, G_t in zip(log_probs, returns):
     policy_loss.append(-log_prob * G_t)
 policy_loss = torch.stack(policy_loss).sum()
+```
 
 ### Bước 4: Cập nhật Trọng số (Weight Update)
 ```python
@@ -65,7 +66,7 @@ policy_loss.backward()
 optimizer.step()
 ```
 
-## 5. Tại sao cấu trúc code lại như vậy?
+## 4. Tại sao cấu trúc code lại như vậy?
 
 1.  **Lưu trữ `log_probs`:** Chúng ta phải lưu lại `log_prob` tại mỗi bước vì đó là một phần của đồ thị tính toán (computational graph). Nếu không lưu, PyTorch sẽ không biết cách tính đạo hàm ngược lại các trọng số mạng neural đã sinh ra xác suất đó.
 2.  **Tính `returns` ngược:** Tính ngược từ dưới lên (từ $T$ về $0$) hiệu quả hơn về mặt tính toán ($O(T)$ thay vì $O(T^2)$).
