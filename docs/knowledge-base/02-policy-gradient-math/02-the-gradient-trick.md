@@ -41,8 +41,9 @@ Lấy logarit tự nhiên của cả hai vế:
 $$\ln P(\tau | \theta) = \ln \mu(s_0) + \sum_{t=0}^{T} \ln \pi_\theta(a_t | s_t) + \sum_{t=0}^{T} \ln P(s_{t+1} | s_t, a_t)$$
 
 Bây giờ, ta lấy đạo hàm theo $\theta$:
-*   $\nabla_\theta \ln \mu(s_0) = 0$ (vì trạng thái đầu không phụ thuộc vào tham số mạng).
-*   $\nabla_\theta \sum \ln P(s_{t+1} | s_t, a_t) = 0$ (vì dynamics của môi trường không phụ thuộc vào $\theta$).
+
+- $\nabla_\theta \ln \mu(s_0) = 0$ (vì trạng thái đầu không phụ thuộc vào tham số mạng).
+- $\nabla_\theta \sum \ln P(s_{t+1} | s_t, a_t) = 0$ (vì dynamics của môi trường không phụ thuộc vào $\theta$).
 
 Kết quả cuối cùng:
 
@@ -58,9 +59,9 @@ Thuật toán REINFORCE không cố gắng tìm "nhãn đúng" như Supervised L
 
 1.  **Lấy mẫu (Explore):** Agent thực hiện một hành động $a$ ngẫu nhiên theo phân phối $\pi_\theta$.
 2.  **Đánh giá (Evaluate):** Môi trường trả về phần thưởng $R(\tau)$.
-3.  **Điều chỉnh (Adjust):** 
-    -   Nếu $R(\tau) > 0$: Gradient $\nabla_\theta \ln \pi_\theta$ sẽ kéo tham số $\theta$ về hướng làm **tăng** xác suất $\pi_\theta(a|s)$.
-    -   Nếu $R(\tau) < 0$: Gradient sẽ đẩy tham số $\theta$ theo hướng làm **giảm** xác suất của hành động đó.
+3.  **Điều chỉnh (Adjust):**
+    - Nếu $R(\tau) > 0$: Gradient $\nabla_\theta \ln \pi_\theta$ sẽ kéo tham số $\theta$ về hướng làm **tăng** xác suất $\pi_\theta(a|s)$.
+    - Nếu $R(\tau) < 0$: Gradient sẽ đẩy tham số $\theta$ theo hướng làm **giảm** xác suất của hành động đó.
 
 ![Probability Pushing Intuition](../assets/probability-pushing.png)
 
@@ -68,7 +69,7 @@ Thuật toán REINFORCE không cố gắng tìm "nhãn đúng" như Supervised L
 
 ```mermaid
 graph TD
-    A[Bắt đầu: theta_khởi_tạo] --> B{Thực hiện Trajectory}
+    A[Bắt đầu: theta_init] --> B{Thực hiện Trajectory}
     B --> C[Tính G_t: Reward-to-go]
     C --> D[Tính Gradient: grad_ln_pi * G_t]
     D --> E[Cập nhật: theta = theta + alpha * Gradient]
@@ -80,11 +81,12 @@ graph TD
     end
 ```
 
-*Ghi chú:* Việc sử dụng $\ln$ (Logarithm) có tác dụng quan trọng: Nó chuẩn hóa tốc độ thay đổi. Thay vì tăng xác suất một cách tuyến tính, đạo hàm của logarit tương ứng với **tốc độ thay đổi tương đối** ($\frac{\nabla \pi}{\pi}$), giúp việc cập nhật ổn định hơn khi xác suất đã tiến gần về 0 hoặc 1.
+_Ghi chú:_ Việc sử dụng $\ln$ (Logarithm) có tác dụng quan trọng: Nó chuẩn hóa tốc độ thay đổi. Thay vì tăng xác suất một cách tuyến tính, đạo hàm của logarit tương ứng với **tốc độ thay đổi tương đối** ($\frac{\nabla \pi}{\pi}$), giúp việc cập nhật ổn định hơn khi xác suất đã tiến gần về 0 hoặc 1.
 
 ## 5. Kết luận
 
 Log-derivative trick giúp chúng ta giải quyết được hai vấn đề cực lớn:
+
 1.  **Model-free:** Chúng ta không cần biết hàm xác suất chuyển trạng thái $P(s'|s, a)$ của môi trường để tính đạo hàm.
 2.  **Tính toán được:** Chúng ta có thể dùng các giá trị $\ln \pi_\theta$ thu được từ mạng neural và nhân với phần thưởng thực tế thu được từ môi trường để cập nhật tham số.
 
