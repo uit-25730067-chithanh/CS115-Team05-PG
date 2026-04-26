@@ -70,6 +70,20 @@ Dự án đang trong giai đoạn triển khai song song Toán học & Mã ngu�
 
 ---
 
+## 📄 Báo cáo
+
+### Dành cho Giảng viên
+Truy cập báo cáo của nhóm tại đây: _Sẽ được cập nhật khi hoàn thành dự án._
+
+### Dành cho thành viên nhóm
+Truy cập báo cáo của nhóm tại đây: [**Báo cáo Đồ án Policy Gradient**](https://bit.ly/cs115-team05-report)
+
+> **Lưu ý:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng 1 trong 2 cách:
+> - **Mở bằng phần mềm Microsoft Word** — hiển thị đúng 100% và có thể comment trực tiếp.
+> - **Nếu dùng Word trên web**, hãy xuất ra file PDF để đọc → quay lại phần tương ứng trên bản web và để lại comment ở đó (nếu cần).
+
+---
+
 ## 📐 Định lý Policy Gradient
 
 Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh các tham số $\theta$ của chính sách ngẫu nhiên (stochastic policy) $\pi_{\theta}(a|s)$.

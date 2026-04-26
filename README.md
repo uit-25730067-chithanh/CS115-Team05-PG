@@ -70,6 +70,21 @@ For detailed instructions on environment setup and training the REINFORCE algori
 
 ---
 
+## 📄 Report
+
+### For Lecturer
+
+Access our final report here: _Will be updated when project is completed._
+
+### For Team Members
+
+Access our working report here: [**Policy Gradient Project Report**](https://bit.ly/cs115-team05-report)
+
+> **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
+> - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
+> - **If using Word on web**, export to PDF to read → go back to the relevant section on the web version and leave comment there (if needed).
+---
+
 ## 📐 Policy Gradient Theorem
 
 Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
