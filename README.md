@@ -155,7 +155,7 @@ View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap
 
 ### The Math
 
-Optimize expected reward \( J(\theta) \) by adjusting parameters \(\theta\) of stochastic policy $\pi_{\theta}(a|s)$.
+Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
 
 $$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
 
