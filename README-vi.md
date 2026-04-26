@@ -70,15 +70,17 @@ Dự án đang trong giai đoạn triển khai song song Toán học & Mã ngu�
 
 ---
 
-## 📄 Báo cáo (Chỉ dành cho thành viên nhóm)
+## 📄 Báo cáo
 
-Bạn có thể truy cập tài liệu báo cáo đang làm việc của chúng ta tại đây: [**Báo cáo Policy Gradient**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+### Dành cho Giảng viên
+Truy cập báo cáo của nhóm tại đây: [**Sẽ được cập nhật khi hoàn thành dự án**]
 
-> 🔒 **Lưu ý:** Liên kết này chỉ dành cho **thành viên nhóm**. Phiên bản PDF cuối cùng cho tất cả mọi người sẽ được cập nhật sau.
+### Dành cho thành viên nhóm
+Truy cập báo cáo của nhóm tại đây: [**Báo cáo Policy Gradient**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
 
-> **Lưu ý khi xem:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng một trong hai tùy chọn sau:
-> - **Mở bằng ứng dụng Word trên máy tính (desktop app)** — hiển thị đúng 100%, hỗ trợ bình luận trực tiếp.
-> - **Nếu dùng Word trên web (Word for the web)**, hãy xuất ra file PDF để đọc; nếu muốn bình luận, hãy quay lại phần tương ứng trên bản web và để lại bình luận ở đó.
+> **Lưu ý:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng 1 trong 2 cách:
+> - **Mở bằng phần mềm Microsoft Word** — hiển thị đúng 100% và có thể comment trực tiếp.
+> - **Nếu dùng Word trên web**, hãy xuất ra file PDF để đọc → quay lại phần tương ứng trên bản web và để lại comment ở đó (nếu cần).
 
 ---
 

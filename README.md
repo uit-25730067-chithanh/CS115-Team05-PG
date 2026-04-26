@@ -70,16 +70,19 @@ For detailed instructions on environment setup and training the REINFORCE algori
 
 ---
 
-## 📄 Report (Team Members Only)
+## 📄 Report
 
-You can access our working report document here: [**Policy Gradient Report**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+### For Lecturer
 
-> 🔒 **Note:** This link is for **team members only**. The final PDF version for public access will be updated later.
+Access our final report here: [**Will be updated when project is completed**]
 
-> **Note on viewing:** To view the report with correct formatting (no broken math equations), please use one of these two options:
-> - **Open with the Word desktop app** — renders 100% correctly, supports direct comments.
-> - **If using Word for the web**, export to PDF to read; for comments, go back to the relevant section on the web version and leave them there.
+### For Team Members
 
+Access our working report here: [**Policy Gradient Report**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+
+> **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
+> - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
+> - **If using Word on web**, export to PDF to read → go back to the relevant section on the web version and leave comment there (if needed).
 ---
 
 ## 📐 Policy Gradient Theorem
