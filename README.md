@@ -70,6 +70,18 @@ For detailed instructions on environment setup and training the REINFORCE algori
 
 ---
 
+## 📄 Report (Team Members Only)
+
+You can access our working report document here: [**Policy Gradient Report**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+
+> 🔒 **Note:** This link is for **team members only**. The final PDF version for public access will be updated later.
+
+> **Note on viewing:** To view the report with correct formatting (no broken math equations), please use one of these two options:
+> - **Open with the Word desktop app** — renders 100% correctly, supports direct comments.
+> - **If using Word for the web**, export to PDF to read; for comments, go back to the relevant section on the web version and leave them there.
+
+---
+
 ## 📐 Policy Gradient Theorem
 
 Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.

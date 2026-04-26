@@ -70,6 +70,18 @@ Dự án đang trong giai đoạn triển khai song song Toán học & Mã ngu�
 
 ---
 
+## 📄 Báo cáo (Chỉ dành cho thành viên nhóm)
+
+Bạn có thể truy cập tài liệu báo cáo đang làm việc của chúng ta tại đây: [**Báo cáo Policy Gradient**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+
+> 🔒 **Lưu ý:** Liên kết này chỉ dành cho **thành viên nhóm**. Phiên bản PDF cuối cùng cho tất cả mọi người sẽ được cập nhật sau.
+
+> **Lưu ý khi xem:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng một trong hai tùy chọn sau:
+> - **Mở bằng ứng dụng Word trên máy tính (desktop app)** — hiển thị đúng 100%, hỗ trợ bình luận trực tiếp.
+> - **Nếu dùng Word trên web (Word for the web)**, hãy xuất ra file PDF để đọc; nếu muốn bình luận, hãy quay lại phần tương ứng trên bản web và để lại bình luận ở đó.
+
+---
+
 ## 📐 Định lý Policy Gradient
 
 Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh các tham số $\theta$ của chính sách ngẫu nhiên (stochastic policy) $\pi_{\theta}(a|s)$.
