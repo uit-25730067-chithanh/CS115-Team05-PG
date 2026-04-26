@@ -5,6 +5,7 @@
 - [Installation Guide](docs/installation.md)
 - [Code Standards](docs/code-standards.md)
 - [System Architecture](docs/system-architecture.md)
+- [Knowledge Base](docs/knowledge-base/README.md)
 - [Project Roadmap](docs/project-roadmap.md)
 
 ## Core Commands

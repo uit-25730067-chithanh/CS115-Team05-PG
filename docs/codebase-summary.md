@@ -7,7 +7,7 @@ Tài liệu này liệt kê cấu trúc thư mục và các tệp tin quan trọ
 ```text
 CS115-Team05-PG/
 ├── data/       # Lưu trữ dữ liệu log, checkpoints (được ignore)
-├── docs/       # Tài liệu dự án (PDR, standards, architecture)
+├── docs/       # Tài liệu dự án (PDR, standards, architecture, knowledge)
 ├── math/       # Các file tĩnh LaTeX (chứng minh công thức toán học)
 ├── outputs/    # Kết quả training (model checkpoints, training curve) theo timestamp
 ├── notes/      # Ghi chú cá nhân & Nhật ký tiến độ/Journal (được ignore)
@@ -25,11 +25,11 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 
 1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training và vẽ `training_curve.png`.
 2. **`sources/reinforce.py`**: Chứa thuật toán Policy Gradient thuần tuý.
-   - $G\_t = R\_{t} + \gamma R\_{t+1} + \dots + \gamma^{T-t} R\_T$
+   - $G_{t} = R_{t} + \gamma R_{t+1} + \dots + \gamma^{T-t} R_{T}$
    - Thuật toán lặp lùi từ phần thưởng cuối cùng về 0 để tối ưu tốc độ.
 3. **Policy Update (Cập nhật Weights $\theta$)**:
-   - Áp dụng trừ Baseline đơn giản: $G\_t = \frac{G\_t - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
-   - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A\_t |S\_t) \cdot G\_t$.
+   - Áp dụng trừ Baseline đơn giản: $G_{t} = \frac{G_{t} - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
+   - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A_{t} | S_{t}) \cdot G_{t}$.
 4. **`sources/models/policy.py`**: Chứa định nghĩa kiến trúc mạng nơ-ron `PolicyNetwork`. Trả về Softmax phân bố ngẫu nhiên để Sample hành động. Cung cấp hàm `select_action()`.
 5. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy `train.py`, chứa `best_policy.pth`, `final_policy.pth` và `training_curve.png`.
 6. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
