@@ -17,13 +17,13 @@ graph TD
 ```
 
 ### Tại sao cần chứng minh toán học trước?
-1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_\theta J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng Log-derivative trick trong code.
-2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi, G_t, \theta$) khớp hoàn toàn với lý thuyết.
+1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_{\theta} J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng Log-derivative trick trong code.
+2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi, G_{t}, \theta$) khớp hoàn toàn với lý thuyết.
 
 ## 2. Các thành phần chính
 
 ### A. Core Algorithm (`sources/reinforce.py`)
-Triển khai công thức cập nhật: $\theta \leftarrow \theta + \alpha G_t \nabla_\theta \ln \pi(A_t|S_t)$.
+Triển khai công thức cập nhật: $\theta \leftarrow \theta + \alpha G_{t} \nabla_{\theta} \ln \pi(A_{t}|S_{t})$.
 - **Discounted Returns**: Tính toán tổng phần thưởng từ cuối tập (episode) về đầu để tối ưu $O(T)$.
 - **Baseline**: Sử dụng chuẩn hóa (normalization) cho $G_t$ để giảm phương sai (variance), giúp Agent học ổn định hơn.
 

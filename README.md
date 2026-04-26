@@ -89,7 +89,9 @@ Access our working report here: [**Policy Gradient Project Report**](https://bit
 
 Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
 
-$$ \nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right] $$
+$$
+\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right]
+$$
 
 - $\pi_{\theta}(a_t|s_t)$: Prob of action $a_t$ in state $s_t$.
 - $\hat{A}_t$: Advantage estimate or cumulative return $G_t$.
