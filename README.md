@@ -1,115 +1,183 @@
-# [CS115] Policy Gradient for Reinforcement Learning (RL) - Team 05
+<div align="center">
+  <img src="docs/assets/hero-banner.jpg" alt="Policy Gradient for RL Banner" width="100%" style="border-radius: 8px;">
 
-[![GitHub Projects](https://img.shields.io/badge/Project-Tracking-blue?logo=github)](https://github.com/users/uit-25730067-chithanh/projects/1)
-![Python](https://img.shields.io/badge/Python-3.9+-yellow?logo=python)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red?logo=pytorch)
-![Gymnasium](https://img.shields.io/badge/Gymnasium-RL-green)
+# [CS115] Policy Gradient for Reinforcement Learning — Team 05
 
-Explore math foundations & practical implementation of **Policy Gradient** (REINFORCE algorithm) on classic control problems using `Gymnasium`.
+**University Project — Math for Computer Science (CS115)**  
+ _Topic: Explore math foundations & practical implementation of REINFORCE on CartPole-v1._
 
-> Course: _CS115 - Math for Computer Science_ | University of Information Technology (UIT)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Gymnasium](https://img.shields.io/badge/Gymnasium-RL-green?style=for-the-badge)](https://gymnasium.farama.org/)
+[![Course: CS115](https://img.shields.io/badge/Course-CS115%20Math%20for%20CS-blueviolet?style=for-the-badge)](https://www.uit.edu.vn/)
+[![University: UIT](https://img.shields.io/badge/University-UIT%20VNU--HCM-orange?style=for-the-badge)](https://www.uit.edu.vn/)
+
+</div>
+
+<br/>
+
+## Table of Contents
+
+- [Course Context](#course-context)
+- [Project Objectives](#project-objectives)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Getting Started](#getting-started)
+- [Academic Details](#academic-details)
+  - [Roadmap & Progress](#roadmap--progress)
+  - [The Math](#the-math)
+  - [Work Breakdown Structure](#work-breakdown-structure)
+  - [Team Charter](#team-charter)
+  - [Report & Submission](#report--submission)
 
 ---
 
-## 👥 Team 05
+## Course Context
 
-| ID       | Name               | Role                    | Support              | GitHub                                                             |
-| :------- | :----------------- | :---------------------- | :------------------- | :----------------------------------------------------------------- |
-| 25730067 | Đặng Chí Thanh     | Team Leader & Code Lead | All                  | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
-| 25730061 | Hoàng Cao Sơn      | Math Lead               | Code & Report        | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
-| 26210070 | Phạm Vũ Xuân Quỳnh | Report Lead             | Admin & Code Support | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
-| 25730094 | Nguyễn Đức Ý       | Supporter               | General              | [@ducy11](https://github.com/ducy11)                               |
+- **Course:** CS115 — Mathematics for Computer Science
+- **Institution:** University of Information Technology (UIT), Vietnam National University — Ho Chi Minh City (VNU-HCM)
+- **Instructor:** TS. Dương Việt Hằng (<hangdv@hcmuit.edu.vn>) — KHMT, UIT
+- **Semester:** 2025–2026 (2nd Semester)
+
+## Project Objectives
+
+This project demonstrates the theoretical foundations and practical implementation of **Policy Gradient methods** in Reinforcement Learning. Specifically, we implement the **REINFORCE algorithm** to solve the `CartPole-v1` control problem via `PyTorch` and `Gymnasium`.
+
+**Learning Outcomes:**
+
+1. Derive the Policy Gradient Theorem from first principles.
+2. Implement a stochastic policy network and train it with Monte-Carlo returns.
+3. Analyze convergence behavior and visualize learning curves.
+4. Document the full pipeline following academic software-engineering standards.
+
+> **Full documentation** (system design, math proofs, team workflows):  
+> See the **[Project Design Report (PDR)](./docs/project-overview-pdr.md)**.
 
 ---
 
-## 🗺️ Roadmap & Progress
+## Tech Stack
+
+| Category         | Technologies                                                                                                                                                                                      |
+| :--------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Core ML / RL** | ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white) ![Gymnasium](https://img.shields.io/badge/Gymnasium-008000?style=flat-square)              |
+| **Math & Viz**   | ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat-square)                  |
+| **Environment**  | ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=flat-square&logo=python&logoColor=white) ![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white) |
+
+---
+
+## Project Structure
+
+```text
+CS115-Team05-PG/
+│
+├── docs/                   # Documentation (PDR, Roadmap, Reports)
+├── math/                   # LaTeX math proofs & derivations
+├── sources/                # Core implementation
+│   ├── models/             # Policy network (PyTorch)
+│   ├── agents/             # Agent logic (REINFORCE)
+│   ├── envs/               # Environment wrappers
+│   ├── train.py            # Training loop entry point
+│   ├── test_env.py         # Environment sanity check
+│   └── reinforce.py        # REINFORCE algorithm core
+│
+├── outputs/                # Saved policies & training curves
+├── reports/                # Weekly updates & meeting records
+└── data/                   # Datasets
+```
+
+> _For detailed team responsibilities, see the [Team Workflows](./docs/project-overview-pdr.md)._
+
+---
+
+## Getting Started
+
+### 1. Prerequisites
+
+- **Python 3.9+**
+- **Git**
+
+### 2. Installation
+
+```bash
+git clone <repository-url>
+cd CS115-Team05-PG
+
+# Create virtual environment (recommended)
+python3 -m venv venv
+source venv/bin/activate  # macOS/Linux
+# or
+# .\venv\Scripts\activate  # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 3. Training
+
+Set `PYTHONPATH` to include the `sources/` directory, then run the training script:
+
+```bash
+export PYTHONPATH=$PYTHONPATH:$(pwd)/sources
+python3 sources/train.py
+```
+
+Trained policy weights and training curves will be saved to a timestamped subdirectory under `outputs/` (e.g., `outputs/run_YYYYMMDD_HHMMSS/`).
+
+### 4. Test Environment
+
+Verify the Gymnasium environment is working correctly:
+
+```bash
+python3 sources/test_env.py
+```
+
+---
+
+## Academic Details
+
+> The following sections contain mandatory deliverables and metadata required for **course assessment** (CS115).
+
+---
+
+### Roadmap & Progress
 
 The project is currently in the parallel implementation phase of Math & Code (Week 04).
 
 | Phase       | Main Content           | Status               |
 | :---------- | :--------------------- | :------------------- |
-| **Phase 1** | Math proof & Env setup | In Progress          |
+| **Phase 1** | Math proof & Env setup | Completed            |
 | **Phase 2** | Policy Net & REINFORCE | Completed (Refining) |
 | **Phase 3** | Training & Tuning      | Upcoming             |
 
-🚀 View detailed roadmap and Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
+View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
 ---
 
-## 🦴 4 Core Pillars
+### The Math
 
-### 1. Math Core
+Optimize expected reward \( J(\theta) \) by adjusting parameters \(\theta\) of stochastic policy \(\pi\_{\theta}(a|s)\).
 
-- **Objective Function** $J(\theta)$: Expected total reward.
-- **Log-derivative Trick**: Transform gradient to computable form.
-- **Gradient Ascent**: Maximize probability of high-reward actions.
+$$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
 
-### 2. Environment (Gymnasium)
+- **\(\pi\_{\theta}(a_t|s_t)\)**: Probability of action \(a_t\) in state \(s_t\).
+- **\(\hat{A}\_t\)**: Advantage estimate or cumulative return \(G_t\).
+- **Log-derivative Trick**: \(\nabla*{\theta} \pi*{\theta}(a|s) = \pi*{\theta}(a|s) \nabla*{\theta} \log \pi\_{\theta}(a|s)\).
 
-- **Problem**: `CartPole-v1` (balance the pole).
-- **Loop**: State → Action → Reward.
-
-### 3. Policy Network (PyTorch)
-
-- **Arch**: Simple DNN.
-- **Input**: Environment states → **Output**: Action probability distribution.
-
-### 4. Training & Analytics
-
-- Episode-based trajectory collection.
-- Backprop with reward-weighted loss.
-- Learning curve visualization.
+> _For the full derivation, see our [Project Design Report (PDR)](./docs/project-overview-pdr.md)._
 
 ---
 
-## 🚀 Usage
+### Work Breakdown Structure
 
-For detailed instructions on environment setup and training the REINFORCE algorithm, please refer to our:
-
-👉 **[Installation & Usage Guide](./docs/installation.md)**
-
----
-
-## 📄 Report
-
-### For Lecturer
-
-Access our final report here: _Will be updated when project is completed._
-
-### For Team Members
-
-Access our working report here: [**Policy Gradient Project Report**](https://bit.ly/cs115-team05-report)
-
-> **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
-> - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
-> - **If using Word on web**, export to PDF to read → go back to the relevant section on the web version and leave comment there (if needed).
----
-
-## 📐 Policy Gradient Theorem
-
-Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
-
-$$
-\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \hat{A}_t \right]
-$$
-
-- $\pi_{\theta}(a_t|s_t)$: Prob of action $a_t$ in state $s_t$.
-- $\hat{A}_t$: Advantage estimate or cumulative return $G_t$.
-- **Log-derivative Trick**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
+| Module     | Owner              | Support        |
+| :--------- | :----------------- | :------------- |
+| **Math**   | Hoàng Cao Sơn      | Đặng Chí Thanh |
+| **Code**   | Đặng Chí Thanh     | Hoàng Cao Sơn  |
+| **Report** | Phạm Vũ Xuân Quỳnh | Đặng Chí Thanh |
 
 ---
 
-## 🛠 Work Breakdown Structure (WBS Summary)
-
-| Module     | Owner              | Support       |
-| :--------- | :----------------- | :------------ |
-| **Math**   | Hoàng Cao Sơn      | Chí Thanh     |
-| **Code**   | Đặng Chí Thanh     | Hoàng Cao Sơn |
-| **Report** | Phạm Vũ Xuân Quỳnh | Chí Thanh     |
-
----
-
-## 🤝 Team Charter (v3.0 Summary)
+### Team Charter (v3.0 Summary)
 
 - **Comms**: MS Teams (primary) | Zalo (urgent only).
 - **SLA**: 12-24h response. Quiet hours: 23h-07h & 18h30-21h.
@@ -119,17 +187,42 @@ $$
 - **Conflict**: Direct dialogue → 15min meeting → Leader decides.
 - **Goal**: A+ (9.0-10.0). Learn for real, no shortcuts.
 
+### Team Roster — Team 05
+
+| Student ID | Full Name          | Role                    | GitHub                                                             |
+| :--------- | :----------------- | :---------------------- | :----------------------------------------------------------------- |
+| 25730067   | Đặng Chí Thanh     | Team Leader & Code Lead | [@uit-25730067-chithanh](https://github.com/uit-25730067-chithanh) |
+| 25730061   | Hoàng Cao Sơn      | Math Lead               | [@uit-25730061-caoson](https://github.com/uit-25730061-caoson)     |
+| 26210070   | Phạm Vũ Xuân Quỳnh | Report Lead             | [@xuanquynhphamvu](https://github.com/xuanquynhphamvu)             |
+| 25730094   | Nguyễn Đức Ý       | Supporter               | [@ducy11](https://github.com/ducy11)                               |
+
 ---
 
-## 📤 Submission (Semester)
+### Report & Submission
 
-### Final Project (Deadline: Jul 1, 2026)
+#### For Lecturer
+
+Access our final report here: _Will be updated when project is completed._
+
+#### For Team Members
+
+Access our working report here: [**Policy Gradient Project Report**](https://bit.ly/cs115-team05-report)
+
+> **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
+>
+> - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
+> - **If using Word on web**, export to PDF to read → go back to the relevant section on the web version and leave comment there (if needed).
+
+#### Submission (Semester)
 
 - **Opens:** Sat, May 30, 2026 (12:00 AM)
 - **Due:** Wed, Jul 01, 2026 (11:59 PM)
-- **Components:** Slides, demo/results, source code & data, report (optional), video (if no live presentation).
+- **Components:** Slides, demo/results, source code & data, report (optional), video (if no live presentation)
 - **Format:** Single `.zip` → `ID_group.zip`. If >100MB, submit `.txt` with public Google Drive link.
 
----
+<br/>
 
-© 2026 CS115 - University of Information Technology (UIT)
+<div align="center">
+  <i>CS115 — Mathematics for Computer Science</i><br/>
+  <i>University of Information Technology (UIT) · VNU-HCM · 2026</i>
+</div>
