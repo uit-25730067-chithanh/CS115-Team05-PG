@@ -1,8 +1,8 @@
-# Lộ trình Dự án (Project Roadmap)
+# Lộ trình Dự án
 
 Dưới đây là lịch trình làm việc và lộ trình phát triển chính cho CS115-Team05, bám sát theo kế hoạch song song hóa.
 
-## 🗺️ Lộ trình tổng thể (Gantt Chart)
+## 🗺️ Lộ trình tổng thể (Biểu đồ Gantt)
 
 ```mermaid
 gantt
@@ -19,11 +19,11 @@ gantt
     Nghỉ Giỗ Tổ & 30/4 - 1/5          :active, holiday, 2026-04-27, 7d
 
     section GĐ 2: Thuật toán
-    Mạng Policy (Thanh/Sơn)           :des3, 2026-05-04, 14d
-    Lập trình REINFORCE (Thanh/Sơn)   :des4, 2026-05-06, 15d
+    Mạng Policy (Thanh/Sơn)           :done, des3, 2026-05-04, 14d
+    Lập trình REINFORCE (Thanh/Sơn)   :done, des4, 2026-05-06, 15d
 
     section GĐ 3: Huấn luyện
-    Huấn luyện & Tối ưu (Thanh/Sơn)   :des5, 2026-05-11, 21d
+    Huấn luyện & Tối ưu (Thanh/Sơn)   :done, des5, 2026-05-11, 21d
     Đánh giá & Biểu đồ (Thanh/Quỳnh)  :des6, 2026-05-11, 7d
 
     section GĐ 4: Báo cáo & Slide
@@ -37,56 +37,32 @@ gantt
 
 ---
 
-## 📈 Theo dõi Tiến độ (Weekly Tracker)
+## 📈 Theo dõi Tiến độ
 
-### Tuần 03 (Khởi động) — 06/04/2026
-
-- [x] Khởi tạo repo & Git setup.
-- [x] Lập kế hoạch & WBS.
-- [x] Hoàn tất Team Charter v3.0.
-- [x] Tạo GitHub Project board.
-- [x] Nghiên cứu: REINFORCE cho không gian hành động rời rạc.
-- [x] Baseline: `CartPole-v1` với hành động ngẫu nhiên.
-
-### Tuần 04 (Mở rộng nền tảng) — 13/04/2026
-
-- [x] Bản nháp chứng minh PG theorem (LaTeX - Sơn đã soạn).
-- [x] Push file LaTeX lên GitHub (`math/` folder) — _Đang chờ hoàn tất để merge_.
-- [x] Giải thích Log-derivative trick.
-- [x] Thiết kế Policy Network bằng PyTorch (Xong sớm).
-- [x] Logic REINFORCE (Xong sớm).
-- [x] Experience buffer cho trajectory (S, A, R).
-- [🔄] Report: phần Introduction & Math Foundations — _Đang tổng hợp_.
-- [x] Thống nhất quy trình: branch → PR → merge main.
-
-### Tuần 05 (Hoàn thiện Core Logic & M1) — 20/04/2026
-
-- **Trạng thái**: 🔄 Đang hoàn tất Milestone 1. Phần mã nguồn (Giai đoạn 2 & 3) đã hoàn thành sớm.
-- [x] Triển khai thành công thuật toán REINFORCE (`sources/reinforce.py`).
-- [x] Tích hợp Policy MLP (`sources/models/policy.py`).
-- [x] Huấn luyện thành công trên `CartPole-v1` (Reward ~440+).
-- [x] Xuất biểu đồ `training_curve.png` và tổ chức lại folder `outputs/`.
-- [🔄] Hoàn thiện chứng minh Theorem & Objective Function (Sơn & Ý).
-- [🔄] Soạn thảo mục lục chi tiết & Khảo sát tiêu chí đánh giá (Thanh).
-- [🔄] Tổng hợp Chapter 1 & 2 vào báo cáo chính (Quỳnh).
-- [x] Điều chỉnh Roadmap để né kỳ nghỉ lễ tuần 06.
+> **Nguồn chính thống:** `reports/weekly_updates/week-0{3,4,5}.md` — chi tiết theo từng người tại `reports/detailed_reports/`.
+>
+> | Tuần | Giai đoạn   | Trạng thái                                                                |
+> | :--- | :---------- | :------------------------------------------------------------------------ |
+> | W03  | 06/04–12/04 | ✅ Hoàn thành — Khởi động, Charter, WBS                                   |
+> | W04  | 13/04–19/04 | ✅ Hoàn thành — Bản nháp chứng minh PG, Mạng Policy, Logic REINFORCE      |
+> | W05  | 20/04–26/04 | 🔄 Đang đóng — Code cốt lõi hoàn thành sớm, báo cáo & toán đang tiến hành |
 
 ---
 
-## 🏗️ Phân chia Công việc chi tiết (WBS)
+## 🏗️ Phân chia Công việc chi tiết (WBS - Phân rã Công việc)
 
-| Phân hệ     | Nội dung                                     | Người phụ trách | Hỗ trợ    |
-| :---------- | :------------------------------------------- | :-------------- | :-------- |
-| **Toán**    | Chứng minh PG, Log-derivative trick, LaTeX   | Hoàng Sơn       | Chí Thanh |
-| **Code**    | Gymnasium env, PyTorch policy net, REINFORCE | Chí Thanh       | Hoàng Sơn |
-| **Báo cáo** | Cập nhật tuần, biên bản họp, viết báo cáo    | Xuân Quỳnh      | Chí Thanh |
+| Phân hệ     | Nội dung                                             | Người phụ trách    | Hỗ trợ         |
+| :---------- | :--------------------------------------------------- | :----------------- | :------------- |
+| **Toán**    | Chứng minh PG, Thủ thuật log-đạo hàm, LaTeX          | Hoàng Cao Sơn      | Đặng Chí Thanh |
+| **Code**    | Môi trường Gymnasium, Mạng policy PyTorch, REINFORCE | Đặng Chí Thanh     | Hoàng Cao Sơn  |
+| **Báo cáo** | Cập nhật tuần, biên bản họp, viết báo cáo            | Phạm Vũ Xuân Quỳnh | Đặng Chí Thanh |
 
 ---
 
-## 🚩 Các cột mốc chính (Milestones)
+## 🚩 Các cột mốc chính
 
-1. **M1: Nền tảng (W3-W5)** — Chứng minh PG theorem + setup môi trường.
-2. **M2: Thuật toán (W6-W8)** — Mạng nơ-ron + implement REINFORCE.
-3. **M3: Huấn luyện (W9-W11)** — Train, tối ưu tham số, vẽ biểu đồ (Cần song song với M2).
-4. **M4: Báo cáo (W12-W13)** — Hoàn thiện report + slide thuyết trình.
+1. **M1: Nền tảng (W3-W5)** — Chứng minh định lý PG + thiết lập môi trường.
+2. **M2: Thuật toán (W6-W8)** — Mạng nơ-ron + triển khai REINFORCE.
+3. **M3: Huấn luyện (W9-W11)** — Huấn luyện, tối ưu tham số, vẽ biểu đồ (Cần song song với M2).
+4. **M4: Báo cáo (W12-W13)** — Hoàn thiện báo cáo + slide thuyết trình.
 5. **M5: Nộp bài (W14-W15)** — Chỉnh theo góp ý GV + nộp chính thức.
