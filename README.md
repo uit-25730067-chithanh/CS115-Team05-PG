@@ -141,7 +141,7 @@ python3 sources/test_env.py
 
 ### Roadmap & Progress
 
-The project is currently in the parallel implementation phase of Math & Code (Week 04).
+The project is currently in Week 06. Phase 1 and Phase 2 were completed early; the team is now refining and preparing for the final submission.
 
 | Phase       | Main Content           | Status               |
 | :---------- | :--------------------- | :------------------- |
@@ -155,13 +155,13 @@ View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap
 
 ### The Math
 
-Optimize expected reward \( J(\theta) \) by adjusting parameters \(\theta\) of stochastic policy \(\pi\_{\theta}(a|s)\).
+Optimize expected reward \( J(\theta) \) by adjusting parameters \(\theta\) of stochastic policy $\pi_{\theta}(a|s)$.
 
 $$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
 
-- **\(\pi\_{\theta}(a_t|s_t)\)**: Probability of action \(a_t\) in state \(s_t\).
-- **\(\hat{A}\_t\)**: Advantage estimate or cumulative return \(G_t\).
-- **Log-derivative Trick**: \(\nabla*{\theta} \pi*{\theta}(a|s) = \pi*{\theta}(a|s) \nabla*{\theta} \log \pi\_{\theta}(a|s)\).
+- **$\pi_{\theta}(a_t|s_t)$**: Probability of action $a_t$ in state $s_t$.
+- **$\hat{A}_{t}$**: Advantage estimate or cumulative return $G_t$.
+- **Log-derivative Trick**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
 
 > _For the full derivation, see our [Project Design Report (PDR)](./docs/project-overview-pdr.md)._
 

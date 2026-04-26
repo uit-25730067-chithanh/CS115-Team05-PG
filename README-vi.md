@@ -121,7 +121,7 @@ export PYTHONPATH=$PYTHONPATH:$(pwd)/sources
 python3 sources/train.py
 ```
 
-Trọng số chính sách đã huấn luyện và đường cong học tập sẽ được lưu trong thư mục con có gắn timestamp dưới `outputs/` (ví dụ: `outputs/2026-04-27_0148/`).
+Trọng số chính sách đã huấn luyện và đường cong học tập sẽ được lưu trong thư mục con có gắn timestamp dưới `outputs/` (ví dụ: `outputs/run_20260427_014800/`).
 
 ### 4. Kiểm tra Môi trường
 
@@ -141,7 +141,7 @@ python3 sources/test_env.py
 
 ### Lộ trình & Tiến độ
 
-Dự án hiện đang trong giai đoạn triển khai song song Toán học & Mã nguồn (Tuần 04).
+Dự án hiện đang ở Tuần 06. Giai đoạn 1 và Giai đoạn 2 đã hoàn thành sớm; nhóm đang tinh chỉnh và chuẩn bị cho báo cáo cuối cùng.
 
 | Giai đoạn | Nội dung chính                         | Trạng thái              |
 | :-------- | :------------------------------------- | :---------------------- |
@@ -155,13 +155,13 @@ Xem biểu đồ Gantt chi tiết tại: **[docs/project-roadmap.md](./docs/proj
 
 ### Nền tảng Toán học
 
-Tối ưu hóa phần thưởng kỳ vọng \( J(\theta) \) bằng cách điều chỉnh tham số \(\theta\) của chính sách ngẫu nhiên \(\pi\_{\theta}(a|s)\).
+Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh tham số $\theta$ của chính sách ngẫu nhiên $\pi_{\theta}(a|s)$.
 
 $$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
 
-- **\(\pi\_{\theta}(a_t|s_t)\)**: Xác suất thực hiện hành động \(a_t\) tại trạng thái \(s_t\).
-- **\(\hat{A}\_t\)**: Ước lượng lợi thế (Advantage) hoặc phần thưởng tích lũy \(G_t\).
-- **Thủ thuật Đạo hàm Log**: \(\nabla*{\theta} \pi*{\theta}(a|s) = \pi*{\theta}(a|s) \nabla*{\theta} \log \pi\_{\theta}(a|s)\).
+- **$\pi_{\theta}(a_t|s_t)$**: Xác suất thực hiện hành động $a_t$ tại trạng thái $s_t$.
+- **$\hat{A}_{t}$**: Ước lượng lợi thế (Advantage) hoặc phần thưởng tích lũy $G_t$.
+- **Thủ thuật Đạo hàm Log**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
 
 > _Chứng minh đầy đủ, xem [Báo cáo Thiết kế Dự án (PDR)](./docs/project-overview-pdr.md)._
 
