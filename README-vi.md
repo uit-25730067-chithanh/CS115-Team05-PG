@@ -73,10 +73,10 @@ Dự án đang trong giai đoạn triển khai song song Toán học & Mã ngu�
 ## 📄 Báo cáo
 
 ### Dành cho Giảng viên
-Truy cập báo cáo của nhóm tại đây: [**Sẽ được cập nhật khi hoàn thành dự án**]
+Truy cập báo cáo của nhóm tại đây: _Sẽ được cập nhật khi hoàn thành dự án._
 
 ### Dành cho thành viên nhóm
-Truy cập báo cáo của nhóm tại đây: [**Báo cáo Policy Gradient**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+Truy cập báo cáo của nhóm tại đây: [**Báo cáo Đồ án Policy Gradient**](https://bit.ly/cs115-team05-report)
 
 > **Lưu ý:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng 1 trong 2 cách:
 > - **Mở bằng phần mềm Microsoft Word** — hiển thị đúng 100% và có thể comment trực tiếp.

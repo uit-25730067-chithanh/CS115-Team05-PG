@@ -74,11 +74,11 @@ For detailed instructions on environment setup and training the REINFORCE algori
 
 ### For Lecturer
 
-Access our final report here: [**Will be updated when project is completed**]
+Access our final report here: _Will be updated when project is completed._
 
 ### For Team Members
 
-Access our working report here: [**Policy Gradient Report**](https://uithcm-my.sharepoint.com/:w:/r/personal/26210070_ms_uit_edu_vn/Documents/%5BCS115%5D%20Team%2005%20-%20Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL)/CS115-Policy%20Gradient%20for%20Reinforcement%20Learning%20(RL).docx?d=weaced574f29f47e6967d41a812b2afa4&csf=1&web=1&e=IZGwCY)
+Access our working report here: [**Policy Gradient Project Report**](https://bit.ly/cs115-team05-report)
 
 > **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
 > - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
