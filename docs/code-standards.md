@@ -70,4 +70,34 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
   - `gamma` tương ứng với $\gamma$.
   - `log_probs` tương ứng với $\ln \pi_{\theta}(a|s)$.
 
+### 5.5. Các lỗi render thường gặp trên GitHub Markdown
+
+Những quy tắc sau giúp tránh các lỗi render công thức toán học trên GitHub (và hầu hết các parser Markdown hiện đại):
+
+- **Inline math:** Luôn dùng `$...$`. **KHÔNG** dùng `\( ... \)` — GitHub không render cú pháp này.
+  - Sai: `\( J(\theta) \)`
+  - Đúng: `$J(\theta)$`
+
+- **Không escaped underscores:** Trong LaTeX, dấu `_` không cần escape. Việc thêm `\` trước `_` sẽ khiến GitHub hiển thị sai.
+  - Sai: `\pi\_{\theta}`, `\hat{A}\_t`
+  - Đúng: `\pi_{\theta}`, `\hat{A}_{t}`
+
+- **Không dùng `*` thay cho `_` trong chỉ số dưới:** LaTeX chỉ nhận `_` cho subscript.
+  - Sai: `\nabla*{\theta}`, `\pi*{\theta}`
+  - Đúng: `\nabla_{\theta}`, `\pi_{\theta}`
+
+- **Block math `$$...$$` phải đứng một mình trên dòng riêng:** Không để chung dòng với text khác.
+  - Sai: `Đây là công thức $$J(\theta)$$ trong văn bản.`
+  - Đúng:
+
+    ```markdown
+    Đây là công thức.
+
+    $$
+    J(\theta) = \dots
+    $$
+
+    Văn bản tiếp theo.
+    ```
+
 _Còn nhiều tiêu chuẩn khác sẽ bổ sung sau_
