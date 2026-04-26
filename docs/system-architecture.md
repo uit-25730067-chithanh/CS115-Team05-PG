@@ -2,6 +2,12 @@
 
 Tài liệu này giải thích luồng logic của dự án Team 05: Từ các công thức Toán học đến mã nguồn thực thi và kết quả cuối cùng.
 
+## 🔗 Liên kết nhanh
+
+- **Cập nhật hàng tuần**: [`reports/weekly_updates/`](../reports/weekly_updates/)
+- **Hồ sơ dự án (PDR)**: [`docs/project-overview-pdr.md`](./project-overview-pdr.md)
+- **Lộ trình chi tiết**: [`docs/project-roadmap.md`](./project-roadmap.md)
+
 ## 1. Luồng Logic Tổng thể (Math-to-Code Pipeline)
 
 Dự án được xây dựng theo mô hình "Toán học dẫn dắt Lập trình":

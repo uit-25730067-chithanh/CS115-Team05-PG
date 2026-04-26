@@ -11,7 +11,7 @@ Tài liệu này lưu trữ các quyết định thiết kế ban đầu và bi�
 
 ## 1. Mục tiêu Dự án
 
-Dự án tập trung vào việc áp dụng Lý thuyết xác suất và Đạo hàm (Toán học) để giải quyế bài toán Học tăng cường (RL).
+Dự án tập trung vào việc áp dụng Lý thuyết xác suất và Đạo hàm (Toán học) để giải quyết bài toán Học tăng cường (RL).
 
 - Chứng minh Định lý Policy Gradient.
 - Triển khai thuật toán REINFORCE trên môi trường CartPole-v1.
