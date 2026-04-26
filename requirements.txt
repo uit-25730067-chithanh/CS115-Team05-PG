@@ -1,4 +1,10 @@
-gymnasium[classic-control]
-torch
-numpy
-matplotlib
+# CS115-Team05-PG: Policy Gradient for Reinforcement Learning
+# python>=3.9
+#
+# Install: pip install -r requirements.txt
+
+# Core RL / ML
+gymnasium[classic-control]  # CartPole-v1 environment (OpenAI Gym successor)
+torch>=2.0                  # PyTorch: Policy Network & Autograd
+numpy>=1.24                 # Numerical arrays, return calculations
+matplotlib>=3.7             # Training curve visualization

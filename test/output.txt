@@ -1,6 +1,0 @@
---- BẮT ĐẦU TEST LOGIC TRAINING (10 EPISODES) ---
-Bắt đầu huấn luyện REINFORCE trên môi trường CartPole-v1...
-Đang sử dụng Apple MPS device
-Huấn luyện hoàn tất!
---- KẾT THÚC TEST ---
-Rewards: [24.0, 12.0, 20.0, 18.0, 30.0, 14.0, 16.0, 22.0, 22.0, 13.0]

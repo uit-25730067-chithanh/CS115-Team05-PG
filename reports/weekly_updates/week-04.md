@@ -1,52 +1,58 @@
-# Week 04 — Foundation Expansion (Apr 13-19, 2026)
+# Tuần 04 — Mở rộng Nền tảng (13/04 – 19/04/2026)
 
-**Phase**: 1 — Foundation (W3-W5)
-**Status**: ✅ Completed
+**Giai đoạn**: 1 — Nền tảng (W3–W5)
+**Trạng thái**: ✅ Hoàn thành
 
 ---
 
-## Meeting (Apr 13, 21:30-22:30)
+## Họp (13/04, 21:30–22:30)
 
-- **Format**: Online (MS Teams)
-- **Facilitator**: Thanh | **Scribe**: Quỳnh
-- **Attendance**: 4/4 (roles formalized)
+- **Hình thức**: Online (MS Teams)
+- **Điều phối**: Thanh | **Ghi biên**: Quỳnh
+- **Tham dự**: 4/4 (vai trò chính thức hóa)
 
-## Completed
+## Thay đổi & Quyết định bổ sung (giữa tuần)
 
-- [x] Tasks listed on GitHub Project board.
-- [x] Workflow agreed: branch → PR → code review → merge.
-- [x] Report tool decided: Word.
-- [x] Weekly report cadence: before 23:00 Sun.
+- **Thay đổi nhân sự**: Thanh đảm nhận thêm vai trò Code Lead (đẩy nhanh tiến độ kỹ thuật); Ý chuyển thành hỗ trợ chung.
 
-## Key Decisions
+## Đã hoàn thành
 
-- Code: feature branches, PR required before merge to main.
-- Task mgmt: GitHub Kanban. Comment on tickets for support.
-- Python 3.9, PyTorch 2.0.
-- All members report weekly progress before 23h Sunday.
+- [x] **Thanh (PM)**: Các task đã liệt kê & quản lý trên GitHub Project board.
+- [x] **Thanh (PM)**: Thống nhất quy trình Git — branch → PR → code review → merge.
+- [x] **Quỳnh (Report)**: Xác định công cụ báo cáo: Word.
+- [x] **Thanh (PM)**: Nhịp độ báo cáo tuần — trước 23:00 Chủ nhật.
 
-## Tickets Assigned
+## Quyết định chính (Họp Tuần 04)
 
-| Ticket       | Description                 | PIC    | Support        |
-| :----------- | :-------------------------- | :----- | :------------- |
-| [MATH-02/03] | Read docs, prove formulas   | Sơn    | Ý, Thanh       |
-| [CODE-01/02] | Setup environment           | Ý      | Quỳnh, Thanh   |
-| [RPT-01]     | Draft report framework      | Quỳnh  | Sơn, Thanh     |
-| (All)        | Weekly progress report      | All    | —              |
+- **Cả nhóm**: Code — feature branches, bắt buộc PR trước khi merge vào main.
+- **Cả nhóm**: Quản lý task qua GitHub Kanban. Comment trên ticket để hỗ trợ.
+- **Thanh (PM/Code Lead)**: Stack kỹ thuật — Python 3.9, PyTorch 2.0.
+- **Cả nhóm**: Báo cáo tiến độ tuần trước 23h Chủ nhật.
 
-## In Progress
+## Ticket được phân công
 
-- [x] PG theorem proof draft (LaTeX, `math/`).
-- [x] Log-derivative trick detailed explanation.
-- [x] Policy network skeleton (PyTorch).
-- [x] Experience buffer for trajectory storage (S, A, R).
-- [x] Report: Introduction & Math Foundations sections.
+| Ticket       | Mô tả                              | Người phụ trách | Hỗ trợ       |
+| :----------- | :--------------------------------- | :-------------- | :----------- |
+| [MATH-02/03] | Đọc tài liệu, chứng minh công thức | Sơn             | Ý, Thanh     |
+| [CODE-01/02] | Cài đặt môi trường                 | Ý               | Quỳnh, Thanh |
+| [RPT-01]     | Dựng khung báo cáo                 | Quỳnh           | Sơn, Thanh   |
+| (Cả nhóm)    | Báo cáo tiến độ tuần               | Cả nhóm         | —            |
 
-## Blockers
+## Việc cần làm (Hạn: Chủ nhật 19/04, 23:00)
 
-- Potential: Library install issues (Gymnasium/PyTorch on MacOS/Win).
-- Potential: Understanding math concepts (Expectation, Gradient of Log-prob).
+- [x] **Sơn (Math)**: Bản nháp chứng minh định lý PG (LaTeX, `math/`).
+- [x] **Sơn (Math)**: Giải thích chi tiết Log-derivative trick.
+- [x] **Thanh (Code Lead)**: Khung Policy Network (PyTorch) — _Milestone 2, hoàn thành sớm_.
+- [x] **Thanh (Code Lead)**: Experience buffer lưu trajectory (S, A, R) — _Milestone 2, hoàn thành sớm_.
+- [x] **Thanh (Code Lead)**: Core logic REINFORCE — _Milestone 2, hoàn thành sớm_.
+- [x] **Quỳnh (Report)**: Báo cáo — phần Introduction & Math Foundations.
+- [x] **Thanh (Code Lead)**: Baseline `CartPole-v1` với hành động ngẫu nhiên (kiểm chứng).
 
-## Next Meeting
+## Trở ngại
 
-Monday evening, after class (Week 05).
+- **Ý (Code/Support)**: Tiềm ẩn lỗi cài đặt thư viện (Gymnasium/PyTorch trên MacOS/Win).
+- **Sơn (Math)**: Tiềm ẩn khó khăn hiểu khái niệm toán (Expectation, Gradient của Log-prob).
+
+## Họp tiếp theo
+
+Tối thứ Hai, sau giờ học (Tuần 05).

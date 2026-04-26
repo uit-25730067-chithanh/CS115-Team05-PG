@@ -1,51 +1,58 @@
-# Week 05 — Milestone 1 Wrap-up (Apr 20-26, 2026)
+# Tuần 05 — Đóng Milestone 1 (20/04 – 26/04/2026)
 
-**Phase**: 1 — Foundation (W3-W5)
-**Status**: 🔄 In Progress (Closing Milestone 1)
+**Giai đoạn**: 1 — Nền tảng (W3–W5)
+**Trạng thái**: ✅ Hoàn thành (27/04/2026)
 
 ---
 
-## Meeting (Apr 20, 21:18-22:00)
+## Họp (20/04, 21:18–22:00)
 
-- **Format**: Online (Google Meet/YouTube Record)
-- **Facilitator**: Thanh | **Scribe**: Thanh (Quỳnh nghỉ ốm)
-- **Attendance**: 3/4 (Vắng: Quỳnh)
+- **Hình thức**: Online (Google Meet/YouTube Record)
+- **Điều phối**: Thanh | **Ghi biên**: Thanh (Quỳnh nghỉ ốm)
+- **Tham dự**: 3/4 (Vắng: Quỳnh)
 
-## Completed (Week 04 Review)
+## Thay đổi & Quyết định bổ sung (giữa tuần)
 
-- [x] Đã chứng minh xong công thức toán cơ bản (Policy Gradient Theorem).
-- [x] Sơn đã gửi file toán (LaTeX), chuẩn bị đẩy lên GitHub (`math/` folder).
-- [x] Demo thành công code chạy thử bằng thư viện (BaseLine).
-- [x] Môi trường Gymnasium hoạt động ổn định trên Linux/MacOS.
+Không có.
 
-## Key Decisions
+## Đã hoàn thành
 
-- **Milestone 1**: Chốt các phần setup và nghiên cứu nền tảng. Chuyển trọng tâm sang Core Logic từ Tuần 06.
-- **Math Strategy**: Tập trung vào toán ứng dụng (Applied Math). Giải thích công thức thông qua ví dụ thực tế (CartPole-v1) để dễ hiểu, tránh sa đà vào lý thuyết thuần túy.
-- **Code Strategy**: Giữ kiến trúc mạng Policy đơn giản (Simple MLP). Sử dụng môi trường `CartPole-v1` làm benchmark chính.
-- **Quality Control**: Thanh sẽ liên hệ khảo sát tiêu chí đánh giá của giảng viên để điều chỉnh nội dung báo cáo đúng trọng tâm.
-- **Holiday Plan**: Đẩy nhanh tiến độ hoàn thiện toán và báo cáo trước kỳ nghỉ lễ 30/4 - 1/5 để cả nhóm được nghỉ ngơi.
+- [x] **Thanh (Code Lead)**: Triển khai thành công thuật toán REINFORCE (`sources/reinforce.py`).
+- [x] **Thanh (Code Lead)**: Tích hợp Policy MLP (`sources/models/policy.py`).
+- [x] **Thanh (Code Lead)**: Huấn luyện thành công trên `CartPole-v1` (Reward ~440+).
+- [x] **Thanh (Code Lead)**: Xuất biểu đồ `training_curve.png` & tổ chức lại folder `outputs/`.
 
-## Tickets Assigned
+## Quyết định chính (Họp Tuần 05)
 
-| Ticket       | Description                                      | PIC        | Support |
-| :----------- | :----------------------------------------------- | :--------- | :------ |
-| [MATH-04/05] | Hoàn thiện chứng minh Theorem & Objective Function | Sơn        | Ý       |
-| [CODE-03]    | Test môi trường trên Windows & chuẩn bị Training | Ý          | Thanh   |
-| [RPT-02]     | Hoàn thiện Chapter 1 & 2 (Intro & Foundation)    | Quỳnh      | Thanh   |
-| [MGMT-01]    | Khảo sát tiêu chí đánh giá & Rà soát mục lục     | Thanh      | —       |
+- **Cả nhóm**: Chốt Milestone 1. Chuyển trọng tâm sang Core Logic từ Tuần 06.
+- **Sơn (Math)**: Math Strategy — tập trung toán ứng dụng (Applied Math), giải thích qua ví dụ CartPole-v1.
+- **Thanh (Code Lead)**: Code Strategy — giữ kiến trúc Policy MLP đơn giản, dùng `CartPole-v1` làm benchmark.
+- **Thanh (PM)**: Quality Control — liên hệ GV khảo sát tiêu chí đánh giá, điều chỉnh nội dung báo cáo.
+- **Cả nhóm**: Holiday Plan — đẩy nhanh toán & báo cáo trước nghỉ lễ 30/4–1/5.
 
-## In Progress
+## Ticket được phân công
 
-- [ ] Tài liệu hóa phần chứng minh toán (8 nguồn tài liệu tham khảo).
-- [ ] Soạn thảo mục lục chi tiết gửi giảng viên duyệt trước phạm vi.
-- [ ] Gắn phần toán vào khung báo cáo Chapter 2.
+| Ticket       | Description                                        | PIC   | Support |
+| :----------- | :------------------------------------------------- | :---- | :------ |
+| [MATH-04/05] | Hoàn thiện chứng minh Theorem & Objective Function | Sơn   | Ý       |
+| [CODE-03]    | Test môi trường trên Windows & chuẩn bị Training   | Ý     | Thanh   |
+| [RPT-02]     | Hoàn thiện Chapter 1 & 2 (Intro & Foundation)      | Quỳnh | Thanh   |
+| [MGMT-01]    | Khảo sát tiêu chí đánh giá & Rà soát mục lục       | Thanh | —       |
 
-## Blockers
+## Việc cần làm (Hạn: Chủ nhật 26/04, 23:00)
 
-- **Math Complexity**: Phần chứng minh Log-derivative trick và Theorem tốn nhiều thời gian xử lý dữ liệu để đảm bảo tính dễ hiểu.
-- **OS Compatibility**: Cần xác nhận sự ổn định của Gymnasium trên Windows (máy của Sơn).
+- [🔄] **Sơn (Math)**: Tài liệu hóa phần chứng minh toán (8 nguồn tài liệu tham khảo).
+- [🔄] **Thanh (PM)**: Soạn thảo mục lục chi tiết gửi giảng viên duyệt trước phạm vi.
+- [x] **Quỳnh (Report)**: Gắn phần toán vào khung báo cáo Chapter 2.
+- [🔄] **Ý (Code/Support)**: Kiểm thử môi trường Windows (Gymnasium + PyTorch), chờ phản hồi từ máy Sơn.
 
-## Next Meeting
+## Trở ngại
 
-Monday evening (Week 06) - Bắt đầu giai đoạn Implementation.
+- **Sơn (Math)**: Math Complexity — chứng minh Log-derivative trick & Theorem tốn thời gian để đảm bảo dễ hiểu. Cần bổ sung ví dụ trực quan.
+- **Ý (Code/Support)**: OS Compatibility — chưa xác nhận Gymnasium ổn định trên Windows (máy Sơn). Đang kiểm thử.
+- **Cả nhóm**: Nghỉ lễ 30/4–1/5 — task kỹ thuật nặng tạm dừng, ưu tiên nghỉ ngơi.
+
+## Họp tiếp theo
+
+- **Tuần 06**: Nghỉ lễ 30/4–1/5, không họp chính thức.
+- **Tuần 07**: Tối thứ Hai — Bắt đầu giai đoạn Implementation (tuning hyperparameters, viết proof toán, chuẩn bị slides).
