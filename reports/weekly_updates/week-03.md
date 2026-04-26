@@ -1,50 +1,55 @@
-# Week 03 — Kick-off (Apr 6-12, 2026)
+# Tuần 03 — Khởi động (06/04 – 12/04/2026)
 
-**Phase**: 1 — Foundation (W3-W5)
-**Status**: ✅ Completed
+**Giai đoạn**: 1 — Nền tảng (W3–W5)
+**Trạng thái**: ✅ Hoàn thành
 
 ---
 
-## Meeting (Apr 6, 21:30-23:00)
+## Họp (06/04, 21:30–23:00)
 
-- **Format**: Online (MS Teams)
-- **Facilitator**: Thanh | **Scribe**: Quỳnh
-- **Attendance**: 4/4
+- **Hình thức**: Online (MS Teams)
+- **Điều phối**: Thanh | **Ghi biên**: Quỳnh
+- **Tham dự**: 4/4
 
-## Completed
+## Thay đổi & Quyết định bổ sung (giữa tuần)
 
-- [x] Repo initialized & Git structure set up.
-- [x] WBS finalized (Math / Code / Report split).
-- [x] Team Charter v3.0 agreed & signed.
-- [x] GitHub Project board created (Kanban).
-- [x] Roadmap defined (5 phases, W3-W15).
+Không có.
 
-## Key Decisions
+## Đã hoàn thành
 
-- Response time: 12-24h. Quiet hours: 23h-07h & 18h30-21h.
-- AI policy: reference only, no direct copy-paste.
-- Roadmap-driven goals (not rigid targets) to reduce pressure.
-- Evaluation criteria to be refined by leader.
+- [x] **Thanh (PM)**: Khởi tạo repo & thiết lập cấu trúc Git.
+- [x] **Thanh (PM)**: Hoàn tất WBS (phân chia Math / Code / Report).
+- [x] **Cả nhóm**: Thống nhất & ký Team Charter v3.0.
+- [x] **Thanh (PM)**: Tạo GitHub Project board (Kanban).
+- [x] **Thanh (PM)**: Xác định Roadmap (5 giai đoạn, W3–W15).
 
-## WBS Assignment
+## Quyết định chính (Họp Tuần 03)
 
-| Module | Lead  | Support |
-| :----- | :---- | :------ |
-| Math   | Sơn   | Ý       |
-| Code   | Ý     | Quỳnh   |
-| Report | Quỳnh | Sơn     |
+- **Cả nhóm**: Thời gian phản hồi 12–24h. Giờ yên lặng: 23h–07h & 18h30–21h.
+- **Cả nhóm**: Chính sách AI — chỉ tham khảo, không copy-paste trực tiếp.
+- **Thanh (PM)**: Mục tiêu theo Roadmap (không cứng nhắc) để giảm áp lực.
+- **Thanh (PM)**: Tiêu chí đánh giá sẽ được PM tinh chỉnh.
 
-## Action Items (Due: Sun Apr 12, 23:00)
+## Phân công WBS
 
-- [x] All: Read & understand REINFORCE algorithm.
-- [x] Thanh: Send detailed task assignments by 21h Apr 7.
-- [x] Sơn: Begin reading PG theorem materials.
-- [x] Ý: Setup Gymnasium environment locally.
+| Phân hệ | Chủ trì | Hỗ trợ |
+| :------ | :------ | :----- |
+| Toán    | Sơn     | Ý      |
+| Code    | Ý       | Quỳnh  |
+| Báo cáo | Quỳnh   | Sơn    |
 
-## Blockers
+## Việc cần làm (Hạn: Chủ nhật 12/04, 23:00)
 
-None.
+- [x] Cả nhóm: Đọc & hiểu thuật toán REINFORCE.
+- [x] Thanh: Gửi phân công nhiệm vụ chi tiết trước 21h ngày 07/04.
+- [x] Sơn: Bắt đầu đọc tài liệu về định lý PG.
+- [x] Ý: Cài đặt môi trường Gymnasium trên máy local.
+- [x] Quỳnh: Dựng outline báo cáo & khung nội dung 4 chương.
 
-## Next Meeting
+## Trở ngại
 
-Monday evening, after class (Week 04).
+- Không có.
+
+## Họp tiếp theo
+
+Tối thứ Hai, sau giờ học (Tuần 04).
