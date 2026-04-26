@@ -19,6 +19,7 @@ reports/meeting_records/
 .claude/sessions/
 .claude/backups/
 .claude/*.json
+.windsurf/
 
 # macOS
 .DS_Store
