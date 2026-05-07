@@ -78,22 +78,20 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 
 ### ✅ Đã hoàn thành
 
-- Hoàn tất chứng minh Policy Gradient Theorem (bản Word/LaTeX gốc).
-- Đóng góp nội dung chuyên môn cho Layer 2 của `docs/knowledge-base/` (review công thức, source references).
+- Đã hoàn thành bản hoàn chỉnh chứng minh Policy Gradient Theorem.
+- Đã đẩy lên git.
+- Đã hoàn thiện tài liệu về phần Policy Gradient.
 
-### 🚧 Đang làm / Vướng
+### 🚧 Đang làm / Vướng mắc
 
-- Cần thêm ví dụ trực quan cho phần Policy Gradient để người đọc dễ hình dung.
-- Cài đặt môi trường trên Windows vẫn chưa ổn định hoàn toàn.
+- Đang thực hiện phần việc tiếp theo Gradient Ascent.
 
-### 📅 Tuần tới
+### 📅 Kế hoạch Tuần tới
 
-- Hỗ trợ Ý hoàn thiện phần trọng số và estimate cho báo cáo.
-- Chuyển giao công thức chính thức vào file báo cáo Word.
-
-> _(Nháp — chưa nhận được báo cáo chính thức)_
-
-- Chờ bổ sung báo cáo cá nhân.
+- **Tuần 06:** Nghỉ lễ.
+- **Tuần 07:**
+  - Hoàn thành 2 phần toán còn lại trong đồ án.
+  - Hỗ trợ mọi người về các phần khác như code hay báo cáo.
 
 ---
 
@@ -101,17 +99,10 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 
 ### ✅ Đã hoàn thành
 
-- Nhận lại nhiệm vụ hỗ trợ test môi trường Windows & chuẩn bị training (`[CODE-03]`).
+### 🚧 Đang làm / Vướng mắc
 
-### 🚧 Đang làm / Vướng
+- <https://github.com/uit-25730067-chithanh/CS115-Team05-PG/issues/3>
 
-- Cần chạy thử nghiệm trên máy Windows để xác nhận tính tương thích của Gymnasium + PyTorch.
+### 📅 Kế hoạch Tuần tới
 
-### 📅 Tuần tới
-
-- Gửi kết quả test môi trường Windows sau kỳ nghỉ.
-- Hỗ trợ Sơn phần toán học nếu cần.
-
-> _(Nháp — chưa nhận được báo cáo chính thức)_
-
-- Chờ bổ sung báo cáo cá nhân.
+- <https://github.com/uit-25730067-chithanh/CS115-Team05-PG/issues/5>
