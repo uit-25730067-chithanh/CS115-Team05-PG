@@ -1,0 +1,10 @@
+checkpoint: outputs/run_20260507_171559/best_policy.pth
+env: CartPole-v1
+episodes: 5
+hidden_dim: 64
+seed: 42
+device: mps
+mean_reward: 9.2000
+std_reward: 0.7483
+best_reward: 10.0000
+worst_reward: 8.0000
