@@ -137,6 +137,16 @@ def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.
     return episode_rewards
 
 def plot_learning_curve(rewards, save_path="training_curve.png"):
+    if not rewards:
+        plt.figure(figsize=(10, 5))
+        plt.title('REINFORCE Learning Curve on CartPole-v1')
+        plt.xlabel('Episode')
+        plt.ylabel('Total Reward')
+        plt.grid(True, alpha=0.5)
+        plt.savefig(save_path)
+        print(f"Đã lưu biểu đồ rỗng tại {save_path}")
+        return
+
     # Làm mượt (smooth) curve
     window = min(50, len(rewards))
     smoothed = np.convolve(rewards, np.ones(window)/window, mode='valid')

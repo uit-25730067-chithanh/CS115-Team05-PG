@@ -16,11 +16,18 @@ if str(SOURCE_DIR) not in sys.path:
 from models.policy import PolicyNetwork
 
 
+def positive_int(value):
+    parsed_value = int(value)
+    if parsed_value < 1:
+        raise argparse.ArgumentTypeError("value must be at least 1")
+    return parsed_value
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate a trained REINFORCE policy.")
     parser.add_argument("--checkpoint", required=True)
     parser.add_argument("--env", default="CartPole-v1")
-    parser.add_argument("--episodes", type=int, default=10)
+    parser.add_argument("--episodes", type=positive_int, default=10)
     parser.add_argument("--hidden-dim", type=int, default=128)
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--save-dir", default=None)
@@ -38,6 +45,10 @@ def select_device():
 def write_evaluation_outputs(save_dir, rewards, args, device):
     stats_path = os.path.join(save_dir, "eval_stats.txt")
     log_path = os.path.join(save_dir, "eval_log.txt")
+    mean_reward = float(np.mean(rewards)) if rewards else 0.0
+    std_reward = float(np.std(rewards)) if rewards else 0.0
+    best_reward = float(np.max(rewards)) if rewards else 0.0
+    worst_reward = float(np.min(rewards)) if rewards else 0.0
 
     with open(log_path, "w", encoding="utf-8") as f:
         for episode, reward in enumerate(rewards, start=1):
@@ -50,10 +61,10 @@ def write_evaluation_outputs(save_dir, rewards, args, device):
         f.write(f"hidden_dim: {args.hidden_dim}\n")
         f.write(f"seed: {args.seed}\n")
         f.write(f"device: {device}\n")
-        f.write(f"mean_reward: {float(np.mean(rewards)):.4f}\n")
-        f.write(f"std_reward: {float(np.std(rewards)):.4f}\n")
-        f.write(f"best_reward: {float(np.max(rewards)):.4f}\n")
-        f.write(f"worst_reward: {float(np.min(rewards)):.4f}\n")
+        f.write(f"mean_reward: {mean_reward:.4f}\n")
+        f.write(f"std_reward: {std_reward:.4f}\n")
+        f.write(f"best_reward: {best_reward:.4f}\n")
+        f.write(f"worst_reward: {worst_reward:.4f}\n")
 
 
 def main():
@@ -103,7 +114,8 @@ def main():
     env.close()
     write_evaluation_outputs(str(save_dir), rewards, args, device)
     print(f"Evaluation outputs saved to: {save_dir}")
-    print(f"Mean reward: {float(np.mean(rewards)):.2f}")
+    mean_reward = float(np.mean(rewards)) if rewards else 0.0
+    print(f"Mean reward: {mean_reward:.2f}")
 
 
 if __name__ == "__main__":

@@ -12,10 +12,17 @@ if str(SOURCE_DIR) not in sys.path:
 from train import plot_learning_curve, train_reinforce
 
 
+def positive_int(value):
+    parsed_value = int(value)
+    if parsed_value < 1:
+        raise argparse.ArgumentTypeError("value must be at least 1")
+    return parsed_value
+
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Train REINFORCE on a Gymnasium environment.")
     parser.add_argument("--env", default="CartPole-v1")
-    parser.add_argument("--episodes", type=int, default=1000)
+    parser.add_argument("--episodes", type=positive_int, default=1000)
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--gamma", type=float, default=0.99)
     parser.add_argument("--hidden-dim", type=int, default=128)
