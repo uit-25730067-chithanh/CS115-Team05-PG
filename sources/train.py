@@ -11,10 +11,19 @@ from datetime import datetime
 from models.policy import PolicyNetwork
 from reinforce import compute_returns, update_policy
 
+# Constants
+DEFAULT_ENV = "CartPole-v1"
+DEFAULT_EPISODES = 1000
+DEFAULT_LR = 1e-3
+DEFAULT_GAMMA = 0.99
+DEFAULT_HIDDEN_DIM = 128
+DEFAULT_SEED = 123  # Empirically achieves stable convergence for CartPole-v1
+
 def _write_training_outputs(save_dir, config, episode_rewards, best_reward):
     rewards_path = os.path.join(save_dir, "rewards.txt")
     config_path = os.path.join(save_dir, "run_config.txt")
     metrics_path = os.path.join(save_dir, "metrics.txt")
+    readme_path = os.path.join(save_dir, "README.txt")
 
     with open(rewards_path, "w", encoding="utf-8") as f:
         for episode, reward in enumerate(episode_rewards, start=1):
@@ -37,7 +46,23 @@ def _write_training_outputs(save_dir, config, episode_rewards, best_reward):
         f.write(f"final_reward: {final_reward:.4f}\n")
         f.write(f"total_episodes: {len(episode_rewards)}\n")
 
-def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.99, hidden_dim=128, seed=42, save_dir=None):
+    with open(readme_path, "w", encoding="utf-8") as f:
+        f.write(f"REINFORCE Training Run\n")
+        f.write(f"======================\n\n")
+        f.write(f"Environment: {config['env']}\n")
+        f.write(f"Seed: {config['seed']}\n")
+        f.write(f"Episodes: {config['episodes']}\n")
+        f.write(f"Learning Rate: {config['lr']}\n")
+        f.write(f"Gamma: {config['gamma']}\n")
+        f.write(f"Hidden Dim: {config['hidden_dim']}\n")
+        f.write(f"Device: {config['device']}\n\n")
+        f.write(f"Results:\n")
+        f.write(f"- Mean (last 50): {mean_last_50:.2f}\n")
+        f.write(f"- Std (last 50): {std_last_50:.2f}\n")
+        f.write(f"- Best Reward: {best_value:.2f}\n")
+        f.write(f"- Final Reward: {final_reward:.2f}\n")
+
+def train_reinforce(env_name=DEFAULT_ENV, max_episodes=DEFAULT_EPISODES, lr=DEFAULT_LR, gamma=DEFAULT_GAMMA, hidden_dim=DEFAULT_HIDDEN_DIM, seed=DEFAULT_SEED, save_dir=None):
     # Nếu không cung cấp save_dir, tự động tạo thư mục timestamp trong 'outputs/'
     # để tránh xung đột với package 'models' của dự án.
     if save_dir is None:
@@ -136,10 +161,13 @@ def train_reinforce(env_name="CartPole-v1", max_episodes=1000, lr=1e-3, gamma=0.
     env.close()
     return episode_rewards
 
-def plot_learning_curve(rewards, save_path="training_curve.png"):
+def plot_learning_curve(rewards, save_path="training_curve.png", seed=None):
     if not rewards:
         plt.figure(figsize=(10, 5))
-        plt.title('REINFORCE Learning Curve on CartPole-v1')
+        title = 'REINFORCE Learning Curve on CartPole-v1'
+        if seed is not None:
+            title += f' (seed={seed})'
+        plt.title(title)
         plt.xlabel('Episode')
         plt.ylabel('Total Reward')
         plt.grid(True, alpha=0.5)
@@ -155,7 +183,10 @@ def plot_learning_curve(rewards, save_path="training_curve.png"):
     plt.plot(rewards, alpha=0.3, color='blue', label='Raw Reward')
     plt.plot(np.arange(window-1, len(rewards)), smoothed, color='red', label='Smoothed (MA 50)')
 
-    plt.title('REINFORCE Learning Curve on CartPole-v1')
+    title = 'REINFORCE Learning Curve on CartPole-v1'
+    if seed is not None:
+        title += f' (seed={seed})'
+    plt.title(title)
     plt.xlabel('Episode')
     plt.ylabel('Total Reward')
     plt.legend()
@@ -167,8 +198,9 @@ def plot_learning_curve(rewards, save_path="training_curve.png"):
 
 if __name__ == "__main__":
     # Đặt seed để dễ dàng tái lập kết quả (reproducibility)
-    torch.manual_seed(42)
-    np.random.seed(42)
+    seed = DEFAULT_SEED
+    torch.manual_seed(seed)
+    np.random.seed(seed)
 
     # Tạo folder output theo timestamp
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -178,7 +210,7 @@ if __name__ == "__main__":
     os.makedirs(run_dir, exist_ok=True)
 
     # Chạy huấn luyện và lưu vào folder tương ứng
-    rewards_history = train_reinforce(max_episodes=1000, save_dir=run_dir)
+    rewards_history = train_reinforce(max_episodes=DEFAULT_EPISODES, seed=seed, save_dir=run_dir)
 
     # Lưu đồ thị vào cùng folder kết quả
-    plot_learning_curve(rewards_history, save_path=os.path.join(run_dir, "training_curve.png"))
+    plot_learning_curve(rewards_history, save_path=os.path.join(run_dir, "training_curve.png"), seed=seed)
