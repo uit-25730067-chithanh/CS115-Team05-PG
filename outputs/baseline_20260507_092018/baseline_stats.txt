@@ -1,0 +1,6 @@
+Environment: CartPole-v1
+Episodes:    100
+Mean:        22.5000
+Std:         12.2086
+Min:         9
+Max:         84
