@@ -31,5 +31,7 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
    - Áp dụng trừ Baseline đơn giản: $G_{t} = \frac{G_{t} - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
    - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A_{t} | S_{t}) \cdot G_{t}$.
 4. **`sources/models/policy.py`**: Chứa định nghĩa kiến trúc mạng nơ-ron `PolicyNetwork`. Trả về Softmax phân bố ngẫu nhiên để Sample hành động. Cung cấp hàm `select_action()`.
-5. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy `train.py`, chứa `best_policy.pth`, `final_policy.pth` và `training_curve.png`.
-6. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+5. **`sources/test_env.py`**: Kiểm tra môi trường CartPole-v1 và chạy random baseline 100 episodes.
+6. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy `train.py`, chứa `best_policy.pth`, `final_policy.pth` và `training_curve.png`.
+7. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
+8. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
