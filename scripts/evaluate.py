@@ -14,6 +14,10 @@ if str(SOURCE_DIR) not in sys.path:
     sys.path.insert(0, str(SOURCE_DIR))
 
 from models.policy import PolicyNetwork
+from train import DEFAULT_ENV, DEFAULT_HIDDEN_DIM, DEFAULT_SEED
+
+
+DEFAULT_EVAL_EPISODES = 10
 
 
 def positive_int(value):
@@ -26,10 +30,10 @@ def positive_int(value):
 def parse_args():
     parser = argparse.ArgumentParser(description="Evaluate a trained REINFORCE policy.")
     parser.add_argument("--checkpoint", required=True)
-    parser.add_argument("--env", default="CartPole-v1")
-    parser.add_argument("--episodes", type=positive_int, default=10)
-    parser.add_argument("--hidden-dim", type=int, default=128)
-    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--env", default=DEFAULT_ENV)
+    parser.add_argument("--episodes", type=positive_int, default=DEFAULT_EVAL_EPISODES)
+    parser.add_argument("--hidden-dim", type=int, default=DEFAULT_HIDDEN_DIM)
+    parser.add_argument("--seed", type=int, default=DEFAULT_SEED)
     parser.add_argument("--save-dir", default=None)
     return parser.parse_args()
 
