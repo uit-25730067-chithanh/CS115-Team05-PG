@@ -7,6 +7,7 @@ from datetime import datetime
 
 def test_environment():
     """Sanity check: chạy 1 episode random để verify môi trường hoạt động."""
+    env = None
     try:
         env = gym.make("CartPole-v1", render_mode="human")
         state, info = env.reset()
@@ -25,10 +26,12 @@ def test_environment():
             steps += 1
 
         print(f"Agent chạy được {steps} steps trước khi kết thúc episode.")
-        env.close()
 
     except Exception as e:
         print(f"Lỗi khi khởi tạo môi trường: {str(e)}")
+    finally:
+        if env is not None:
+            env.close()
 
 
 def evaluate_baseline(env_name="CartPole-v1", n_episodes=100, save_dir=None):
@@ -50,19 +53,21 @@ def evaluate_baseline(env_name="CartPole-v1", n_episodes=100, save_dir=None):
     env = gym.make(env_name)
     rewards = []
 
-    print(f"\nBắt đầu đánh giá baseline random: {n_episodes} episodes...")
-    for ep in range(1, n_episodes + 1):
-        state, _ = env.reset()
-        ep_reward = 0
-        done = truncated = False
-        while not (done or truncated):
-            action = env.action_space.sample()
-            state, reward, done, truncated, _ = env.step(action)
-            ep_reward += reward
-        rewards.append(ep_reward)
-        if ep % 10 == 0:
-            print(f"Episode {ep}/{n_episodes} done")
-    env.close()
+    try:
+        print(f"\nBắt đầu đánh giá baseline random: {n_episodes} episodes...")
+        for ep in range(1, n_episodes + 1):
+            state, _ = env.reset()
+            ep_reward = 0
+            done = truncated = False
+            while not (done or truncated):
+                action = env.action_space.sample()
+                state, reward, done, truncated, _ = env.step(action)
+                ep_reward += reward
+            rewards.append(ep_reward)
+            if ep % 10 == 0:
+                print(f"Episode {ep}/{n_episodes} done")
+    finally:
+        env.close()
 
     # Stats
     mean_r = float(np.mean(rewards))
