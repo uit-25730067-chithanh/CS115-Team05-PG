@@ -13,7 +13,7 @@ CS115-Team05-PG/
 ├── notes/      # Ghi chú cá nhân & Nhật ký tiến độ/Journal (được ignore)
 ├── plans/      # Theo dõi lộ trình Agile/Kanban (được ignore)
 ├── reports/    # Báo cáo hàng tuần (Word/Markdown)
-├── scripts/    # Các kịch bản bash/python dùng để review hoặc kiểm thử UI
+├── scripts/    # Entrypoint CLI cho huấn luyện và đánh giá policy
 ├── sources/    # Mã nguồn chính của giải thuật RL
 ├── test/       # Môi trường chạy thử nghiệm nhanh
 └── tmp/        # Rác sinh ra trong quá trình dev (được ignore)
@@ -23,7 +23,7 @@ CS115-Team05-PG/
 
 Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuật REINFORCE.
 
-1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training và vẽ `training_curve.png`.
+1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training, nhận `seed`/`hidden_dim`, và lưu output tái lập gồm `rewards.txt`, `run_config.txt`, `metrics.txt`.
 2. **`sources/reinforce.py`**: Chứa thuật toán Policy Gradient thuần tuý.
    - $G_{t} = R_{t} + \gamma R_{t+1} + \dots + \gamma^{T-t} R_{T}$
    - Thuật toán lặp lùi từ phần thưởng cuối cùng về 0 để tối ưu tốc độ.
@@ -32,6 +32,9 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
    - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A_{t} | S_{t}) \cdot G_{t}$.
 4. **`sources/models/policy.py`**: Chứa định nghĩa kiến trúc mạng nơ-ron `PolicyNetwork`. Trả về Softmax phân bố ngẫu nhiên để Sample hành động. Cung cấp hàm `select_action()`.
 5. **`sources/test_env.py`**: Kiểm tra môi trường CartPole-v1 và chạy random baseline 100 episodes.
-6. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy `train.py`, chứa `best_policy.pth`, `final_policy.pth` và `training_curve.png`.
-7. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
-8. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+6. **`scripts/train.py`**: CLI entrypoint cho training, hỗ trợ `--env`, `--episodes`, `--lr`, `--gamma`, `--hidden-dim`, `--seed`, `--save-dir`.
+7. **`scripts/evaluate.py`**: CLI entrypoint cho evaluation, load `.pth` checkpoint và chạy greedy policy dưới `torch.no_grad()`.
+8. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy training, chứa `best_policy.pth`, `final_policy.pth`, `training_curve.png`, `rewards.txt`, `run_config.txt`, `metrics.txt`.
+9. **`outputs/eval_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy evaluation, chứa `eval_stats.txt` và `eval_log.txt`.
+10. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
+11. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.

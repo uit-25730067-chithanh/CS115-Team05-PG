@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.distributions import Categorical
-import numpy as np
 
 class PolicyNetwork(nn.Module):
     """
@@ -42,7 +41,6 @@ class PolicyNetwork(nn.Module):
         probs = self.forward(state_tensor)
         
         # Tạo object phân phối Categorical dựa trên xác suất trên
-        from torch.distributions import Categorical
         m = Categorical(probs)
         
         # Rút thăm (Sample) ngẫu nhiên hành động dựa trên xác suất
