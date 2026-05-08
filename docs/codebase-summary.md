@@ -13,7 +13,7 @@ CS115-Team05-PG/
 ├── notes/      # Ghi chú cá nhân & Nhật ký tiến độ/Journal (được ignore)
 ├── plans/      # Theo dõi lộ trình Agile/Kanban (được ignore)
 ├── reports/    # Báo cáo hàng tuần (Word/Markdown)
-├── scripts/    # Entrypoint CLI cho huấn luyện và đánh giá policy
+├── scripts/    # Entrypoint CLI cho huấn luyện, đánh giá, experiments và visualization
 ├── sources/    # Mã nguồn chính của giải thuật RL
 ├── test/       # Môi trường chạy thử nghiệm nhanh
 └── tmp/        # Rác sinh ra trong quá trình dev (được ignore)
@@ -35,8 +35,10 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 6. **`scripts/train.py`**: CLI entrypoint cho training, hỗ trợ `--env`, `--episodes`, `--lr`, `--gamma`, `--hidden-dim`, `--seed`, `--save-dir`.
 7. **`scripts/evaluate.py`**: CLI entrypoint cho evaluation, load `.pth` checkpoint và chạy greedy policy dưới `torch.no_grad()`.
 8. **`scripts/run_experiments.py`**: CLI entrypoint cho hyperparameter tuning nhỏ gọn, chạy grid `lr`/`gamma`/`hidden_dim`/`seed`, lưu từng run dưới một experiment root và viết `summary.md` được xếp hạng theo mean reward 50 episode cuối.
-9. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy training, chứa `best_policy.pth`, `final_policy.pth`, `training_curve.png`, `rewards.txt`, `run_config.txt`, `metrics.txt`.
-10. **`outputs/eval_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy evaluation, chứa `eval_stats.txt` và `eval_log.txt`.
-11. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
-12. **`outputs/experiments/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy hyperparameter experiments, chứa các thư mục `config-XXX-seed-YY/` và `summary.md` để chọn cấu hình tốt nhất.
-13. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+9. **`scripts/visualize.py`**: CLI entrypoint sinh figure report-ready từ `rewards.txt` trong experiment directory và baseline log nếu có; output mặc định nằm dưới `outputs/figures/YYYYMMDD_HHMMSS/`.
+10. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy training, chứa `best_policy.pth`, `final_policy.pth`, `training_curve.png`, `rewards.txt`, `run_config.txt`, `metrics.txt`.
+11. **`outputs/eval_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy evaluation, chứa `eval_stats.txt` và `eval_log.txt`.
+12. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
+13. **`outputs/experiments/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy hyperparameter experiments, chứa các thư mục `config-XXX-seed-YY/` và `summary.md` để chọn cấu hình tốt nhất.
+14. **`outputs/figures/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy visualization, chứa `learning_curve_best.png`, `baseline_vs_trained.png`, `hp_comparison.png`, `summary_grid.png` và `figure_summary.txt`.
+15. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
