@@ -8,8 +8,9 @@ import torch
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = PROJECT_ROOT / "sources"
-if str(SOURCE_DIR) not in sys.path:
-    sys.path.insert(0, str(SOURCE_DIR))
+SOURCE_DIR_STRING = str(SOURCE_DIR)
+sys.path = [path for path in sys.path if path != SOURCE_DIR_STRING]
+sys.path.insert(0, SOURCE_DIR_STRING)
 
 from train import (
     DEFAULT_ENV,
@@ -24,6 +25,7 @@ DEFAULT_GAMMAS = [0.95, 0.99]
 DEFAULT_HIDDEN_DIMS = [64, 128]
 DEFAULT_SEEDS = [42]
 MAX_RUNS_WITHOUT_EXTRA_APPROVAL = 16
+LAST_REWARD_WINDOW = 50
 
 
 def positive_int(value):
@@ -76,7 +78,8 @@ def build_grid(args):
 
 
 def summarize_rewards(rewards):
-    last_rewards = rewards[-50:]
+    # Use the final 50 episodes as the convergence window, matching the training log cadence.
+    last_rewards = rewards[-LAST_REWARD_WINDOW:]
     return {
         "mean_last_50": float(np.mean(last_rewards)) if last_rewards else 0.0,
         "std_last_50": float(np.std(last_rewards)) if last_rewards else 0.0,
@@ -90,6 +93,7 @@ def format_config(config):
 
 
 def write_summary(summary_path, experiment_root, configs, results, device_name):
+    # Rank by stable recent performance first, variance second, and peak reward only as a tie-breaker.
     ranked_results = sorted(
         results,
         key=lambda result: (
@@ -150,11 +154,15 @@ def main():
     configs = build_grid(args)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     experiment_root = Path(args.save_root) if args.save_root else PROJECT_ROOT / "outputs" / "experiments" / timestamp
+    if experiment_root.exists() and any(experiment_root.iterdir()):
+        raise ValueError(f"Refusing to write into non-empty experiment root: {experiment_root}")
     experiment_root.mkdir(parents=True, exist_ok=True)
 
     results = []
     for index, config in enumerate(configs, start=1):
         run_dir = experiment_root / f"config-{index:03d}-seed-{config['seed']}"
+        if run_dir.exists():
+            raise ValueError(f"Refusing to overwrite existing run directory: {run_dir}")
         print(f"Running config {index}/{len(configs)}: {format_config(config)}, seed={config['seed']}")
         rewards = train_reinforce(
             env_name=config["env"],
