@@ -34,7 +34,9 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 5. **`sources/test_env.py`**: Kiểm tra môi trường CartPole-v1 và chạy random baseline 100 episodes.
 6. **`scripts/train.py`**: CLI entrypoint cho training, hỗ trợ `--env`, `--episodes`, `--lr`, `--gamma`, `--hidden-dim`, `--seed`, `--save-dir`.
 7. **`scripts/evaluate.py`**: CLI entrypoint cho evaluation, load `.pth` checkpoint và chạy greedy policy dưới `torch.no_grad()`.
-8. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy training, chứa `best_policy.pth`, `final_policy.pth`, `training_curve.png`, `rewards.txt`, `run_config.txt`, `metrics.txt`.
-9. **`outputs/eval_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy evaluation, chứa `eval_stats.txt` và `eval_log.txt`.
-10. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
-11. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+8. **`scripts/run_experiments.py`**: CLI entrypoint cho hyperparameter tuning nhỏ gọn, chạy grid `lr`/`gamma`/`hidden_dim`/`seed`, lưu từng run dưới một experiment root và viết `summary.md` được xếp hạng theo mean reward 50 episode cuối.
+9. **`outputs/run_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy training, chứa `best_policy.pth`, `final_policy.pth`, `training_curve.png`, `rewards.txt`, `run_config.txt`, `metrics.txt`.
+10. **`outputs/eval_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy evaluation, chứa `eval_stats.txt` và `eval_log.txt`.
+11. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
+12. **`outputs/experiments/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy hyperparameter experiments, chứa các thư mục `config-XXX-seed-YY/` và `summary.md` để chọn cấu hình tốt nhất.
+13. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
