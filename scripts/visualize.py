@@ -36,6 +36,7 @@ def parse_args():
     parser.add_argument("--baseline", default=None, help="Optional path to a baseline_log.txt file.")
     parser.add_argument("--output-dir", default=None, help="Optional output directory for generated figures.")
     parser.add_argument("--window", type=positive_int, default=DEFAULT_WINDOW, help="Moving-average window size.")
+    parser.add_argument("--force", action="store_true", help="Allow overwriting known figure files in a non-empty output directory.")
     return parser.parse_args()
 
 
@@ -227,6 +228,8 @@ def main():
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     output_dir = Path(args.output_dir).expanduser().resolve() if args.output_dir else PROJECT_ROOT / "outputs" / "figures" / timestamp
+    if args.output_dir and output_dir.exists() and any(output_dir.iterdir()) and not args.force:
+        raise ValueError(f"Refusing to write into non-empty output directory without --force: {output_dir}")
     output_dir.mkdir(parents=True, exist_ok=True)
 
     runs = find_runs(experiment_dir, args.window)
