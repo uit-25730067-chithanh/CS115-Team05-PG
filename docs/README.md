@@ -4,14 +4,15 @@ Chào mừng các bạn Team 05 và các AI Agents! Dự án này sử dụng h�
 
 ## 📌 Mục lục Tài liệu
 
-| Tệp tin                                                  | Đối tượng       | Nội dung chính                                                                       |
-| :------------------------------------------------------- | :-------------- | :----------------------------------------------------------------------------------- |
-| **[installation.md](./installation.md)**                 | Cả hai          | Hướng dẫn chi tiết setup môi trường và cách chạy training REINFORCE. |
-| **[codebase-summary.md](./codebase-summary.md)**         | AI Agents       | Bản đồ các file sources, giúp Agent biết phạm vi chỉnh sửa.           |
-| **[code-standards.md](./code-standards.md)**             | Cả hai          | Quy tắc đặt tên, Git Flow, và tiêu chuẩn code của Team 05.            |
-| **[system-architecture.md](./system-architecture.md)**   | Cả hai          | Luồng logic từ Toán -> Code, kiến trúc mạng Neural & REINFORCE.       |
-| **[project-roadmap.md](./project-roadmap.md)**           | Team members    | Lịch trình "Song song hóa" và WBS chi tiết.                                          |
-| **[project-overview-pdr.md](./project-overview-pdr.md)** | Giảng viên/Team | Tổng quan yêu cầu dự án (PDR) và mục tiêu môn học.                                   |
+| Tệp tin                                                      | Đối tượng       | Nội dung chính                                                             |
+| :----------------------------------------------------------- | :-------------- | :------------------------------------------------------------------------- |
+| **[installation.md](./installation.md)**                     | Cả hai          | Hướng dẫn chi tiết setup môi trường và cách chạy training REINFORCE.       |
+| **[codebase-summary.md](./codebase-summary.md)**             | AI Agents       | Bản đồ các file sources, giúp Agent biết phạm vi chỉnh sửa.                |
+| **[code-standards.md](./code-standards.md)**                 | Cả hai          | Quy tắc đặt tên, Git Flow, và tiêu chuẩn code của Team 05.                 |
+| **[system-architecture.md](./system-architecture.md)**       | Cả hai          | Luồng logic từ Toán -> Code, kiến trúc mạng Neural & REINFORCE.            |
+| **[code-logic-explanation.md](./code-logic-explanation.md)** | Team members    | Giải thích logic REINFORCE, mapping Toán -> Code và checklist Q&A CODE-05. |
+| **[project-roadmap.md](./project-roadmap.md)**               | Team members    | Lịch trình "Song song hóa" và WBS chi tiết.                                |
+| **[project-overview-pdr.md](./project-overview-pdr.md)**     | Giảng viên/Team | Tổng quan yêu cầu dự án (PDR) và mục tiêu môn học.                         |
 
 ---
 
