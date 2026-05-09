@@ -88,7 +88,7 @@ Trong Học Tăng cường, $J(\theta)$ là **hàm phần thưởng kỳ vọng*
 
 | Loại môi trường | Công thức $J(\theta)$ |
 |----------------|------------------------|
-| Tập từng bước (episodic) | $$J(\theta) = \mathbb{E}{\tau \sim \pi{\theta}} \left[ \sum_{t=0}^{T} \gamma^t r_t \right]$$|
+| Tập từng bước (episodic) | $$J(\theta) = \mathbb{E}{\tau \sim \pi{\theta}} \left[ \sum_{t=0}^{T} \gamma^t r_t \right]$$ |
 | Liên tục (continuing) | $$J(\theta) = \lim_{T \to \infty} \frac{1}{T} \mathbb{E} \left[ \sum_{t=0}^{T} r_t \right]$$ |
 
 Trong đó:
