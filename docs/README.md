@@ -13,6 +13,7 @@ Chào mừng các bạn Team 05 và các AI Agents! Dự án này sử dụng h�
 | **[code-logic-explanation.md](./code-logic-explanation.md)** | Team members    | Giải thích logic REINFORCE, mapping Toán -> Code và checklist Q&A CODE-05. |
 | **[project-roadmap.md](./project-roadmap.md)**               | Team members    | Lịch trình "Song song hóa" và WBS chi tiết.                                |
 | **[project-overview-pdr.md](./project-overview-pdr.md)**     | Giảng viên/Team | Tổng quan yêu cầu dự án (PDR) và mục tiêu môn học.                         |
+| **[../reports/README.md](../reports/README.md)**             | Team members    | Quy tắc vận hành các thư mục báo cáo, agenda, minutes và weekly updates.   |
 
 ---
 
@@ -22,3 +23,4 @@ Chào mừng các bạn Team 05 và các AI Agents! Dự án này sử dụng h�
 - **Hãy đọc [`installation.md`](./installation.md) và [`codebase-summary.md`](./codebase-summary.md)** để biết cách chạy dự án và xác định đúng khu vực cần sửa.
 - **Tuân thủ `Installation Guide`** trước khi báo lỗi thiếu thư viện.
 - **Không bao giờ sửa logic Toán** trong `sources/reinforce.py` nếu không khớp với các công thức trong `math/`.
+- **Không tự tạo hoặc sửa report theo tuần** nếu không đúng quy tắc trong [`reports/README.md`](../reports/README.md).

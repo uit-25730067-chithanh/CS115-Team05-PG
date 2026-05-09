@@ -18,10 +18,23 @@ Dự án tập trung vào việc áp dụng Lý thuyết xác suất và Đạo 
 
 ## 2. Các quyết định
 
-| Ngày       | Quyết định                                                                           | Bối cảnh                                                               |
-| :--------- | :----------------------------------------------------------------------------------- | :--------------------------------------------------------------------- |
-| 06/04/2026 | Ký Charter v3.0, phân chia WBS (Toán/Code/Báo cáo), chọn PyTorch 2.0.                | Họp khởi động. Xem `reports/weekly_updates/week-03.md`.                |
-| 13/04/2026 | Thanh đảm nhận Code Lead; Quỳnh đảm nhận Admin/Báo cáo.                              | Đẩy nhanh tiến độ kỹ thuật. Xem `reports/weekly_updates/week-04.md`.   |
-| 20/04/2026 | Chiến lược Toán: Tập trung Toán ứng dụng; Kế hoạch nghỉ lễ 30/4-1/5; Đóng Cột mốc 1. | Hoàn thành logic cốt lõi sớm. Xem `reports/weekly_updates/week-05.md`. |
+| Ngày       | Quyết định                                                                                        | Bối cảnh                                                               |
+| :--------- | :------------------------------------------------------------------------------------------------ | :--------------------------------------------------------------------- |
+| 06/04/2026 | Ký Charter v3.0, phân chia WBS (Toán/Code/Báo cáo), chọn PyTorch 2.0.                             | Họp khởi động. Xem `reports/weekly_updates/week-03.md`.                |
+| 13/04/2026 | Thanh đảm nhận Code Lead; Quỳnh đảm nhận Admin/Báo cáo.                                           | Đẩy nhanh tiến độ kỹ thuật. Xem `reports/weekly_updates/week-04.md`.   |
+| 20/04/2026 | Chiến lược Toán: Tập trung Toán ứng dụng; Kế hoạch nghỉ lễ 30/4-1/5; Đóng Cột mốc 1.              | Hoàn thành logic cốt lõi sớm. Xem `reports/weekly_updates/week-05.md`. |
+| 04/05/2026 | Sau kỳ nghỉ, ưu tiên làm trước toàn bộ nhánh Code để giải phóng thời gian cho toán, report, demo. | CODE-06/07/08 được triển khai theo từng branch/PR nhỏ.                 |
+| 09/05/2026 | Xem PR #40 là đã merge vào `origin/main`; CODE-05..08 được xem là hoàn thành về mặt kỹ thuật.     | Tham chiếu tiến độ: GitHub issues #26, #11, #12, #17, #21 và PR #40.   |
+
+## 3. Trạng thái hiện tại
+
+Tính đến Tuần 07, dự án đã đi trước phần triển khai Code so với roadmap ban đầu.
+
+| Mảng         | Trạng thái                   | Ghi chú                                                                               |
+| :----------- | :--------------------------- | :------------------------------------------------------------------------------------ |
+| Toán         | 🔄 Đang hoàn thiện           | Chứng minh Policy Gradient đã có nền; cần tiếp tục diễn giải dễ hiểu trong báo cáo.   |
+| Code         | ✅ Hoàn thành sớm phần chính | Policy, REINFORCE, train/evaluate CLI, tuning, visualization, logic explanation.      |
+| Báo cáo      | 🔄 Đang tiến hành            | Report Word tiếp tục là nơi tổng hợp cuối; `reports/` chỉ ghi nhận vận hành tuần/họp. |
+| Demo cuối kỳ | ⏳ Sắp tới                   | Cần final run, final evaluation, chọn figure và chuẩn bị package nộp.                 |
 
 > **Nhật ký hội họp đầy đủ:** `reports/weekly_updates/` (chính thống). Chi tiết theo từng người: `reports/detailed_reports/`.
