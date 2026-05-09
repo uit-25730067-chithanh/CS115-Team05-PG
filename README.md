@@ -70,19 +70,21 @@ This project demonstrates the theoretical foundations and practical implementati
 ```text
 CS115-Team05-PG/
 │
-├── docs/                   # Documentation (PDR, Roadmap, Reports)
+├── docs/                   # Project documentation (PDR, roadmap, architecture)
 ├── math/                   # LaTeX math proofs & derivations
+├── reports/                # Weekly updates, meeting agendas, meeting minutes
+├── scripts/                # Reproducible CLI entrypoints
+│   ├── train.py            # Train REINFORCE with configurable seed/hyperparameters
+│   ├── evaluate.py         # Evaluate a saved policy checkpoint
+│   ├── run_experiments.py  # Compact hyperparameter grid runner
+│   └── visualize.py        # Report-ready figure generation
 ├── sources/                # Core implementation
 │   ├── models/             # Policy network (PyTorch)
-│   ├── agents/             # Agent logic (REINFORCE)
-│   ├── envs/               # Environment wrappers
-│   ├── train.py            # Training loop entry point
+│   ├── train.py            # Training loop implementation
 │   ├── test_env.py         # Environment sanity check
 │   └── reinforce.py        # REINFORCE algorithm core
 │
-├── outputs/                # Saved policies & training curves
-├── reports/                # Weekly updates & meeting records
-└── data/                   # Datasets
+└── outputs/                # Generated checkpoints, metrics, experiments and figures
 ```
 
 > _For detailed team responsibilities, see the [Team Workflows](./docs/project-overview-pdr.md)._
@@ -114,16 +116,23 @@ pip install -r requirements.txt
 
 ### 3. Training
 
-Set `PYTHONPATH` to include the `sources/` directory, then run the training script:
+Run the reproducible training entrypoint:
 
 ```bash
-export PYTHONPATH=$PYTHONPATH:$(pwd)/sources
-python3 sources/train.py
+python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 ```
 
-Trained policy weights and training curves will be saved to a timestamped subdirectory under `outputs/` (e.g., `outputs/run_YYYYMMDD_HHMMSS/`).
+Trained policy weights, raw rewards, metrics and training curves will be saved to a timestamped subdirectory under `outputs/` (e.g., `outputs/run_YYYYMMDD_HHMMSS/`).
 
-### 4. Test Environment
+### 4. Evaluation
+
+Evaluate a saved checkpoint:
+
+```bash
+python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim 64
+```
+
+### 5. Test Environment
 
 Verify the Gymnasium environment is working correctly:
 
@@ -141,13 +150,16 @@ python3 sources/test_env.py
 
 ### Roadmap & Progress
 
-The project is currently in Week 06. Phase 1 and Phase 2 were completed early; the team is now refining and preparing for the final submission.
+The project is currently in Week 07. The Code track has been completed ahead of schedule so the team can reserve more time for math explanation, report writing, demo preparation and final packaging.
 
-| Phase       | Main Content           | Status               |
-| :---------- | :--------------------- | :------------------- |
-| **Phase 1** | Math proof & Env setup | Completed            |
-| **Phase 2** | Policy Net & REINFORCE | Completed (Refining) |
-| **Phase 3** | Training & Tuning      | Upcoming             |
+| Phase       | Main Content                       | Status                  |
+| :---------- | :--------------------------------- | :---------------------- |
+| **Phase 1** | Math proof & Env setup             | Completed               |
+| **Phase 2** | Policy Net & REINFORCE             | Completed               |
+| **Phase 3** | Training, tuning & visualization   | Completed ahead of plan |
+| **Phase 4** | Report, slides & final explanation | In progress             |
+
+Completed code milestones include baseline evaluation, PolicyNetwork, REINFORCE training, reproducible train/evaluate entrypoints, compact hyperparameter tuning, report-ready visualization, and PR #40 for logic explanation.
 
 View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
