@@ -41,4 +41,5 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 12. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
 13. **`outputs/experiments/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy hyperparameter experiments, chứa các thư mục `config-XXX-seed-YY/` và `summary.md` để chọn cấu hình tốt nhất.
 14. **`outputs/figures/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy visualization, chứa `learning_curve_best.png`, `baseline_vs_trained.png`, `hp_comparison.png`, `summary_grid.png` và `figure_summary.txt`.
-15. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+15. **`docs/code-logic-explanation.md`**: Tài liệu giải thích logic CODE-05 bằng tiếng Việt, gồm outline REINFORCE, bảng math-to-code, demo commands và checklist Q&A human gate.
+16. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
