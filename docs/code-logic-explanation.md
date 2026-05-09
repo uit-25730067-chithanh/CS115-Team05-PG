@@ -170,21 +170,21 @@ python3 scripts/visualize.py --experiment outputs/experiments/<experiment-dir> -
 
 ## Bảng đối chiếu math-to-code
 
-| Toán học | Code | File |
-| --- | --- | --- |
-| $s_t$ | `state` | `sources/train.py` |
-| $a_t$ | `action` | `sources/models/policy.py`, `sources/train.py` |
-| $\pi_\theta(a \mid s)$ | `PolicyNetwork.forward()` | `sources/models/policy.py` |
-| Sample action từ policy | `Categorical(probs).sample()` | `sources/models/policy.py` |
-| $\log \pi_\theta(a_t \mid s_t)$ | `m.log_prob(action)` | `sources/models/policy.py` |
-| Episode rewards | `rewards.append(reward)` | `sources/train.py` |
-| $G_t$ | `compute_returns()` | `sources/reinforce.py` |
-| Chuẩn hóa return | `(returns - returns.mean()) / (returns.std() + 1e-8)` | `sources/reinforce.py` |
-| $-\log \pi_\theta(a_t \mid s_t)G_t$ | `policy_loss.append(-log_prob * G_t)` | `sources/reinforce.py` |
-| Gradient update | `policy_loss.backward()` và `optimizer.step()` | `sources/reinforce.py` |
-| Training entrypoint | `train_reinforce()` | `sources/train.py`, `scripts/train.py` |
-| Evaluation entrypoint | `policy_net.load_state_dict(...)` và greedy action | `scripts/evaluate.py` |
-| Figure generation | `find_runs()` và các plot functions | `scripts/visualize.py` |
+| Toán học                            | Code                                                  | File                                           |
+| ----------------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
+| $s_t$                               | `state`                                               | `sources/train.py`                             |
+| $a_t$                               | `action`                                              | `sources/models/policy.py`, `sources/train.py` |
+| $\pi_\theta(a \mid s)$              | `PolicyNetwork.forward()`                             | `sources/models/policy.py`                     |
+| Sample action từ policy             | `Categorical(probs).sample()`                         | `sources/models/policy.py`                     |
+| $\log \pi_\theta(a_t \mid s_t)$     | `m.log_prob(action)`                                  | `sources/models/policy.py`                     |
+| Episode rewards                     | `rewards.append(reward)`                              | `sources/train.py`                             |
+| $G_t$                               | `compute_returns()`                                   | `sources/reinforce.py`                         |
+| Chuẩn hóa return                    | `(returns - returns.mean()) / (returns.std() + 1e-8)` | `sources/reinforce.py`                         |
+| $-\log \pi_\theta(a_t \mid s_t)G_t$ | `policy_loss.append(-log_prob * G_t)`                 | `sources/reinforce.py`                         |
+| Gradient update                     | `policy_loss.backward()` và `optimizer.step()`        | `sources/reinforce.py`                         |
+| Training entrypoint                 | `train_reinforce()`                                   | `sources/train.py`, `scripts/train.py`         |
+| Evaluation entrypoint               | `policy_net.load_state_dict(...)` và greedy action    | `scripts/evaluate.py`                          |
+| Figure generation                   | `find_runs()` và các plot functions                   | `scripts/visualize.py`                         |
 
 ## Checklist demo
 
@@ -203,6 +203,36 @@ Evidence kỳ vọng:
 - Visualization command tạo các figure report-ready dưới `outputs/figures/.../`.
 - Các output path đã sinh nên được ghi lại trong GitHub issue hoặc PR description.
 
+Evidence đã chạy cho PR:
+
+```bash
+python3 scripts/train.py --episodes 50 --seed 42 --save-dir tmp/code05-review-run-20260509_102917
+python3 scripts/evaluate.py --checkpoint tmp/code05-review-run-20260509_102917/best_policy.pth --episodes 10 --save-dir tmp/code05-review-eval-20260509_102917
+```
+
+Console output chính:
+
+```text
+Bắt đầu huấn luyện REINFORCE trên môi trường CartPole-v1...
+Đang sử dụng Apple MPS device
+Episode 50       Tính trung bình 50 tập: 20.18   Best: 51.00
+Huấn luyện hoàn tất! Kết quả lưu tại: tmp/code05-review-run-20260509_102917
+Training outputs saved to: tmp/code05-review-run-20260509_102917
+Evaluation outputs saved to: tmp/code05-review-eval-20260509_102917
+Mean reward: 9.60
+```
+
+Kết quả training/evaluation:
+
+- `tmp/code05-review-run-20260509_102917/metrics.txt`: `mean_last_50 = 20.1800`, `std_last_50 = 9.3993`, `best_reward = 51.0000`, `final_reward = 12.0000`, `total_episodes = 50`.
+- `tmp/code05-review-eval-20260509_102917/eval_stats.txt`: `mean_reward = 9.6000`, `std_reward = 0.6633`, `best_reward = 11.0000`, `worst_reward = 9.0000`.
+
+Flakiness status cho PR:
+
+- Không quan sát thấy lỗi chạy, crash, checkpoint thiếu, hoặc output thiếu trong validation trên.
+- Reward thấp/dao động trong run 50 episodes là hành vi stochastic bình thường của REINFORCE smoke test, không phải flakiness của entrypoint.
+- Nếu team gặp hành vi bất thường trong buổi walkthrough, cần ghi lại seed, command, output path và symptom cụ thể vào GitHub issue #11.
+
 ## Checklist hỏi đáp với team
 
 CODE-05 chưa hoàn tất thật sự cho đến khi checklist này được team xác nhận.
@@ -214,7 +244,19 @@ CODE-05 chưa hoàn tất thật sự cho đến khi checklist này được tea
 - [ ] Các hành vi RL không ổn định, nếu có, được ghi lại kèm seed, command và output path.
 - [ ] Kết quả hỏi đáp cuối được ghi vào GitHub issue #11 hoặc append vào tài liệu này.
 
+Human walkthrough evidence:
+
+- **Trạng thái hiện tại**: chưa có meeting note/recording/summary được xác nhận trong PR.
+- **Không được đánh dấu done ở PR này** nếu Thanh chưa trình bày walkthrough cho Sơn và Quỳnh.
+- Sau buổi walkthrough, append meeting summary hoặc link evidence vào phần này.
+
+Leader confirmation:
+
+- **Trạng thái hiện tại**: chưa có xác nhận cuối từ Thanh rằng Sơn và Quỳnh đã hiểu implementation flow.
+- Sau buổi Q&A, Thanh cần ghi rõ kết luận xác nhận hoặc các điểm còn vướng.
+
 ## Trạng thái hiện tại
 
 - **Đã chuẩn bị trong PR**: tài liệu giải thích, bảng math-to-code, demo commands và checklist hỏi đáp.
-- **Vẫn còn human gate**: Thanh cần trình bày nội dung này cho Sơn và Quỳnh trước khi CODE-05 được xem là hoàn tất đầy đủ.
+- **Đã có evidence kỹ thuật**: training/evaluation validation đã chạy và được ghi lại ở phần demo.
+- **Vẫn còn human gate**: Thanh cần trình bày nội dung này cho Sơn và Quỳnh, rồi ghi meeting/Q&A outcome trước khi CODE-05 được xem là hoàn tất đầy đủ.
