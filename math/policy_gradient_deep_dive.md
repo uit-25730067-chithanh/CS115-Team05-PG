@@ -117,7 +117,4 @@ Tức tìm bộ tham số $\theta$ giúp tác tử thu được **tổng phần 
 | $\nabla \log \pi = \frac{\nabla \pi}{\pi}$ | Log-derivative trick – biến đổi giúp ước lượng gradient dễ dàng qua mẫu |
 | $J(\theta)$ | Phần thưởng kỳ vọng – đại lượng cần tối đa hóa |
 
-Hai mô phỏng GeoGebra là công cụ trực quan tốt để cảm nhận cách một điểm di chuyển lên đỉnh hàm (Gradient Ascent) và sự phụ thuộc của gradient vào tham số chính sách (Policy Gradient).
-
-
-
+Hai mô phỏng GeoGebra là công cụ trực quan tốt để cảm nhận cách một điểm di chuyển lên đỉnh hàm (Gradient Ascent) và sự phụ thuộc của gradient vào tham số chính sách (Policy Gradient)
