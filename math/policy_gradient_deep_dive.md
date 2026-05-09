@@ -88,7 +88,7 @@ Trong Học Tăng cường, $J(\theta)$ là **hàm phần thưởng kỳ vọng*
 
 | Loại môi trường | Công thức $J(\theta)$ |
 |----------------|------------------------|
-| Tập từng bước (episodic) | $$J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} \left[ \sum_{t=0}^{T} \gamma^t r_t \right]$$ |
+| Tập từng bước (episodic) | $$J(\theta) = \mathbb{E}{\tau \sim \pi{\theta}} \left[ \sum_{t=0}^{T} \gamma^t r_t \right]$$ |
 | Liên tục (continuing) | $$J(\theta) = \lim_{T \to \infty} \frac{1}{T} \mathbb{E} \left[ \sum_{t=0}^{T} r_t \right]$$ |
 
 Trong đó:
@@ -118,3 +118,6 @@ Tức tìm bộ tham số $\theta$ giúp tác tử thu được **tổng phần 
 | $J(\theta)$ | Phần thưởng kỳ vọng – đại lượng cần tối đa hóa |
 
 Hai mô phỏng GeoGebra là công cụ trực quan tốt để cảm nhận cách một điểm di chuyển lên đỉnh hàm (Gradient Ascent) và sự phụ thuộc của gradient vào tham số chính sách (Policy Gradient).
+
+
+
