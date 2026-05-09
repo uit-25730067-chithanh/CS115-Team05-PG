@@ -70,19 +70,21 @@
 ```text
 CS115-Team05-PG/
 │
-├── docs/                   # Tài liệu (PDR, Lộ trình, Báo cáo)
+├── docs/                   # Tài liệu dự án (PDR, roadmap, architecture)
 ├── math/                   # Chứng minh toán học (LaTeX)
+├── reports/                # Weekly updates, meeting agendas, meeting minutes
+├── scripts/                # Entrypoint CLI có thể chạy lại
+│   ├── train.py            # Huấn luyện REINFORCE với seed/hyperparameters
+│   ├── evaluate.py         # Đánh giá checkpoint chính sách đã lưu
+│   ├── run_experiments.py  # Chạy grid hyperparameter nhỏ gọn
+│   └── visualize.py        # Sinh figure dùng cho báo cáo
 ├── sources/                # Triển khai cốt lõi
 │   ├── models/             # Mạng chính sách (PyTorch)
-│   ├── agents/             # Logic tác tử (REINFORCE)
-│   ├── envs/               # Bao bọc môi trường
-│   ├── train.py            # Điểm vào vòng lặp huấn luyện
+│   ├── train.py            # Logic vòng lặp huấn luyện
 │   ├── test_env.py         # Kiểm tra môi trường
 │   └── reinforce.py        # Cốt lõi thuật toán REINFORCE
 │
-├── outputs/                # Trọng số đã lưu & đường cong huấn luyện
-├── reports/                # Cập nhật hàng tuần & biên bản họp
-└── data/                   # Dữ liệu
+└── outputs/                # Checkpoints, metrics, experiments và figures sinh ra
 ```
 
 > _Chi tiết phân công trách nhiệm theo module, xem [Quy trình làm việc Nhóm](./docs/project-overview-pdr.md)._
@@ -114,16 +116,23 @@ pip install -r requirements.txt
 
 ### 3. Huấn luyện
 
-Thiết lập `PYTHONPATH` để bao gồm thư mục `sources/`, sau đó chạy script huấn luyện:
+Chạy entrypoint huấn luyện có thể tái lập:
 
 ```bash
-export PYTHONPATH=$PYTHONPATH:$(pwd)/sources
-python3 sources/train.py
+python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 ```
 
-Trọng số chính sách đã huấn luyện và đường cong học tập sẽ được lưu trong thư mục con có gắn timestamp dưới `outputs/` (ví dụ: `outputs/run_20260427_014800/`).
+Trọng số chính sách, raw rewards, metrics và đường cong học tập sẽ được lưu trong thư mục con có gắn timestamp dưới `outputs/` (ví dụ: `outputs/run_YYYYMMDD_HHMMSS/`).
 
-### 4. Kiểm tra Môi trường
+### 4. Đánh giá
+
+Đánh giá checkpoint đã lưu:
+
+```bash
+python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim 64
+```
+
+### 5. Kiểm tra Môi trường
 
 Xác minh môi trường Gymnasium hoạt động đúng:
 
@@ -141,13 +150,16 @@ python3 sources/test_env.py
 
 ### Lộ trình & Tiến độ
 
-Dự án hiện đang ở Tuần 06. Giai đoạn 1 và Giai đoạn 2 đã hoàn thành sớm; nhóm đang tinh chỉnh và chuẩn bị cho báo cáo cuối cùng.
+Dự án hiện đang ở Tuần 07. Nhánh Code đã hoàn thành trước tiến độ để nhóm dành thêm thời gian cho giải thích toán, viết báo cáo, chuẩn bị demo và đóng gói cuối kỳ.
 
-| Giai đoạn | Nội dung chính                         | Trạng thái              |
-| :-------- | :------------------------------------- | :---------------------- |
-| **GĐ 1**  | Chứng minh Toán & Thiết lập môi trường | Hoàn thành              |
-| **GĐ 2**  | Mạng Policy & REINFORCE                | Hoàn thành (Tinh chỉnh) |
-| **GĐ 3**  | Huấn luyện & Tối ưu                    | Sắp tới                 |
+| Giai đoạn | Nội dung chính                         | Trạng thái     |
+| :-------- | :------------------------------------- | :------------- |
+| **GĐ 1**  | Chứng minh Toán & Thiết lập môi trường | Hoàn thành     |
+| **GĐ 2**  | Mạng Policy & REINFORCE                | Hoàn thành     |
+| **GĐ 3**  | Huấn luyện, tuning & visualization     | Hoàn thành sớm |
+| **GĐ 4**  | Báo cáo, slides & giải trình cuối      | Đang tiến hành |
+
+Các mốc code đã hoàn thành gồm baseline evaluation, PolicyNetwork, training REINFORCE, entrypoint train/evaluate có thể tái lập, hyperparameter tuning nhỏ gọn, visualization dùng cho báo cáo, và PR #40 cho phần giải trình logic.
 
 Xem biểu đồ Gantt chi tiết tại: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
