@@ -10,33 +10,33 @@ The experimental results show that the implemented REINFORCE agent can improve s
 
 ### 3.1. REINFORCE Algorithm
 
-This project implements the REINFORCE algorithm, a Monte Carlo policy-gradient method that directly optimizes a stochastic policy. Instead of estimating an action-value function and deriving a policy indirectly, REINFORCE represents the policy as a parameterized probability distribution \(\pi_\theta(a|s)\). The policy receives a state as input and outputs the probability of selecting each possible action. The parameters \(\theta\) are updated so that actions that lead to higher returns become more likely in similar future states.
+This project implements the REINFORCE algorithm, a Monte Carlo policy-gradient method that directly optimizes a stochastic policy. Instead of estimating an action-value function and deriving a policy indirectly, REINFORCE represents the policy as a parameterized probability distribution $\pi_{\theta}(a|s)$. The policy receives a state as input and outputs the probability of selecting each possible action. The parameters $\theta$ are updated so that actions that lead to higher returns become more likely in similar future states.
 
 For each episode, the agent collects a trajectory consisting of states, sampled actions, action log-probabilities, and rewards. After the episode terminates, the algorithm computes the discounted return for each time step:
 
-\[
-G_t = R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + \cdots
-\]
+$$
+G_{t} = R_{t} + \gamma R_{t+1} + \gamma^2 R_{t+2} + \cdots
+$$
 
 The implementation computes these returns backward from the end of the episode. This is efficient because each return reuses the future return already computed at the next time step. The policy update is based on the REINFORCE objective:
 
-\[
-\nabla_\theta J(\theta) \approx \sum_t \nabla_\theta \log \pi_\theta(a_t|s_t)G_t
-\]
+$$
+\nabla_{\theta} J(\theta) \approx \sum_{t} \nabla_{\theta} \log \pi_{\theta}(a_{t}|s_{t})G_{t}
+$$
 
 In implementation, PyTorch optimizers minimize a loss function. Therefore, the training code uses the following loss:
 
-\[
-L(\theta) = -\sum_t \log \pi_\theta(a_t|s_t)G_t
-\]
+$$
+L(\theta) = -\sum_{t} \log \pi_{\theta}(a_{t}|s_{t})G_{t}
+$$
 
 The negative sign converts the maximization of expected return into a minimization problem. Minimizing this loss is equivalent to increasing the log-probability of actions that produced higher returns.
 
 The implementation also normalizes the returns within each episode:
 
-\[
-G_t \leftarrow \frac{G_t - \mu(G)}{\sigma(G) + \epsilon}
-\]
+$$
+G_{t} \leftarrow \frac{G_{t} - \mu(G)}{\sigma(G) + \epsilon}
+$$
 
 This normalization acts as a simple variance-reduction technique. It stabilizes training by reducing the scale variation of Monte Carlo returns. The project does not implement a separate critic network; the variance reduction comes from normalized returns only.
 
@@ -44,19 +44,19 @@ This normalization acts as a simple variance-reduction technique. It stabilizes 
 
 The experiment uses CartPole-v1 from Gymnasium. CartPole-v1 is a classic control environment in which an agent must move a cart left or right to keep a pole balanced. The state is a four-dimensional continuous vector:
 
-| State variable | Meaning |
-| --- | --- |
-| Cart position | Horizontal position of the cart |
-| Cart velocity | Horizontal velocity of the cart |
-| Pole angle | Angle of the pole from the vertical axis |
-| Pole angular velocity | Angular velocity of the pole |
+| State variable        | Meaning                                  |
+| --------------------- | ---------------------------------------- |
+| Cart position         | Horizontal position of the cart          |
+| Cart velocity         | Horizontal velocity of the cart          |
+| Pole angle            | Angle of the pole from the vertical axis |
+| Pole angular velocity | Angular velocity of the pole             |
 
 The action space is discrete and contains two actions:
 
-| Action | Meaning |
-| --- | --- |
-| 0 | Push the cart to the left |
-| 1 | Push the cart to the right |
+| Action | Meaning                    |
+| ------ | -------------------------- |
+| 0      | Push the cart to the left  |
+| 1      | Push the cart to the right |
 
 The environment gives a reward of +1 for every time step in which the pole remains balanced. An episode terminates when the pole angle or cart position exceeds the allowed threshold, or when the episode reaches the maximum length. The maximum return for one episode is 500. The standard CartPole-v1 solved criterion is an average reward of at least 475 over 100 consecutive episodes.
 
@@ -68,12 +68,12 @@ The policy is represented by a small multilayer perceptron implemented in PyTorc
 
 The architecture is summarized as follows:
 
-| Component | Description |
-| --- | --- |
-| Input layer | Four CartPole state variables |
-| Hidden layer | Fully connected layer with ReLU activation |
-| Output layer | Two action scores |
-| Softmax | Converts action scores into action probabilities |
+| Component    | Description                                      |
+| ------------ | ------------------------------------------------ |
+| Input layer  | Four CartPole state variables                    |
+| Hidden layer | Fully connected layer with ReLU activation       |
+| Output layer | Two action scores                                |
+| Softmax      | Converts action scores into action probabilities |
 
 During training, the agent samples an action from a categorical distribution created from the output probabilities. This stochastic action selection is important because REINFORCE learns from sampled trajectories. If the agent always selected the action with the highest probability during training, exploration would be reduced and the policy could become stuck in a weak behavior. During evaluation, the implementation uses the action with the highest probability to measure the learned policy more deterministically.
 
@@ -85,15 +85,15 @@ After the episode ends, the algorithm computes discounted returns, normalizes th
 
 The main training configuration used for the final experiment is shown below:
 
-| Hyperparameter | Value | Description |
-| --- | ---: | --- |
-| Environment | CartPole-v1 | Benchmark control task |
-| Number of episodes | 1000 | Total training episodes |
-| Learning rate | 0.001 | Optimizer step size |
-| Discount factor \(\gamma\) | 0.99 | Weight assigned to future rewards |
-| Hidden dimension | 128 | Number of hidden units in the policy network |
-| Seed | 123 | Reproducibility seed |
-| Device | CPU | Hardware used for the recorded run |
+| Hyperparameter           |       Value | Description                                  |
+| ------------------------ | ----------: | -------------------------------------------- |
+| Environment              | CartPole-v1 | Benchmark control task                       |
+| Number of episodes       |        1000 | Total training episodes                      |
+| Learning rate            |       0.001 | Optimizer step size                          |
+| Discount factor $\gamma$ |        0.99 | Weight assigned to future rewards            |
+| Hidden dimension         |         128 | Number of hidden units in the policy network |
+| Seed                     |         123 | Reproducibility seed                         |
+| Device                   |         CPU | Hardware used for the recorded run           |
 
 ## Chapter IV. EXPERIMENTS & RESULTS
 
@@ -107,14 +107,14 @@ The main experiment uses CartPole-v1, 1000 training episodes, learning rate 0.00
 
 The random baseline runs the environment with actions selected randomly. This baseline provides a reference point for understanding how difficult the task is without learning. Over 100 episodes, the random baseline achieved the following results:
 
-| Metric | Value |
-| --- | ---: |
-| Environment | CartPole-v1 |
-| Episodes | 100 |
-| Mean reward | 23.2800 |
-| Standard deviation | 13.0791 |
-| Minimum reward | 9 |
-| Maximum reward | 88 |
+| Metric             |       Value |
+| ------------------ | ----------: |
+| Environment        | CartPole-v1 |
+| Episodes           |         100 |
+| Mean reward        |     23.2800 |
+| Standard deviation |     13.0791 |
+| Minimum reward     |           9 |
+| Maximum reward     |          88 |
 
 The low mean reward shows that random actions cannot keep the pole balanced for a long time. This confirms that learning is necessary to solve the task.
 
@@ -130,17 +130,17 @@ Figure file:
 
 The trained REINFORCE agent shows a large improvement over the random baseline. The latest recorded training run used 1000 episodes and achieved a last-100-episode average reward of 476.00, which exceeds the standard CartPole-v1 solved threshold of 475. The best episode reward and the final episode reward both reached 500, the maximum possible return in CartPole-v1.
 
-| Metric | Value |
-| --- | ---: |
-| Total training episodes | 1000 |
-| Mean reward over last 50 episodes | 476.9400 |
-| Standard deviation over last 50 episodes | 57.6664 |
-| Mean reward over last 100 episodes | 476.0000 |
-| Standard deviation over last 100 episodes | 56.6927 |
-| Mean reward over last 200 episodes | 460.1500 |
-| Best episode reward | 500.0000 |
-| Final episode reward | 500.0000 |
-| First 100-episode window above 475 | Episode 752, average 475.6200 |
+| Metric                                    |                         Value |
+| ----------------------------------------- | ----------------------------: |
+| Total training episodes                   |                          1000 |
+| Mean reward over last 50 episodes         |                      476.9400 |
+| Standard deviation over last 50 episodes  |                       57.6664 |
+| Mean reward over last 100 episodes        |                      476.0000 |
+| Standard deviation over last 100 episodes |                       56.6927 |
+| Mean reward over last 200 episodes        |                      460.1500 |
+| Best episode reward                       |                      500.0000 |
+| Final episode reward                      |                      500.0000 |
+| First 100-episode window above 475        | Episode 752, average 475.6200 |
 
 These results indicate that the implemented REINFORCE algorithm successfully learns a policy that can solve CartPole-v1 under the selected configuration.
 
@@ -156,10 +156,10 @@ Figure file:
 
 The comparison between the random baseline and the trained REINFORCE agent demonstrates the effect of policy-gradient learning. The random baseline achieved a mean reward of only 23.28, while the trained agent reached a last-100-episode average reward of 476.00.
 
-| Method | Episodes | Main metric | Best reward | Interpretation |
-| --- | ---: | ---: | ---: | --- |
-| Random baseline | 100 | Mean reward = 23.2800 | 88 | Untrained behavior |
-| REINFORCE trained policy | 1000 | Last-100 average = 476.0000 | 500 | Solves CartPole-v1 threshold |
+| Method                   | Episodes |                 Main metric | Best reward | Interpretation               |
+| ------------------------ | -------: | --------------------------: | ----------: | ---------------------------- |
+| Random baseline          |      100 |       Mean reward = 23.2800 |          88 | Untrained behavior           |
+| REINFORCE trained policy |     1000 | Last-100 average = 476.0000 |         500 | Solves CartPole-v1 threshold |
 
 The trained policy is therefore much more effective than random action selection. This supports the theoretical expectation of the Policy Gradient method: actions that lead to higher returns are reinforced through the gradient update, increasing their probability in similar future states.
 
@@ -167,7 +167,7 @@ The trained policy is therefore much more effective than random action selection
 
 The learning curve remains noisy even after the agent becomes strong. This is expected because REINFORCE is a Monte Carlo policy-gradient algorithm. Each update depends on sampled trajectories, and the reward may vary from episode to episode due to stochastic action sampling and environment dynamics. In the last 100 episodes, rewards ranged from 286 to 500, but the average reward remained above the solved threshold.
 
-The results are consistent with the Policy Gradient Theorem. The term \(\log \pi_\theta(a_t|s_t)G_t\) increases the probability of actions that appear in high-return trajectories and decreases the relative probability of actions associated with lower returns. Return normalization helps reduce the variance of the update and improves training stability, but it does not remove all stochastic fluctuation.
+The results are consistent with the Policy Gradient Theorem. The term $\log \pi_{\theta}(a_{t}|s_{t})G_{t}$ increases the probability of actions that appear in high-return trajectories and decreases the relative probability of actions associated with lower returns. Return normalization helps reduce the variance of the update and improves training stability, but it does not remove all stochastic fluctuation.
 
 ### 4.6. Conclusion
 
