@@ -8,10 +8,37 @@ Công thức cập nhật này thuộc về **Gradient Ascent** (lên dốc), kh
 
 **Liên kết minh họa:** [https://www.geogebra.org/calculator/bmd2rdyd](https://www.geogebra.org/calculator/bmd2rdyd)
 
-Trong mô phỏng này:
-- Trục $x$ biểu diễn tham số $\theta$ (chính sách).
-- Trục $y$ biểu diễn giá trị hàm $J(\theta)$ (ví dụ: tổng phần thưởng kỳ vọng).
-- Đường cong thể hiện một hàm lồi (hoặc có đỉnh) mà ta muốn đạt đỉnh cao nhất.
+### Giải thích các thành phần trong mô phỏng Gradient Ascent
+
+Trong mô phỏng trực quan về quá trình tối ưu hóa chính sách này, các thành phần được định nghĩa như sau:
+
+#### 1. Hệ trục tọa độ
+
+* **Trục $x$ (Tham số $\theta$):** Biểu diễn không gian các tham số của chính sách (policy parameters). Việc di chuyển trên trục này tương ứng với việc điều chỉnh chính sách để tìm ra cấu hình tối ưu.
+* **Trục $y$ (Hàm mục tiêu $J(\theta)$):** Biểu diễn giá trị của hàm mục tiêu, ví dụ như tổng phần thưởng kỳ vọng (expected return) mà đại lý (agent) nhận được.
+* **Đường cong (Hàm số):** Thể hiện một hàm lồi có đỉnh (hàm mục tiêu), nơi điểm cao nhất của đường cong đại diện cho chính sách tối ưu mà chúng ta muốn đạt được.
+
+#### 2. Ý nghĩa các điểm đặc trưng (A, B, C)
+
+* **Điểm A ($\theta_{old}$):** Nằm trên trục hoành, biểu diễn giá trị hiện tại của tham số $\theta$ trước khi cập nhật.
+
+* **Điểm B ($J(\theta_{old})$):**
+   * Là vị trí hiện tại của chính sách trên đường cong hiệu suất.
+   * Tại đây, ta tính toán **Gradient ($f'$ or $\nabla J$)** — chính là độ dốc của đường tiếp tuyến màu đen — để xác định hướng đi lên đỉnh.
+
+* **Điểm C ($J(\theta_{new})$):**
+   * Là vị trí dự kiến của chính sách sau khi thực hiện bước cập nhật.
+   * Khoảng cách từ A đến vị trí mới dưới điểm C chính là $\Delta x$ (hay $\Delta \theta$), được tính bằng tích của **Learning Rate ($\alpha$)** và **Gradient**.
+
+#### 3. Logic cập nhật
+
+Mô phỏng minh họa công thức cập nhật tham số để tăng tiến dần về phía đỉnh cao nhất:
+
+
+$$\theta_{new} = \theta_{old} + \alpha \cdot \nabla_{\theta} J(\theta)$$
+
+* **Update ($\Delta \theta$):** Khoảng dịch chuyển giúp đẩy điểm B tiến lên vị trí cao hơn là điểm C.
+* **Mục tiêu:** Thông qua việc lặp lại quá trình này, tham số $\theta$ sẽ dần hội tụ về vị trí mà tại đó hàm $J(\theta)$ đạt giá trị cực đại.
 
 **Cơ chế hoạt động:**
 
@@ -25,11 +52,36 @@ Trong mô phỏng này:
 
 4. Quá trình lặp lại cho đến khi hội tụ tại đỉnh (cực đại địa phương).
 
-> Thao tác trên GeoGebra: Kéo tham số hoặc xem đồ thị minh họa đường đi lên đỉnh của một hàm đa biến.
+---
 
 ### Mô hình hóa Policy Gradient
 
 **Liên kết minh họa:** [https://www.geogebra.org/calculator/vmqne9w4](https://www.geogebra.org/calculator/vmqne9w4)
+
+#### 1. Hệ trục tọa độ và các đường cong
+
+* **Trục $x$ (Tham số $\theta$):** Biểu diễn không gian tham số của chính sách.
+* **Trục $y$ (Hàm mục tiêu $J(\theta)$):** Biểu diễn giá trị hiệu suất hoặc tổng phần thưởng kỳ vọng.
+* **Đường cong màu xanh (Old Policy):** Biểu diễn phân phối xác suất của chính sách hiện tại trước khi cập nhật.
+* **Đường cong màu đỏ (New Policy):** Biểu diễn phân phối xác suất của chính sách mới sau khi tham số $\theta$ đã được điều chỉnh.
+* **Đường cong màu lục (Hàm mục tiêu):** Thể hiện bề mặt hiệu suất mà thuật toán đang cố gắng leo lên đỉnh cao nhất.
+
+#### 2. Ý nghĩa các điểm đặc trưng
+
+* **Điểm A:** Vị trí của tham số $\theta$ hiện tại trên trục hoành.
+* **Điểm $P_J$:** Giá trị của hàm mục tiêu $J(\theta)$ ứng với tham số hiện tại. Tại đây, đường tiếp tuyến màu đen cho biết **Gradient ($\nabla J$)**.
+* **Điểm $A_{new}$:** Vị trí mới của tham số sau khi thực hiện bước nhảy dựa trên tốc độ học (alpha) và gradient.
+* **Mũi tên (Dịch chuyển):** Minh họa khoảng cách $\Delta x$ (hay $\Delta \theta$) mà tham số đã di chuyển để đẩy chính sách về phía tối ưu hơn.
+
+#### 3. Các thanh trượt điều khiển (Hyperparameters)
+
+* **theta ($\theta$):** Giá trị khởi tạo của tham số chính sách.
+* **s (Standard Deviation):** Có thể hiểu là độ lệch chuẩn, quyết định độ rộng của "chuông" chính sách (phân phối xác suất).
+* **alpha ($\alpha$):** Tốc độ học (Learning Rate), quyết định độ lớn của bước cập nhật tham số.
+
+#### 4. Logic cốt lõi
+
+Mô phỏng cho thấy khi ta thay đổi $\theta$ từ $A$ sang $A_{new}$, toàn bộ phân phối chính sách (đường màu xanh) sẽ dịch chuyển và biến đổi thành chính sách mới (đường màu đỏ). Mục tiêu là làm cho đỉnh của phân phối chính sách tiệm cận với đỉnh của hàm mục tiêu (đường màu lục) để tối đa hóa phần thưởng nhận được.
 
 Trong Học Tăng cường:
 - $\theta$ là tham số của **chính sách** (policy) $\pi_{\theta}(a|s)$ – xác suất chọn hành động $a$ ở trạng thái $s$.
@@ -41,8 +93,6 @@ Trong Học Tăng cường:
 - Với mỗi bước cập nhật, thu thập dữ liệu trải nghiệm $(s, a, r)$.
 - Ước lượng gradient.
 - Cập nhật $\theta \leftarrow \theta + \alpha \nabla J(\theta)$ để tăng xác suất sinh ra các hành động có phần thưởng cao.
-
-> GeoGebra trong link này có thể minh họa không gian tham số và hướng tăng dần của phần thưởng.
 
 ---
 
