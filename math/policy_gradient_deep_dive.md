@@ -14,19 +14,19 @@ Trong mô phỏng trực quan về quá trình tối ưu hóa chính sách này,
 
 #### 1. Hệ trục tọa độ
 
-* **Trục $x$ (Tham số $\theta$):** Biểu diễn không gian các tham số của chính sách (policy parameters). Việc di chuyển trên trục này tương ứng với việc điều chỉnh chính sách để tìm ra cấu hình tối ưu.
-* **Trục $y$ (Hàm mục tiêu J($\theta$)):** Biểu diễn giá trị của hàm mục tiêu, ví dụ như tổng phần thưởng kỳ vọng (expected return) mà đại lý (agent) nhận được.
+* **Trục $x$ (Tham số $\theta$):** Biểu diễn không gian các tham số của chính sách (policy). Việc di chuyển trên trục này tương ứng với việc điều chỉnh chính sách để tìm ra cấu hình tối ưu.
+* **Trục $y$ (Hàm mục tiêu J($\theta$)):** Biểu diễn giá trị của hàm mục tiêu, ví dụ như tổng phần thưởng kỳ vọng (expected return) mà agent nhận được.
 * **Đường cong (Hàm số):** Thể hiện một hàm lồi có đỉnh (hàm mục tiêu), nơi điểm cao nhất của đường cong đại diện cho chính sách tối ưu mà chúng ta muốn đạt được.
 
 #### 2. Ý nghĩa các điểm đặc trưng (A, B, C)
 
-* **Điểm A ($\theta_{old}$):** Nằm trên trục hoành, biểu diễn giá trị hiện tại của tham số $\theta$ trước khi cập nhật.
+* **Điểm A ($\theta_{old}=A$):** Nằm trên trục hoành, biểu diễn giá trị hiện tại của tham số $\theta$ trước khi cập nhật.
 
 * **Điểm B (J($\theta_{old}$)):**
-   * Là vị trí hiện tại của chính sách trên đường cong hiệu suất.
+   * Là vị trí hiện tại của chính sách trên đường cong mục tiêu.
    * Tại đây, ta tính toán **Gradient ($f'$ or $\nabla J$)** — chính là độ dốc của đường tiếp tuyến màu đen — để xác định hướng đi lên đỉnh.
 
-* **Điểm C (J($\theta_{new}$)):**
+* **Điểm C (J($\theta_{new}=A_{new}$)):**
    * Là vị trí dự kiến của chính sách sau khi thực hiện bước cập nhật.
    * Khoảng cách từ A đến vị trí mới dưới điểm C chính là $\Delta x$ (hay $\Delta \theta$), được tính bằng tích của **Learning Rate ($\alpha$)** và **Gradient**.
 
@@ -61,16 +61,16 @@ $$\theta_{new} = \theta_{old} + \alpha \cdot \nabla_{\theta} J(\theta)$$
 #### 1. Hệ trục tọa độ và các đường cong
 
 * **Trục $x$ (Tham số $\theta$):** Biểu diễn không gian tham số của chính sách.
-* **Trục $y$ (Hàm mục tiêu J($\theta$)):** Biểu diễn giá trị hiệu suất hoặc tổng phần thưởng kỳ vọng.
+* **Trục $y$ (Hàm mục tiêu J($\theta$)):** Biểu diễn giá trị tổng phần thưởng kỳ vọng.
 * **Đường cong màu xanh (Old Policy):** Biểu diễn phân phối xác suất của chính sách hiện tại trước khi cập nhật.
 * **Đường cong màu đỏ (New Policy):** Biểu diễn phân phối xác suất của chính sách mới sau khi tham số $\theta$ đã được điều chỉnh.
-* **Đường cong màu lục (Hàm mục tiêu):** Thể hiện bề mặt hiệu suất mà thuật toán đang cố gắng leo lên đỉnh cao nhất.
+* **Đường cong màu lục (Hàm mục tiêu):** Thể hiện bề mặt giá trị tổng phần thưởng kỳ vọng mà thuật toán đang cố gắng leo lên đỉnh cao nhất.
 
 #### 2. Ý nghĩa các điểm đặc trưng
 
 * **Điểm A:** Vị trí của tham số $\theta$ hiện tại trên trục hoành.
 * **Điểm $P_J$:** Giá trị của hàm mục tiêu $J(\theta)$ ứng với tham số hiện tại. Tại đây, đường tiếp tuyến màu đen cho biết **Gradient ($\nabla J$)**.
-* **Điểm $A_{new}$:** Vị trí mới của tham số sau khi thực hiện bước nhảy dựa trên tốc độ học (alpha) và gradient.
+* **Điểm $A_{new}$:** Vị trí mới của tham số sau khi thực hiện bước nhảy dựa trên tốc độ học ($\alpha$) và gradient.
 * **Mũi tên (Dịch chuyển):** Minh họa khoảng cách $\Delta x$ (hay $\Delta \theta$) mà tham số đã di chuyển để đẩy chính sách về phía tối ưu hơn.
 
 #### 3. Các thanh trượt điều khiển (Hyperparameters)
