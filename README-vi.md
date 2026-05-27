@@ -167,13 +167,19 @@ Xem biểu đồ Gantt chi tiết tại: **[docs/project-roadmap.md](./docs/proj
 
 ### Nền tảng Toán học
 
-Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh tham số $\theta$ của chính sách ngẫu nhiên $\pi_{\theta}(a|s)$.
+Tối ưu hóa phần thưởng kỳ vọng $J(\theta)$ bằng cách điều chỉnh tham số $\theta$ của chính sách ngẫu nhiên $\pi_\theta(a_t \mid s_t)$.
 
-$$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
+$$
+\nabla_\theta J(\theta)
+= \mathbb{E}_{\tau \sim \pi_\theta}
+\left[
+\sum_{t=0}^{T}\nabla_\theta \log \pi_\theta(a_t \mid s_t)G_t
+\right]
+$$
 
-- **$\pi_{\theta}(a_t|s_t)$**: Xác suất thực hiện hành động $a_t$ tại trạng thái $s_t$.
-- **$\hat{A}_{t}$**: Ước lượng lợi thế (Advantage) hoặc phần thưởng tích lũy $G_t$.
-- **Thủ thuật Đạo hàm Log**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
+- **$\pi_\theta(a_t \mid s_t)$**: Xác suất thực hiện hành động $a_t$ tại trạng thái $s_t$.
+- **$G_t$**: Reward-to-go, $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$.
+- **Thủ thuật Đạo hàm Log**: $\nabla_\theta f(\theta) = f(\theta)\nabla_\theta \log f(\theta)$.
 
 > _Chứng minh đầy đủ, xem [Báo cáo Thiết kế Dự án (PDR)](./docs/project-overview-pdr.md)._
 
