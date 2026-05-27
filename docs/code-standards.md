@@ -31,12 +31,12 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 
 Để đảm bảo các công thức toán học được hiển thị chính xác và đồng nhất trên GitHub (tránh lỗi font hoặc không render được), toàn team cần tuân thủ:
 
-### 5.1. Nhóm chỉ số dưới (Subscript Grouping) - BẮT BUỘC
+### 5.1. Ký hiệu thống nhất cho Policy Gradient
 
-- **Quy tắc:** Luôn sử dụng ngoặc nhọn `{}` cho tất cả các chỉ số dưới, ngay cả khi chỉ có một ký tự hoặc là ký tự Hy Lạp.
-- **Sai:** `\pi_\theta`, `\nabla_\theta`, `G_t`, `r_t`.
-- **Đúng:** `\pi_{\theta}`, `\nabla_{\theta}`, `G_{t}`, `r_{t}`.
-- _Lưu ý:_ Việc thiếu `{}` là nguyên nhân hàng đầu khiến GitHub không render được các ký tự như $\theta$ trong chỉ số dưới.
+- **Quy tắc:** Ký hiệu toán trong code comments, README, docs và slide phải khớp `docs/math-notation-word-equations.md`.
+- **Sai:** `\pi_\theta(a|s)`, `\ln \pi(A_t|S_t)`, `R_t`, `R_k`.
+- **Đúng:** `\pi_\theta(a_t \mid s_t)`, `\log \pi_\theta(a_t \mid s_t)`, `r_{t+1}`, `G_t`.
+- _Lưu ý:_ Giữ $\theta$ cho policy parameters; góc nghiêng CartPole dùng $\phi$ (`state[2]`).
 
 ### 5.2. Định dạng Khối công thức (Block Math)
 
@@ -47,7 +47,7 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
   Đây là văn bản mô tả.
 
   $$
-  J(\theta) = \mathbb{E}_{\tau \sim \pi_{\theta}} [R(\tau)]
+  J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)]
   $$
 
   Đây là văn bản tiếp theo.
@@ -58,8 +58,11 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 - **Quy tắc:** Không dùng ký tự Unicode toán học (như `θ`, `∇`, `π`) trực tiếp trong file Markdown. Luôn sử dụng lệnh LaTeX tương ứng.
 - **Lệnh phổ biến:**
   - `\theta`: Tham số chính sách.
-  - `\nabla_{\theta}`: Gradient theo theta.
-  - `\pi_{\theta}(a|s)`: Chính sách (Policy). (**Lưu ý:** Trong Markdown Table phải dùng `\mid` thay vì `|` và **phải thêm khoảng trắng** quanh dấu gạch dưới `_` để tránh vỡ bảng/lỗi font, ví dụ: `$\pi _ { \theta }(a \mid s)$`).
+  - `\phi`: Góc nghiêng của cột CartPole.
+  - `\nabla_\theta`: Gradient theo theta.
+  - `\pi_\theta(a_t \mid s_t)`: Chính sách (Policy). Trong Markdown Table phải dùng `\mid` thay vì `|` để tránh vỡ bảng.
+  - `G_t`: Reward-to-go.
+  - `r_{t+1}`: Immediate reward nhận sau transition từ time step `t`.
   - `\tau`: Quỹ đạo (Trajectory).
   - `\mathbb{E}`: Kỳ vọng (Expectation).
 
@@ -68,7 +71,10 @@ Nhằm đảm bảo sự đồng bộ trong team, chúng ta thống nhất tuân
 - Khi đặt tên biến hoặc comment trong code, hãy cố gắng giữ sự tương quan với ký hiệu toán học:
   - `learning_rate` hoặc `lr` tương ứng với $\alpha$.
   - `gamma` tương ứng với $\gamma$.
-  - `log_probs` tương ứng với $\ln \pi_{\theta}(a|s)$.
+  - `state` tương ứng với $s_t$; `next_state` tương ứng với $s_{t+1}$.
+  - `reward` tương ứng với $r_{t+1}$.
+  - `log_probs` tương ứng với $\log \pi_\theta(a_t \mid s_t)$.
+  - `returns` tương ứng với $G_t$.
 
 ### 5.5. Các lỗi render thường gặp trên GitHub Markdown
 
@@ -79,12 +85,12 @@ Những quy tắc sau giúp tránh các lỗi render công thức toán học tr
   - Đúng: `$J(\theta)$`
 
 - **Không escaped underscores:** Trong LaTeX, dấu `_` không cần escape. Việc thêm `\` trước `_` sẽ khiến GitHub hiển thị sai.
-  - Sai: `\pi\_{\theta}`, `\hat{A}\_t`
-  - Đúng: `\pi_{\theta}`, `\hat{A}_{t}`
+  - Sai: `\pi\_\theta`, `G\_t`
+  - Đúng: `\pi_\theta`, `G_t`
 
 - **Không dùng `*` thay cho `_` trong chỉ số dưới:** LaTeX chỉ nhận `_` cho subscript.
   - Sai: `\nabla*{\theta}`, `\pi*{\theta}`
-  - Đúng: `\nabla_{\theta}`, `\pi_{\theta}`
+  - Đúng: `\nabla_\theta`, `\pi_\theta`
 
 - **Block math `$$...$$` phải đứng một mình trên dòng riêng:** Không để chung dòng với text khác.
   - Sai: `Đây là công thức $$J(\theta)$$ trong văn bản.`
