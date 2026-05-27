@@ -125,6 +125,8 @@ def train_reinforce(env_name=DEFAULT_ENV, max_episodes=DEFAULT_EPISODES, lr=DEFA
         while not (done or truncated):
             action, log_prob = policy_net.select_action(state, device)
 
+            # env.step(action) sinh transition (s_t, a_t, r_{t+1}, s_{t+1}).
+            # next_state ứng với s_{t+1}; reward ứng với immediate reward r_{t+1}.
             next_state, reward, done, truncated, _ = env.step(action)
 
             # Lưu trữ history
@@ -133,7 +135,8 @@ def train_reinforce(env_name=DEFAULT_ENV, max_episodes=DEFAULT_EPISODES, lr=DEFA
 
             state = next_state
 
-        # Kết thúc 1 episode, tổng hợp kết quả
+        # Kết thúc 1 episode, total_reward là một mẫu Monte-Carlo của
+        # trajectory return R(tau); episode_rewards dùng để ước lượng J(\theta).
         total_reward = sum(rewards)
         episode_rewards.append(total_reward)
 
