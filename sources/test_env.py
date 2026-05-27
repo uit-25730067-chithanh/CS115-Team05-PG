@@ -5,11 +5,11 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 
-def test_environment():
+def test_environment(render_mode=None):
     """Sanity check: chạy 1 episode random để verify môi trường hoạt động."""
     env = None
     try:
-        env = gym.make("CartPole-v1", render_mode="human")
+        env = gym.make("CartPole-v1", render_mode=render_mode)
         state, info = env.reset()
         print("Khởi tạo CartPole-v1 thành công!")
         print(f"State shape: {env.observation_space.shape}")
@@ -121,5 +121,5 @@ def evaluate_baseline(env_name="CartPole-v1", n_episodes=100, save_dir=None):
 
 
 if __name__ == "__main__":
-    test_environment()
+    test_environment(render_mode="human")
     evaluate_baseline(n_episodes=100)

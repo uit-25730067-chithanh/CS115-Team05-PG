@@ -2,14 +2,15 @@ import torch
 
 def compute_returns(rewards, gamma):
     """
-    Tính Discounted Returns (G_t) cho một episode.
+    Tính discounted reward-to-go G_t cho một episode.
     
     Args:
-        rewards (list): Mảng phần thưởng môi trường [R_0, R_1, ..., R_T]
+        rewards (list): Mảng phần thưởng môi trường [r_1, r_2, ..., r_{T+1}]
         gamma (float): Discount factor
         
     Returns:
-        list: Returns G_t cho mỗi time step, trong đó G_t = sum_{k=t}^T (gamma^{k-t} * R_k)
+        list: Returns G_t cho mỗi time step, trong đó
+            G_t = sum_{k=t}^T gamma^{k-t} * r_{k+1}
     """
     returns = []
     G_t = 0
@@ -22,9 +23,12 @@ def compute_returns(rewards, gamma):
     return returns
 
 def update_policy(optimizer, log_probs, returns, device="cpu"):
-    """
-    Thực hiện bước cập nhật Gradient Ascent (nhưng trong code là Gradient Descent của Loss âm)
-    dựa trên Policy Gradient Theorem.
+    r"""
+    Thực hiện bước cập nhật theo Policy Gradient Theorem.
+
+    Trong PyTorch, policy_loss là L(\theta):
+        L(\theta) = -sum_t log pi_theta(a_t | s_t) * G_t
+    Optimizer minimize L(\theta), tương đương maximize objective J(\theta).
     
     Args:
         optimizer: torch.optim optimizer
@@ -35,18 +39,20 @@ def update_policy(optimizer, log_probs, returns, device="cpu"):
     """
     returns = torch.tensor(returns, dtype=torch.float32).to(device)
     
-    # Kỹ thuật quan trọng: Chuẩn hóa returns (Baseline cơ bản nhất) để giảm Variance
-    # (G_t - mean(G)) / (std(G) + epsilon)
-    # Epsilon (1e-8) giúp tránh chia cho 0
+    # Kỹ thuật quan trọng: standardization làm baseline đơn giản để giảm variance.
+    # G_t <- (G_t - mu(G)) / (sigma(G) + \varepsilon)
+    # \varepsilon = 1e-8 giúp tránh chia cho 0.
     if len(returns) > 1:
         returns = (returns - returns.mean()) / (returns.std() + 1e-8)
         
     policy_loss = []
     
     for log_prob, G_t in zip(log_probs, returns):
-        # Loss = - log_prob(a|s, theta) * G_t
-        # Đây là log-derivative trick: gradient of J(theta) = E[ grad log pi(a|s) * G_t ]
-        # Dấu âm vì PyTorch thực hiện Gradient Descent mà ta cần Gradient Ascent cho J(theta)
+        # Loss = -log pi_theta(a_t | s_t) * G_t
+        # Đây là log-derivative trick:
+        # grad J(\theta) = E[grad log pi_theta(a_t | s_t) * G_t]
+        # Dấu âm vì PyTorch thực hiện gradient descent trên L(theta),
+        # tương đương gradient ascent cho J(\theta).
         policy_loss.append(-log_prob * G_t)
         
     # Tính tổng loss của toàn memory (episode)
