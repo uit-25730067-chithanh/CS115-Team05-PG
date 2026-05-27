@@ -24,17 +24,22 @@ graph TD
 
 ### Tại sao cần chứng minh toán học trước?
 
-1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_{\theta} J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng Log-derivative trick trong code.
-2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi, G_{t}, \theta$) khớp hoàn toàn với lý thuyết.
+1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_\theta J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng log-derivative trick trong code.
+2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi_\theta(a_t \mid s_t)$, $G_t$, $\theta$) khớp hoàn toàn với lý thuyết.
 
 ## 2. Các thành phần chính
 
 ### A. Core Algorithm (`sources/reinforce.py`)
 
-Triển khai công thức cập nhật: $\theta \leftarrow \theta + \alpha G_{t} \nabla_{\theta} \ln \pi(A_{t}|S_{t})$.
+Triển khai công thức cập nhật mẫu của REINFORCE:
 
-- **Discounted Returns**: Tính toán tổng phần thưởng từ cuối tập (episode) về đầu để tối ưu $O(T)$.
-- **Baseline**: Sử dụng chuẩn hóa (normalization) cho $G_t$ để giảm phương sai (variance), giúp Agent học ổn định hơn.
+$$
+\theta \leftarrow \theta
++ \alpha \sum_{t=0}^{T}G_t\nabla_\theta \log \pi_\theta(a_t \mid s_t)
+$$
+
+- **Discounted Returns**: Tính reward-to-go $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$ từ cuối tập (episode) về đầu để tối ưu $O(T)$.
+- **Baseline**: Sử dụng standardization $G_t \leftarrow \frac{G_t - \mu(G)}{\sigma(G) + \varepsilon}$ để giảm phương sai (variance), giúp Agent học ổn định hơn.
 
 ### B. Policy Network (`sources/models/policy.py`)
 

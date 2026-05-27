@@ -32,7 +32,7 @@ Môi trường trả reward `+1` cho mỗi time step mà cột vẫn được gi
 Thành phần này hiện thực stochastic policy:
 
 $$
-\pi_\theta(a \mid s)
+\pi_\theta(a_t \mid s_t)
 $$
 
 Trong code, `forward()` trả về xác suất, ví dụ `[0.45, 0.55]`, nghĩa là policy hiện tại gán 45% xác suất cho action 0 và 55% xác suất cho action 1.
@@ -50,7 +50,11 @@ Trong evaluation, `scripts/evaluate.py` dùng `torch.argmax(probs, dim=-1)` bên
 Policy Gradient Theorem dùng công thức:
 
 $$
-\nabla_\theta J(\theta) = \mathbb{E}\left[\nabla_\theta \log \pi_\theta(a_t \mid s_t) G_t\right]
+\nabla_\theta J(\theta)
+= \mathbb{E}_{\tau \sim \pi_\theta}
+\left[
+\sum_{t=0}^{T}\nabla_\theta \log \pi_\theta(a_t \mid s_t)G_t
+\right]
 $$
 
 Đối tượng quan trọng là `log_prob`, không chỉ là `prob`. Trong `select_action()`, code lưu:
@@ -72,7 +76,7 @@ PyTorch giữ computation graph từ tham số mạng đến `log_prob`, nên `p
 `compute_returns(rewards, gamma)` trong `sources/reinforce.py` tính discounted Monte-Carlo return:
 
 $$
-G_t = R_t + \gamma R_{t+1} + \gamma^2 R_{t+2} + \dots
+G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}
 $$
 
 Code duyệt ngược qua danh sách rewards:
@@ -85,10 +89,17 @@ Cách này hiệu quả vì mỗi giá trị mới tái sử dụng return đã 
 
 ## 6. `update_policy()`: vì sao loss có dấu âm
 
-Mục tiêu toán học là maximize expected return `J(theta)`. REINFORCE cần cập nhật tham số theo hướng gradient ascent:
+Mục tiêu toán học là maximize expected return $J(\theta)$:
 
 $$
-\theta \leftarrow \theta + \alpha G_t \nabla_\theta \log \pi_\theta(a_t \mid s_t)
+J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta}[R(\tau)]
+$$
+
+REINFORCE cần cập nhật tham số theo hướng gradient ascent:
+
+$$
+\theta \leftarrow \theta
++ \alpha \sum_{t=0}^{T}G_t\nabla_\theta \log \pi_\theta(a_t \mid s_t)
 $$
 
 Optimizer của PyTorch mặc định minimize loss. Để biến bài toán maximize thành minimize, implementation dùng:
@@ -97,15 +108,22 @@ Optimizer của PyTorch mặc định minimize loss. Để biến bài toán max
 policy_loss.append(-log_prob * G_t)
 ```
 
-Do đó, minimize `-log_prob * G_t` tương đương maximize `log_prob * G_t`.
+Đây là hiện thực của loss:
+
+$$
+L(\theta)
+= -\sum_{t=0}^{T}\log \pi_\theta(a_t \mid s_t)G_t
+$$
+
+Do đó, $\min L(\theta) \equiv \max J(\theta)$.
 
 Hàm này cũng chuẩn hóa returns khi episode có nhiều hơn một step:
 
 $$
-G_t \leftarrow \frac{G_t - \mu(G)}{\sigma(G) + \epsilon}
+G_t \leftarrow \frac{G_t - \mu(G)}{\sigma(G) + \varepsilon}
 $$
 
-Đây là một dạng baseline đơn giản để giảm variance. Nó không đổi mục tiêu học tổng thể, nhưng giúp gradient bớt nhiễu hơn.
+Trong đó $\mu(G)$ là mean returns, $\sigma(G)$ là standard deviation của returns, và $\varepsilon$ là epsilon nhỏ để tránh chia cho 0. Đây là một dạng baseline đơn giản để giảm variance. Nó không đổi mục tiêu học tổng thể, nhưng giúp gradient bớt nhiễu hơn.
 
 ## 7. `scripts/train.py`: vòng đời của một training run
 
@@ -173,13 +191,19 @@ python3 scripts/visualize.py --experiment outputs/experiments/<experiment-dir> -
 | Toán học                            | Code                                                  | File                                           |
 | ----------------------------------- | ----------------------------------------------------- | ---------------------------------------------- |
 | $s_t$                               | `state`                                               | `sources/train.py`                             |
+| $s_{t+1}$                           | `next_state`                                          | `sources/train.py`                             |
+| $s_t \in \mathbb{R}^4$              | `state_dim = 4`                                       | `sources/models/policy.py`, `sources/train.py` |
 | $a_t$                               | `action`                                              | `sources/models/policy.py`, `sources/train.py` |
-| $\pi_\theta(a \mid s)$              | `PolicyNetwork.forward()`                             | `sources/models/policy.py`                     |
+| $r_{t+1}$                           | `reward`                                              | `sources/train.py`                             |
+| $R(\tau)$                           | `total_reward = sum(rewards)`                         | `sources/train.py`                             |
+| $J(\theta)$                         | `episode_rewards`, `total_reward`                     | `sources/train.py`                             |
+| $\pi_\theta(a_t \mid s_t)$          | `PolicyNetwork.forward()`                             | `sources/models/policy.py`                     |
 | Sample action từ policy             | `Categorical(probs).sample()`                         | `sources/models/policy.py`                     |
 | $\log \pi_\theta(a_t \mid s_t)$     | `m.log_prob(action)`                                  | `sources/models/policy.py`                     |
 | Episode rewards                     | `rewards.append(reward)`                              | `sources/train.py`                             |
 | $G_t$                               | `compute_returns()`                                   | `sources/reinforce.py`                         |
 | Chuẩn hóa return                    | `(returns - returns.mean()) / (returns.std() + 1e-8)` | `sources/reinforce.py`                         |
+| $L(\theta)$                         | `policy_loss`                                         | `sources/reinforce.py`                         |
 | $-\log \pi_\theta(a_t \mid s_t)G_t$ | `policy_loss.append(-log_prob * G_t)`                 | `sources/reinforce.py`                         |
 | Gradient update                     | `policy_loss.backward()` và `optimizer.step()`        | `sources/reinforce.py`                         |
 | Training entrypoint                 | `train_reinforce()`                                   | `sources/train.py`, `scripts/train.py`         |
@@ -205,27 +229,22 @@ Evidence kỳ vọng:
 
 Evidence đã chạy cho PR:
 
-```bash
-python3 scripts/train.py --episodes 50 --seed 42 --save-dir tmp/code05-review-run-20260509_102917
-python3 scripts/evaluate.py --checkpoint tmp/code05-review-run-20260509_102917/best_policy.pth --episodes 10 --save-dir tmp/code05-review-eval-20260509_102917
-```
+**Note:** Evidence tạm thời từ validation run đã được dọn dẹp theo tmp cleanup policy. Metrics gốc được ghi trong PR #40 description và Qodo review comment.
 
-Console output chính:
+Console output chính (từ PR #40):
 
 ```text
 Bắt đầu huấn luyện REINFORCE trên môi trường CartPole-v1...
 Đang sử dụng Apple MPS device
 Episode 50       Tính trung bình 50 tập: 20.18   Best: 51.00
-Huấn luyện hoàn tất! Kết quả lưu tại: tmp/code05-review-run-20260509_102917
-Training outputs saved to: tmp/code05-review-run-20260509_102917
-Evaluation outputs saved to: tmp/code05-review-eval-20260509_102917
+Huấn luyện hoàn tất!
 Mean reward: 9.60
 ```
 
-Kết quả training/evaluation:
+Kết quả training/evaluation (từ PR #40):
 
-- `tmp/code05-review-run-20260509_102917/metrics.txt`: `mean_last_50 = 20.1800`, `std_last_50 = 9.3993`, `best_reward = 51.0000`, `final_reward = 12.0000`, `total_episodes = 50`.
-- `tmp/code05-review-eval-20260509_102917/eval_stats.txt`: `mean_reward = 9.6000`, `std_reward = 0.6633`, `best_reward = 11.0000`, `worst_reward = 9.0000`.
+- Training: `mean_last_50 = 20.1800`, `std_last_50 = 9.3993`, `best_reward = 51.0000`, `final_reward = 12.0000`, `total_episodes = 50`.
+- Evaluation: `mean_reward = 9.6000`, `std_reward = 0.6633`, `best_reward = 11.0000`, `worst_reward = 9.0000`.
 
 Flakiness status cho PR:
 

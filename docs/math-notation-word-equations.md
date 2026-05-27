@@ -187,7 +187,7 @@ $$
 
 **Ghi chú:** Policy Gradient đang tối đa hóa expected return, còn trong PyTorch thì dùng loss âm để optimizer minimize.
 
-**Áp dụng cho Code:** Trong `sources/reinforce.py`, `optimizer.step()` sau `policy_loss.backward()` thực hiện gradient descent trên loss âm, tương đương gradient ascent trên $J(	heta)$.
+**Áp dụng cho Code:** Trong `sources/reinforce.py`, `optimizer.step()` sau `policy_loss.backward()` thực hiện gradient descent trên loss âm, tương đương gradient ascent trên $J(\theta)$.
 
 ## 9. PyTorch loss
 
@@ -208,7 +208,7 @@ $$
 
 **Ghi chú:** Đây là cầu nối giữa công thức gradient ascent và cơ chế gradient descent của optimizer.
 
-**Áp dụng cho Code:** `sources/reinforce.py:50` `policy_loss.append(-log_prob * G_t)` là hiện thực của $-\log \pi_	heta(a_t \mid s_t)G_t$.
+**Áp dụng cho Code:** `sources/reinforce.py:50` `policy_loss.append(-log_prob * G_t)` là hiện thực của $-\log \pi_\theta(a_t \mid s_t)G_t$.
 
 ## 10. Return normalization symbols
 

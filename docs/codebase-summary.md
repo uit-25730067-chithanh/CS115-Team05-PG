@@ -25,11 +25,11 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 
 1. **`sources/train.py`**: Điểm neo thực thi. Khởi tạo `gymnasium`, cấu hình PyTorch, thiết lập Hyperparameters, quản lý vòng lặp Training, nhận `seed`/`hidden_dim`, và lưu output tái lập gồm `rewards.txt`, `run_config.txt`, `metrics.txt`.
 2. **`sources/reinforce.py`**: Chứa thuật toán Policy Gradient thuần tuý.
-   - $G_{t} = R_{t} + \gamma R_{t+1} + \dots + \gamma^{T-t} R_{T}$
+   - $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$
    - Thuật toán lặp lùi từ phần thưởng cuối cùng về 0 để tối ưu tốc độ.
 3. **Policy Update (Cập nhật Weights $\theta$)**:
-   - Áp dụng trừ Baseline đơn giản: $G_{t} = \frac{G_{t} - \mu(G)}{\sigma(G) + \epsilon}$ để cắt bớt Variance.
-   - Lan truyền ngược (Backpropagation). Loss: $- \ln \pi(A_{t} | S_{t}) \cdot G_{t}$.
+   - Áp dụng standardization làm baseline đơn giản: $G_t \leftarrow \frac{G_t - \mu(G)}{\sigma(G) + \varepsilon}$ để cắt bớt Variance.
+   - Lan truyền ngược (Backpropagation). Loss: $L(\theta) = -\sum_{t=0}^{T}\log \pi_\theta(a_t \mid s_t)G_t$.
 4. **`sources/models/policy.py`**: Chứa định nghĩa kiến trúc mạng nơ-ron `PolicyNetwork`. Trả về Softmax phân bố ngẫu nhiên để Sample hành động. Cung cấp hàm `select_action()`.
 5. **`sources/test_env.py`**: Kiểm tra môi trường CartPole-v1 và chạy random baseline 100 episodes.
 6. **`scripts/train.py`**: CLI entrypoint cho training, hỗ trợ `--env`, `--episodes`, `--lr`, `--gamma`, `--hidden-dim`, `--seed`, `--save-dir`.
