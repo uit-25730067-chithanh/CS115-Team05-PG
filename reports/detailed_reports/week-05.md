@@ -17,7 +17,7 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
   - Quyết định chiến lược **Math Strategy**: Tập trung toán ứng dụng (Applied Math), giải thích công thức qua ví dụ thực tế CartPole-v1 thay vì lý thuyết thuần túy.
 
 - **Kỹ thuật (Code Lead) — PR #30 (merged):**
-  - Tinh chỉnh logic `reinforce.py`: cải thiện độ ổn định huấn luyện, bổ sung comment nối liền **log-derivative trick** với nền tảng toán học (`J(theta)` gradient ascent).
+  - Tinh chỉnh logic `reinforce.py`: cải thiện độ ổn định huấn luyện, bổ sung comment nối liền **log-derivative trick** với nền tảng toán học ($J(\theta)$ gradient ascent).
   - Nâng cấp `train.py`: thêm hệ thống **timestamped output directories**, lưu `best_policy.pth` dựa trên reward tốt nhất, và logging có cấu trúc (in log mỗi 50 episode kèm best reward).
   - Đồng bộ hóa `README.md`, `README-vi.md`, `docs/installation.md` và kiến trúc hệ thống cho rõ ràng hơn.
   - Xóa biểu đồ tĩnh cũ, chuyển sang tạo động `training_curve.png` trong folder `outputs/run_YYYYMMDD_HHMMSS/`.

@@ -76,7 +76,7 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 
 ### ✅ Đã hoàn thành
 
-- Đã tiếp tục hoàn thiện phần toán sau tuần 05, tập trung vào Gradient Ascent, Objective Function J(θ), Log-derivative Trick và cách liên hệ với Policy Gradient.
+- Đã tiếp tục hoàn thiện phần toán sau tuần 05, tập trung vào Gradient Ascent, Objective Function $J(\theta)$, Log-derivative Trick và cách liên hệ với Policy Gradient.
 - Đã phối hợp với phần code bằng cách chạy thử nghiệm huấn luyện trên Windows cho CartPole-v1.
 - Đã thêm kết quả Windows training baseline và kết quả huấn luyện hội tụ:
   - 1000 episodes
@@ -103,7 +103,7 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 - Hoàn tất review PR #42 và hỗ trợ sửa các lỗi formatting còn lại nếu cần.
 - Tạo PR hoặc merge phần tài liệu deep dive PDF từ branch feat/math-docs-and-config vào main.
 - Cập nhật trạng thái các issue MATH-02, MATH-03 sau khi phần toán được chốt.
-- Hỗ trợ nhóm đưa phần Gradient Ascent, Objective Function J(θ), Log-derivative Trick vào báo cáo chính.
+- Hỗ trợ nhóm đưa phần Gradient Ascent, Objective Function $J(\theta)$, Log-derivative Trick vào báo cáo chính.
 - Tiếp tục hỗ trợ phần code/báo cáo nếu nhóm cần đối chiếu giữa công thức toán và kết quả huấn luyện CartPole-v1.
 
 ---

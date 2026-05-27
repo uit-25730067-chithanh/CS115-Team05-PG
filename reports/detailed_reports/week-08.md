@@ -93,7 +93,7 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 - PR #45 là draft PR hỗ trợ phần report cho Quỳnh, không phải phần chính của mình nhưng có liên quan đến tiến độ tổng hợp báo cáo nhóm.
 - Các issue toán được assign cho mình vẫn còn mở, đặc biệt:
   - #3 [MATH-02] Chứng minh PG Theorem & Log-derivative Trick
-  - #5 [MATH-03] Tài liệu Objective Function J(θ) & Gradient Ascent
+  - #5 [MATH-03] Tài liệu Objective Function $J(\theta)$ & Gradient Ascent
   - #7 [MATH-04] Giải trình Logic chứng minh PG cho team
   - #16 [MATH-05] Review toán trong Report & Đối chiếu chứng minh
 
@@ -103,7 +103,7 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
 - Review và hỗ trợ chốt PR #42 để phần deep dive Policy Gradient có thể được merge vào main.
 - Đối chiếu các tài liệu Chapter 2 với phần report chính để đảm bảo ký hiệu, công thức và cách diễn giải thống nhất.
 - Cập nhật hoặc đóng các issue MATH-02, MATH-03, MATH-04, MATH-05 sau khi phần toán được review/chốt chính thức.
-- Hỗ trợ nhóm đưa nội dung chứng minh Policy Gradient, Log-derivative Trick, Objective Function J(θ) và Gradient Ascent vào bản báo cáo cuối.
+- Hỗ trợ nhóm đưa nội dung chứng minh Policy Gradient, Log-derivative Trick, Objective Function $J(\theta)$ và Gradient Ascent vào bản báo cáo cuối.
 
 ---
 
