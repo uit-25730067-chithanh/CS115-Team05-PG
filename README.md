@@ -167,13 +167,19 @@ View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap
 
 ### The Math
 
-Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_{\theta}(a|s)$.
+Optimize expected reward $J(\theta)$ by adjusting parameters $\theta$ of stochastic policy $\pi_\theta(a_t \mid s_t)$.
 
-$$\nabla_{\theta} J(\theta) = \mathbb{E}_{\pi_{\theta}} \left[ \sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}(a_t|s_t) \, \hat{A}_t \right]$$
+$$
+\nabla_\theta J(\theta)
+= \mathbb{E}_{\tau \sim \pi_\theta}
+\left[
+\sum_{t=0}^{T}\nabla_\theta \log \pi_\theta(a_t \mid s_t)G_t
+\right]
+$$
 
-- **$\pi_{\theta}(a_t|s_t)$**: Probability of action $a_t$ in state $s_t$.
-- **$\hat{A}_{t}$**: Advantage estimate or cumulative return $G_t$.
-- **Log-derivative Trick**: $\nabla_{\theta} \pi_{\theta}(a|s) = \pi_{\theta}(a|s) \nabla_{\theta} \log \pi_{\theta}(a|s)$.
+- **$\pi_\theta(a_t \mid s_t)$**: Probability of action $a_t$ in state $s_t$.
+- **$G_t$**: Reward-to-go, $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$.
+- **Log-derivative Trick**: $\nabla_\theta f(\theta) = f(\theta)\nabla_\theta \log f(\theta)$.
 
 > _For the full derivation, see our [Project Design Report (PDR)](./docs/project-overview-pdr.md)._
 

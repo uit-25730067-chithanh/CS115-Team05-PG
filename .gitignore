@@ -58,6 +58,9 @@ dist/
 tmp/
 notes/
 scratch/
+slide/
+docs/journals
+docs/knowledge-base
 
 # GitHub Project Management
 .github-management/
