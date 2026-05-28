@@ -64,3 +64,11 @@ docs/knowledge-base
 
 # GitHub Project Management
 .github-management/
+
+# Generated RL outputs
+outputs/run_*/
+outputs/eval_*/
+outputs/baseline_*/
+outputs/experiments/
+outputs/figures/
+outputs/test_env/

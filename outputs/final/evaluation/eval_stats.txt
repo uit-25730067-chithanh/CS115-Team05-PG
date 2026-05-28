@@ -1,0 +1,10 @@
+checkpoint: outputs/final/reinforce-cartpole-v1/best_policy.pth
+env: CartPole-v1
+episodes: 10
+hidden_dim: 128
+seed: 123
+device: cpu
+mean_reward: 480.5000
+std_reward: 58.5000
+best_reward: 500.0000
+worst_reward: 305.0000

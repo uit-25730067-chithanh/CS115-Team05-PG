@@ -1,11 +1,14 @@
 import gymnasium as gym
 import torch
 import torch.optim as optim
-import matplotlib.pyplot as plt
+import matplotlib
 import numpy as np
 import os
 
 from datetime import datetime
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 # Sử dụng paths tương đối đối với module gốc
 from models.policy import PolicyNetwork
