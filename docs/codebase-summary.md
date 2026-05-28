@@ -9,7 +9,7 @@ CS115-Team05-PG/
 ├── data/       # Lưu trữ dữ liệu log, checkpoints (được ignore)
 ├── docs/       # Tài liệu dự án (PDR, standards, architecture, knowledge)
 ├── math/       # Các file tĩnh LaTeX (chứng minh công thức toán học)
-├── outputs/    # Kết quả training (model checkpoints, training curve) theo timestamp
+├── outputs/    # Kết quả training/evaluation và figures; chỉ nên track artifact đã chọn lọc
 ├── notes/      # Ghi chú cá nhân & Nhật ký tiến độ/Journal (được ignore)
 ├── plans/      # Theo dõi lộ trình Agile/Kanban (được ignore)
 ├── reports/    # Báo cáo hàng tuần (Word/Markdown)
@@ -41,5 +41,6 @@ Thư mục `sources/` chứa toàn bộ thành phần chính của giải thuậ
 12. **`outputs/baseline_YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy baseline trong `test_env.py`, chứa `baseline_curve.png`, `baseline_stats.txt` và `baseline_log.txt`.
 13. **`outputs/experiments/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy hyperparameter experiments, chứa các thư mục `config-XXX-seed-YY/` và `summary.md` để chọn cấu hình tốt nhất.
 14. **`outputs/figures/YYYYMMDD_HHMMSS/`**: Thư mục sinh ra sau khi chạy visualization, chứa `learning_curve_best.png`, `baseline_vs_trained.png`, `hp_comparison.png`, `summary_grid.png` và `figure_summary.txt`.
-15. **`docs/code-logic-explanation.md`**: Tài liệu giải thích logic CODE-05 bằng tiếng Việt, gồm outline REINFORCE, bảng math-to-code, demo commands và checklist Q&A human gate.
-16. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.
+15. **Output policy**: Các run timestamp là generated artifacts. Repo public chỉ nên giữ một bộ kết quả chọn lọc để làm bằng chứng; các run mới sinh ra trong quá trình dev nên được ignore.
+16. **`docs/code-logic-explanation.md`**: Tài liệu giải thích logic CODE-05 bằng tiếng Việt, gồm outline REINFORCE, bảng math-to-code, demo commands và checklist Q&A human gate.
+17. **`requirements.txt`**: Khai báo dependency chính gồm `gymnasium[classic-control]`, `torch`, `numpy`, `matplotlib`.

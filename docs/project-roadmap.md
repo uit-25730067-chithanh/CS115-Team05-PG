@@ -1,6 +1,6 @@
 # Lộ trình Dự án
 
-Dưới đây là lịch trình làm việc và lộ trình phát triển chính cho CS115-Team05, bám sát theo kế hoạch song song hóa. Tính đến Tuần 07, nhánh công việc Code đã được làm trước tiến độ để dành thời gian cho toán, báo cáo, demo và đóng gói cuối kỳ.
+Dưới đây là lịch trình làm việc và lộ trình phát triển chính cho CS115-Team05, bám sát theo kế hoạch song song hóa. Tính đến ngày 27/05/2026, code, báo cáo cuối và slide thuyết trình đã hoàn thành; phần còn lại là đóng gói nộp bài và dọn repository public.
 
 ## 🗺️ Lộ trình tổng thể (Biểu đồ Gantt)
 
@@ -27,11 +27,11 @@ gantt
     Đánh giá & Biểu đồ (Thanh/Quỳnh)  :done, des6, 2026-05-04, 7d
 
     section GĐ 4: Báo cáo & Slide
-    Soạn thảo Báo cáo (Quỳnh/Thanh)   :active, des7, 2026-04-13, 60d
-    Slide thuyết trình (Quỳnh)        :active, des8, 2026-06-15, 10d
+    Soạn thảo Báo cáo (Quỳnh/Thanh)   :done, des7, 2026-04-13, 45d
+    Slide thuyết trình (Quỳnh)        :done, des8, 2026-05-21, 7d
 
     section GĐ 5: Hoàn tất
-    Hoàn thiện (Nhóm)                 :des9, 2026-06-25, 5d
+    Đóng gói repo public (Nhóm)       :active, des9, 2026-05-28, 5d
     Nộp bài chính thức                :milestone, des10, 2026-07-01, 0d
 ```
 
@@ -49,7 +49,7 @@ gantt
 > | W06  | 27/04–03/05 | ✅ Hoàn thành — Nghỉ lễ theo kế hoạch, không giao thêm task nặng          |
 > | W07  | 04/05–10/05 | ✅ Code đi trước tiến độ — CODE-05..08 hoàn thành, tiếp tục toán/báo cáo  |
 
-## ✅ Mốc đã hoàn thành tính đến Tuần 07
+## ✅ Mốc đã hoàn thành tính đến ngày 27/05/2026
 
 | Nhóm việc             | Mốc                                                                 | Trạng thái             | Bằng chứng chính                                                                          |
 | :-------------------- | :------------------------------------------------------------------ | :--------------------- | :---------------------------------------------------------------------------------------- |
@@ -59,13 +59,13 @@ gantt
 | Hyperparameter tuning | Grid nhỏ, ranking theo mean last-50/std/best reward                 | ✅ Hoàn thành          | `scripts/run_experiments.py`, `outputs/experiments/`                                      |
 | Visualization         | Figure report-ready, baseline vs trained, HP comparison             | ✅ Hoàn thành          | `scripts/visualize.py`, `outputs/figures/`                                                |
 | Logic explanation     | Tài liệu giải trình code, PR #40 coi như đã merge vào `origin/main` | ✅ Hoàn thành kỹ thuật | `docs/`, PR #40, issue #11                                                                |
+| Báo cáo & slide       | Report cuối và slide thuyết trình                                  | ✅ Hoàn thành          | File cuối giữ riêng cho submission, không public link trong repo                          |
 
 ## 🔄 Trọng tâm còn lại
 
-1. **Toán & báo cáo**: hoàn thiện mạch chứng minh, giải thích trực quan và đưa vào report Word.
-2. **Kết quả cuối kỳ**: chọn final run, final evaluation, figure cuối và demo package.
-3. **Human quality gates**: walkthrough/Q&A và xác nhận leader nếu ticket yêu cầu bằng chứng người thật.
-4. **Submission prep**: slide, demo, video hoặc gói nộp theo deadline 01/07/2026.
+1. **Repository public-readiness**: cập nhật README/docs, dọn output policy, test smoke.
+2. **Submission prep**: đóng gói file cuối và nộp theo deadline 01/07/2026.
+3. **Post-submission archive**: giữ report/slide protected, không public link trong repo.
 
 ---
 
@@ -84,5 +84,5 @@ gantt
 1. **M1: Nền tảng (W3-W5)** — Chứng minh định lý PG + thiết lập môi trường. ✅ Hoàn thành.
 2. **M2: Thuật toán (W6-W8)** — Mạng nơ-ron + triển khai REINFORCE. ✅ Hoàn thành sớm.
 3. **M3: Huấn luyện (W9-W11)** — Huấn luyện, tối ưu tham số, vẽ biểu đồ. ✅ Hoàn thành sớm phần code.
-4. **M4: Báo cáo (W12-W13)** — Hoàn thiện báo cáo + slide thuyết trình. 🔄 Đang tiến hành.
-5. **M5: Nộp bài (W14-W15)** — Chỉnh theo góp ý GV + nộp chính thức. ⏳ Sắp tới.
+4. **M4: Báo cáo (W12-W13)** — Hoàn thiện báo cáo + slide thuyết trình. ✅ Hoàn thành.
+5. **M5: Nộp bài (W14-W15)** — Đóng gói repo/file cuối + nộp chính thức. 🔄 Đang chuẩn bị.

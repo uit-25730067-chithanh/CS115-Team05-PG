@@ -28,13 +28,13 @@ Dự án tập trung vào việc áp dụng Lý thuyết xác suất và Đạo 
 
 ## 3. Trạng thái hiện tại
 
-Tính đến Tuần 07, dự án đã đi trước phần triển khai Code so với roadmap ban đầu.
+Tính đến ngày 27/05/2026, dự án đã hoàn thành phần code, báo cáo và slide. Phần còn lại là đóng gói nộp bài và dọn repository trước khi public.
 
 | Mảng         | Trạng thái                   | Ghi chú                                                                               |
 | :----------- | :--------------------------- | :------------------------------------------------------------------------------------ |
-| Toán         | 🔄 Đang hoàn thiện           | Chứng minh Policy Gradient đã có nền; cần tiếp tục diễn giải dễ hiểu trong báo cáo.   |
-| Code         | ✅ Hoàn thành sớm phần chính | Policy, REINFORCE, train/evaluate CLI, tuning, visualization, logic explanation.      |
-| Báo cáo      | 🔄 Đang tiến hành            | Report Word tiếp tục là nơi tổng hợp cuối; `reports/` chỉ ghi nhận vận hành tuần/họp. |
-| Demo cuối kỳ | ⏳ Sắp tới                   | Cần final run, final evaluation, chọn figure và chuẩn bị package nộp.                 |
+| Toán         | ✅ Hoàn thành                | Chứng minh Policy Gradient đã được đưa vào report cuối.                               |
+| Code         | ✅ Hoàn thành                | Policy, REINFORCE, train/evaluate CLI, tuning, visualization, logic explanation.      |
+| Báo cáo      | ✅ Hoàn thành                | Report cuối được giữ riêng cho submission, không public link trong repo.              |
+| Demo cuối kỳ | ✅ Hoàn thành                | Slide và demo assets được giữ riêng cho submission/presentation package.              |
 
 > **Nhật ký hội họp đầy đủ:** `reports/weekly_updates/` (chính thống). Chi tiết theo từng người: `reports/detailed_reports/`.
