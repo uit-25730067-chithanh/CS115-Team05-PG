@@ -84,7 +84,7 @@ CS115-Team05-PG/
 │   ├── test_env.py         # Kiểm tra môi trường
 │   └── reinforce.py        # Cốt lõi thuật toán REINFORCE
 │
-└── outputs/                # Kết quả train/evaluate và figures có thể tái lập
+└── outputs/                # Kết quả final chọn lọc; run mới sinh ra được ignore
 ```
 
 > _Chi tiết phân công trách nhiệm theo module, xem [Quy trình làm việc Nhóm](./docs/project-overview-pdr.md)._
@@ -124,15 +124,21 @@ python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 
 Trọng số chính sách, raw rewards, metrics và đường cong học tập sẽ được lưu trong thư mục con có gắn timestamp dưới `outputs/` (ví dụ: `outputs/run_YYYYMMDD_HHMMSS/`).
 
+Để chạy lại cấu hình final đang được track, dùng:
+
+```bash
+python3 scripts/train.py --episodes 1000 --seed 123 --hidden-dim 128
+```
+
 ### 4. Đánh giá
 
 Đánh giá checkpoint đã lưu:
 
 ```bash
-python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim <matching_hidden_dim>
+python3 scripts/evaluate.py --checkpoint outputs/final/reinforce-cartpole-v1/best_policy.pth --episodes 10 --hidden-dim 128
 ```
 
-`--hidden-dim` phải khớp cấu hình checkpoint trong `run_config.txt`. Ví dụ, run đầy đủ đang track tại `outputs/run_20260510_011946/` dùng `hidden_dim: 128`.
+`--hidden-dim` phải khớp cấu hình checkpoint trong `run_config.txt`. Ví dụ, run final chọn lọc tại `outputs/final/reinforce-cartpole-v1/` dùng `hidden_dim: 128`.
 
 ### 5. Kiểm tra Môi trường
 

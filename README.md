@@ -84,7 +84,7 @@ CS115-Team05-PG/
 │   ├── test_env.py         # Environment sanity check
 │   └── reinforce.py        # REINFORCE algorithm core
 │
-└── outputs/                # Reproducible training/evaluation outputs and figures
+└── outputs/                # Curated final outputs; new generated runs are ignored
 ```
 
 > _For detailed team responsibilities, see the [Team Workflows](./docs/project-overview-pdr.md)._
@@ -124,15 +124,21 @@ python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 
 Trained policy weights, raw rewards, metrics and training curves will be saved to a timestamped subdirectory under `outputs/` (e.g., `outputs/run_YYYYMMDD_HHMMSS/`).
 
+For the final tracked configuration, use:
+
+```bash
+python3 scripts/train.py --episodes 1000 --seed 123 --hidden-dim 128
+```
+
 ### 4. Evaluation
 
 Evaluate a saved checkpoint:
 
 ```bash
-python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim <matching_hidden_dim>
+python3 scripts/evaluate.py --checkpoint outputs/final/reinforce-cartpole-v1/best_policy.pth --episodes 10 --hidden-dim 128
 ```
 
-`--hidden-dim` must match the checkpoint configuration in `run_config.txt`. For example, the tracked full run `outputs/run_20260510_011946/` uses `hidden_dim: 128`.
+`--hidden-dim` must match the checkpoint configuration in `run_config.txt`. For example, the curated final run `outputs/final/reinforce-cartpole-v1/` uses `hidden_dim: 128`.
 
 ### 5. Test Environment
 

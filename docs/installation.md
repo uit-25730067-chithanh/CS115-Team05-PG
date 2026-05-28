@@ -47,6 +47,12 @@ _Lưu ý: Nếu bạn dùng Mac chip M1/M2/M3, PyTorch sẽ tự động hỗ tr
 python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 ```
 
+Lệnh trên là demo nhanh. Để chạy lại cấu hình final đang được track trong repo public:
+
+```bash
+python3 scripts/train.py --episodes 1000 --seed 123 --hidden-dim 128
+```
+
 ### Các tham số CLI quan trọng
 
 - `--lr`: Learning Rate (mặc định `0.001`).
@@ -57,7 +63,7 @@ python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 
 ## 4. Kết quả sau khi chạy (Outputs)
 
-Sau khi quá trình huấn luyện hoàn tất, các tệp tin sẽ được lưu vào một thư mục riêng biệt theo thời gian trong thư mục `outputs/` (ví dụ: `outputs/run_20260423_163506/`).
+Sau khi quá trình huấn luyện hoàn tất, các tệp tin sẽ được lưu vào một thư mục riêng biệt theo thời gian trong thư mục `outputs/` (ví dụ: `outputs/run_20260423_163506/`). Các run timestamp này là generated artifacts và được ignore; repo public chỉ giữ bộ kết quả chọn lọc trong `outputs/final/`.
 
 Các tệp tin bao gồm:
 
@@ -66,6 +72,15 @@ Các tệp tin bao gồm:
 3. **`final_policy.pth`**: File lưu trọng số mạng Neural tại Episode cuối cùng.
 4. **`run_config.txt`**: Cấu hình dùng để train checkpoint, đặc biệt là `hidden_dim`.
 5. **`metrics.txt`** và **`rewards.txt`**: Metrics tóm tắt và raw reward log.
+
+Bộ kết quả chọn lọc của repo public nằm tại `outputs/final/`. Có thể đánh giá checkpoint đã chọn bằng:
+
+```bash
+python3 scripts/evaluate.py \
+  --checkpoint outputs/final/reinforce-cartpole-v1/best_policy.pth \
+  --episodes 10 \
+  --hidden-dim 128
+```
 
 ## 5. Xử lý sự cố (Troubleshooting)
 

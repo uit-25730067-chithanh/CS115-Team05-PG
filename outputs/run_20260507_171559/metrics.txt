@@ -1,5 +1,0 @@
-mean_last_50: 25.3000
-std_last_50: 10.2864
-best_reward: 43.0000
-final_reward: 17.0000
-total_episodes: 10

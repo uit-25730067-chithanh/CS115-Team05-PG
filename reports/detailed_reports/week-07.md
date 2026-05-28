@@ -29,8 +29,8 @@ Dưới đây là nội dung báo cáo chi tiết từ các thành viên trong t
   - Chuẩn bị nội dung tiếng Anh paste-ready cho Quỳnh đưa vào báo cáo: Abstract, Methods, Experiments & Results.
   - Tạo PR #45 dạng draft/support package cho Quỳnh, gồm file Word-ready, Markdown source và README hướng dẫn.
   - Chuẩn bị số liệu và figure chính cho báo cáo:
-    - Baseline: [outputs/baseline_20260510_011932/baseline_curve.png]
-    - Training: [outputs/run_20260510_011946/training_curve.png]
+    - Baseline: [outputs/final/random-baseline/baseline_curve.png]
+    - Training: [outputs/final/reinforce-cartpole-v1/training_curve.png]
     - Kết quả chính: last-100 average 476.00, vượt threshold CartPole-v1 475, best/final reward đều 500.
 
 ### 🚧 Đang làm / Vướng

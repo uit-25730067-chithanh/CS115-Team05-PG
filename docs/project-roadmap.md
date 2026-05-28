@@ -53,11 +53,11 @@ gantt
 
 | Nhóm việc             | Mốc                                                                 | Trạng thái             | Bằng chứng chính                                                                          |
 | :-------------------- | :------------------------------------------------------------------ | :--------------------- | :---------------------------------------------------------------------------------------- |
-| Nền tảng              | Setup Python, PyTorch, Gymnasium; random baseline                   | ✅ Hoàn thành          | `requirements.txt`, `sources/test_env.py`, `outputs/baseline_20260507_092018/`            |
+| Nền tảng              | Setup Python, PyTorch, Gymnasium; random baseline                   | ✅ Hoàn thành          | `requirements.txt`, `sources/test_env.py`, `outputs/final/random-baseline/`               |
 | Thuật toán            | Policy MLP và REINFORCE core                                        | ✅ Hoàn thành          | `sources/models/policy.py`, `sources/reinforce.py`, `sources/train.py`                    |
 | Reproducibility       | Entrypoint train/evaluate, seed, hidden_dim, output logs            | ✅ Hoàn thành          | `scripts/train.py`, `scripts/evaluate.py`, `rewards.txt`, `run_config.txt`, `metrics.txt` |
-| Hyperparameter tuning | Grid nhỏ, ranking theo mean last-50/std/best reward                 | ✅ Hoàn thành          | `scripts/run_experiments.py`, `outputs/experiments/`                                      |
-| Visualization         | Figure report-ready, baseline vs trained, HP comparison             | ✅ Hoàn thành          | `scripts/visualize.py`, `outputs/figures/`                                                |
+| Hyperparameter tuning | Grid nhỏ, ranking theo mean last-50/std/best reward                 | ✅ Hoàn thành          | `scripts/run_experiments.py`, cấu hình chọn lọc trong `outputs/final/reinforce-cartpole-v1/` |
+| Visualization         | Figure report-ready, baseline vs trained, HP comparison             | ✅ Hoàn thành          | `scripts/visualize.py`, figure chọn lọc trong `outputs/final/`                            |
 | Logic explanation     | Tài liệu giải trình code, PR #40 coi như đã merge vào `origin/main` | ✅ Hoàn thành kỹ thuật | `docs/`, PR #40, issue #11                                                                |
 | Báo cáo & slide       | Report cuối và slide thuyết trình                                  | ✅ Hoàn thành          | File cuối giữ riêng cho submission, không public link trong repo                          |
 
