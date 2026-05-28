@@ -72,7 +72,7 @@ CS115-Team05-PG/
 │
 ├── docs/                   # Tài liệu dự án (PDR, roadmap, architecture)
 ├── math/                   # Chứng minh toán học (LaTeX)
-├── reports/                # Weekly updates, meeting agendas, meeting minutes
+├── reports/                # Cập nhật tuần và ghi chú tiến độ public
 ├── scripts/                # Entrypoint CLI có thể chạy lại
 │   ├── train.py            # Huấn luyện REINFORCE với seed/hyperparameters
 │   ├── evaluate.py         # Đánh giá checkpoint chính sách đã lưu
@@ -84,7 +84,7 @@ CS115-Team05-PG/
 │   ├── test_env.py         # Kiểm tra môi trường
 │   └── reinforce.py        # Cốt lõi thuật toán REINFORCE
 │
-└── outputs/                # Checkpoints, metrics, experiments và figures sinh ra
+└── outputs/                # Kết quả train/evaluate và figures có thể tái lập
 ```
 
 > _Chi tiết phân công trách nhiệm theo module, xem [Quy trình làm việc Nhóm](./docs/project-overview-pdr.md)._
@@ -101,7 +101,7 @@ CS115-Team05-PG/
 ### 2. Cài đặt
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/uit-25730067-chithanh/CS115-Team05-PG.git
 cd CS115-Team05-PG
 
 # Tạo môi trường ảo (khuyến nghị)
@@ -129,8 +129,10 @@ Trọng số chính sách, raw rewards, metrics và đường cong học tập s
 Đánh giá checkpoint đã lưu:
 
 ```bash
-python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim 64
+python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim <matching_hidden_dim>
 ```
+
+`--hidden-dim` phải khớp cấu hình checkpoint trong `run_config.txt`. Ví dụ, run đầy đủ đang track tại `outputs/run_20260510_011946/` dùng `hidden_dim: 128`.
 
 ### 5. Kiểm tra Môi trường
 
@@ -150,16 +152,16 @@ python3 sources/test_env.py
 
 ### Lộ trình & Tiến độ
 
-Dự án hiện đang ở Tuần 07. Nhánh Code đã hoàn thành trước tiến độ để nhóm dành thêm thời gian cho giải thích toán, viết báo cáo, chuẩn bị demo và đóng gói cuối kỳ.
+Tính đến ngày 27/05/2026, phần triển khai chính, báo cáo cuối và slide thuyết trình đã hoàn thành. Phần còn lại là đóng gói nộp bài và dọn repo trước khi public.
 
 | Giai đoạn | Nội dung chính                         | Trạng thái     |
 | :-------- | :------------------------------------- | :------------- |
 | **GĐ 1**  | Chứng minh Toán & Thiết lập môi trường | Hoàn thành     |
 | **GĐ 2**  | Mạng Policy & REINFORCE                | Hoàn thành     |
-| **GĐ 3**  | Huấn luyện, tuning & visualization     | Hoàn thành sớm |
-| **GĐ 4**  | Báo cáo, slides & giải trình cuối      | Đang tiến hành |
+| **GĐ 3**  | Huấn luyện, tuning & visualization     | Hoàn thành     |
+| **GĐ 4**  | Báo cáo, slides & giải trình cuối      | Hoàn thành     |
 
-Các mốc code đã hoàn thành gồm baseline evaluation, PolicyNetwork, training REINFORCE, entrypoint train/evaluate có thể tái lập, hyperparameter tuning nhỏ gọn, visualization dùng cho báo cáo, và PR #40 cho phần giải trình logic.
+Các mốc đã hoàn thành gồm baseline evaluation, PolicyNetwork, training REINFORCE, entrypoint train/evaluate có thể tái lập, hyperparameter tuning nhỏ gọn, visualization dùng cho báo cáo, báo cáo cuối và slide thuyết trình.
 
 Xem biểu đồ Gantt chi tiết tại: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
@@ -220,16 +222,11 @@ $$
 
 #### Dành cho Giảng viên
 
-Truy cập báo cáo của nhóm tại đây: _Sẽ được cập nhật khi hoàn thành dự án._
+Báo cáo cuối và slide thuyết trình: _Sẵn sàng khi nộp bài._
 
 #### Dành cho thành viên nhóm
 
-Truy cập báo cáo của nhóm tại đây: [**Báo cáo Đồ án Policy Gradient**](https://bit.ly/cs115-team05-report)
-
-> **Lưu ý:** Để xem báo cáo với định dạng chuẩn (không bị lỗi công thức toán học), vui lòng sử dụng 1 trong 2 cách:
->
-> - **Mở bằng phần mềm Microsoft Word** — hiển thị đúng 100% và có thể comment trực tiếp.
-> - **Nếu dùng Word trên web**, hãy xuất ra file PDF để đọc → quay lại phần tương ứng trên bản web và để lại comment ở đó (nếu cần).
+Link báo cáo và slide nội bộ không được public trong repository này. Nhóm giữ file cuối riêng để nộp bài theo yêu cầu môn học.
 
 ---
 

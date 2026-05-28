@@ -38,21 +38,22 @@ _Lưu ý: Nếu bạn dùng Mac chip M1/M2/M3, PyTorch sẽ tự động hỗ tr
 
 ## 3. Huấn luyện REINFORCE (Training)
 
-### Bước 3: Thiết lập PYTHONPATH & chạy training
+### Bước 3: Chạy training
 
 Để bắt đầu quá trình huấn luyện thuật toán REINFORCE trên CartPole-v1:
 
 ```bash
 # Đảm bảo bạn đang đứng ở thư mục gốc của dự án
-export PYTHONPATH=$PYTHONPATH:$(pwd)/sources
-python3 sources/train.py
+python3 scripts/train.py --episodes 500 --seed 42 --hidden-dim 64
 ```
 
-### Các tham số quan trọng trong `sources/train.py`
+### Các tham số CLI quan trọng
 
-- `LR`: Learning Rate (mặc định 0.01).
-- `GAMMA`: Hệ số chiết khấu $\gamma$ (mặc định 0.99).
-- `NUM_EPISODES`: Số tập huấn luyện (mặc định 1000).
+- `--lr`: Learning Rate (mặc định `0.001`).
+- `--gamma`: Hệ số chiết khấu $\gamma$ (mặc định `0.99`).
+- `--episodes`: Số tập huấn luyện (mặc định `1000`).
+- `--hidden-dim`: Kích thước hidden layer. Khi evaluate checkpoint, giá trị này phải khớp `run_config.txt`.
+- `--seed`: Seed để dễ tái lập kết quả.
 
 ## 4. Kết quả sau khi chạy (Outputs)
 
@@ -63,9 +64,11 @@ Các tệp tin bao gồm:
 1. **`training_curve.png`**: Biểu đồ biểu diễn Reward trung bình qua các Episodes.
 2. **`best_policy.pth`**: File lưu trọng số mạng Neural tốt nhất đạt được trong quá trình huấn luyện.
 3. **`final_policy.pth`**: File lưu trọng số mạng Neural tại Episode cuối cùng.
+4. **`run_config.txt`**: Cấu hình dùng để train checkpoint, đặc biệt là `hidden_dim`.
+5. **`metrics.txt`** và **`rewards.txt`**: Metrics tóm tắt và raw reward log.
 
 ## 5. Xử lý sự cố (Troubleshooting)
 
 - **Lỗi treo hoặc crash trên MacOS dùng chip Apple Silicon (M1/M2/M3)**: Hãy tham khảo [docs/troubleshooting.md](./troubleshooting.md). Cụ thể, bạn cần chỉnh sửa `device` trong file `train.py` thành `cpu` thay vì `mps`.
-- **Lỗi `ModuleNotFoundError: No module named 'models'`**: Hãy đảm bảo bạn đã set `PYTHONPATH` như ở Bước 3.
+- **Lỗi `ModuleNotFoundError: No module named 'models'`**: Ưu tiên chạy qua `scripts/train.py` hoặc `scripts/evaluate.py` từ thư mục gốc dự án. Các entrypoint này tự thiết lập import path.
 - **Lỗi render Gymnasium**: Nếu muốn xem Agent chơi (render), bạn cần cài thêm `swig` và `box2d-py`, nhưng trong script `train.py` hiện tại chúng ta chạy ở chế độ `non-render` để tối ưu tốc độ trên Server/Terminal.

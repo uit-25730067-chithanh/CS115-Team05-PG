@@ -72,7 +72,7 @@ CS115-Team05-PG/
 │
 ├── docs/                   # Project documentation (PDR, roadmap, architecture)
 ├── math/                   # LaTeX math proofs & derivations
-├── reports/                # Weekly updates, meeting agendas, meeting minutes
+├── reports/                # Public weekly updates and detailed progress notes
 ├── scripts/                # Reproducible CLI entrypoints
 │   ├── train.py            # Train REINFORCE with configurable seed/hyperparameters
 │   ├── evaluate.py         # Evaluate a saved policy checkpoint
@@ -84,7 +84,7 @@ CS115-Team05-PG/
 │   ├── test_env.py         # Environment sanity check
 │   └── reinforce.py        # REINFORCE algorithm core
 │
-└── outputs/                # Generated checkpoints, metrics, experiments and figures
+└── outputs/                # Reproducible training/evaluation outputs and figures
 ```
 
 > _For detailed team responsibilities, see the [Team Workflows](./docs/project-overview-pdr.md)._
@@ -101,7 +101,7 @@ CS115-Team05-PG/
 ### 2. Installation
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/uit-25730067-chithanh/CS115-Team05-PG.git
 cd CS115-Team05-PG
 
 # Create virtual environment (recommended)
@@ -129,8 +129,10 @@ Trained policy weights, raw rewards, metrics and training curves will be saved t
 Evaluate a saved checkpoint:
 
 ```bash
-python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim 64
+python3 scripts/evaluate.py --checkpoint outputs/run_YYYYMMDD_HHMMSS/best_policy.pth --episodes 10 --hidden-dim <matching_hidden_dim>
 ```
+
+`--hidden-dim` must match the checkpoint configuration in `run_config.txt`. For example, the tracked full run `outputs/run_20260510_011946/` uses `hidden_dim: 128`.
 
 ### 5. Test Environment
 
@@ -150,16 +152,16 @@ python3 sources/test_env.py
 
 ### Roadmap & Progress
 
-The project is currently in Week 07. The Code track has been completed ahead of schedule so the team can reserve more time for math explanation, report writing, demo preparation and final packaging.
+As of May 27, 2026, the core implementation, final report, and presentation slides are complete. The remaining work is submission packaging and repository public-readiness cleanup.
 
 | Phase       | Main Content                       | Status                  |
 | :---------- | :--------------------------------- | :---------------------- |
 | **Phase 1** | Math proof & Env setup             | Completed               |
 | **Phase 2** | Policy Net & REINFORCE             | Completed               |
-| **Phase 3** | Training, tuning & visualization   | Completed ahead of plan |
-| **Phase 4** | Report, slides & final explanation | In progress             |
+| **Phase 3** | Training, tuning & visualization   | Completed               |
+| **Phase 4** | Report, slides & final explanation | Completed               |
 
-Completed code milestones include baseline evaluation, PolicyNetwork, REINFORCE training, reproducible train/evaluate entrypoints, compact hyperparameter tuning, report-ready visualization, and PR #40 for logic explanation.
+Completed milestones include baseline evaluation, PolicyNetwork, REINFORCE training, reproducible train/evaluate entrypoints, compact hyperparameter tuning, report-ready visualization, final report, and presentation slides.
 
 View detailed Gantt chart at: **[docs/project-roadmap.md](./docs/project-roadmap.md)**
 
@@ -220,16 +222,11 @@ $$
 
 #### For Lecturer
 
-Access our final report here: _Will be updated when project is completed._
+Final report and presentation slides: _Available upon submission._
 
 #### For Team Members
 
-Access our working report here: [**Policy Gradient Project Report**](https://bit.ly/cs115-team05-report)
-
-> **Note:** To view the report with correct formatting (no broken math equations), please use one of these two options:
->
-> - **Open with Microsoft Word software** — renders 100% correctly and allows comment directly.
-> - **If using Word on web**, export to PDF to read → go back to the relevant section on the web version and leave comment there (if needed).
+Internal working report and slide links are intentionally not published in this repository. The final files are kept separately for course submission.
 
 #### Submission (Semester)
 
