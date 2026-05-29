@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/hero-banner.jpg" alt="Policy Gradient for RL Banner" width="100%" style="border-radius: 8px;">
+  <img src="docs/assets/hero-banner.png" alt="Policy Gradient for RL Banner" width="100%" style="border-radius: 8px;">
 
 # [CS115] Policy Gradient for Reinforcement Learning — Team 05
 
@@ -160,12 +160,12 @@ python3 sources/test_env.py
 
 As of May 27, 2026, the core implementation, final report, and presentation slides are complete. The remaining work is submission packaging and repository public-readiness cleanup.
 
-| Phase       | Main Content                       | Status                  |
-| :---------- | :--------------------------------- | :---------------------- |
-| **Phase 1** | Math proof & Env setup             | Completed               |
-| **Phase 2** | Policy Net & REINFORCE             | Completed               |
-| **Phase 3** | Training, tuning & visualization   | Completed               |
-| **Phase 4** | Report, slides & final explanation | Completed               |
+| Phase       | Main Content                       | Status    |
+| :---------- | :--------------------------------- | :-------- |
+| **Phase 1** | Math proof & Env setup             | Completed |
+| **Phase 2** | Policy Net & REINFORCE             | Completed |
+| **Phase 3** | Training, tuning & visualization   | Completed |
+| **Phase 4** | Report, slides & final explanation | Completed |
 
 Completed milestones include baseline evaluation, PolicyNetwork, REINFORCE training, reproducible train/evaluate entrypoints, compact hyperparameter tuning, report-ready visualization, final report, and presentation slides.
 

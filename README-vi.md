@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/hero-banner.jpg" alt="Banner Policy Gradient cho RL" width="100%" style="border-radius: 8px;">
+  <img src="docs/assets/hero-banner.png" alt="Banner Policy Gradient cho RL" width="100%" style="border-radius: 8px;">
 
 # [CS115] Policy Gradient for Reinforcement Learning — Nhóm 05
 
@@ -160,12 +160,12 @@ python3 sources/test_env.py
 
 Tính đến ngày 27/05/2026, phần triển khai chính, báo cáo cuối và slide thuyết trình đã hoàn thành. Phần còn lại là đóng gói nộp bài và dọn repo trước khi public.
 
-| Giai đoạn | Nội dung chính                         | Trạng thái     |
-| :-------- | :------------------------------------- | :------------- |
-| **GĐ 1**  | Chứng minh Toán & Thiết lập môi trường | Hoàn thành     |
-| **GĐ 2**  | Mạng Policy & REINFORCE                | Hoàn thành     |
-| **GĐ 3**  | Huấn luyện, tuning & visualization     | Hoàn thành     |
-| **GĐ 4**  | Báo cáo, slides & giải trình cuối      | Hoàn thành     |
+| Giai đoạn | Nội dung chính                         | Trạng thái |
+| :-------- | :------------------------------------- | :--------- |
+| **GĐ 1**  | Chứng minh Toán & Thiết lập môi trường | Hoàn thành |
+| **GĐ 2**  | Mạng Policy & REINFORCE                | Hoàn thành |
+| **GĐ 3**  | Huấn luyện, tuning & visualization     | Hoàn thành |
+| **GĐ 4**  | Báo cáo, slides & giải trình cuối      | Hoàn thành |
 
 Các mốc đã hoàn thành gồm baseline evaluation, PolicyNetwork, training REINFORCE, entrypoint train/evaluate có thể tái lập, hyperparameter tuning nhỏ gọn, visualization dùng cho báo cáo, báo cáo cuối và slide thuyết trình.
 
