@@ -27,7 +27,50 @@ graph TD
 1. **Đảm bảo tính đúng đắn**: Thuật toán REINFORCE dựa trên Gradient Ascent. Việc hiểu rõ $\nabla_\theta J(\theta)$ giúp chúng ta biết chính xác tại sao phải dùng log-derivative trick trong code.
 2. **Đối chiếu (Verification)**: Giúp việc gỡ lỗi (debug) dễ dàng hơn khi các ký hiệu trong code ($\pi_\theta(a_t \mid s_t)$, $G_t$, $\theta$) khớp hoàn toàn với lý thuyết.
 
-## 2. Các thành phần chính
+## 2. Sơ đồ Luồng Thực thi (Execution Sequence)
+
+Luồng chạy chi tiết của một phiên huấn luyện (Training Session) diễn ra theo vòng lặp giữa Agent và Environment:
+
+```mermaid
+sequenceDiagram
+    participant CLI as scripts/train.py
+    participant TL as sources/train.py
+    participant Env as Gymnasium
+    participant Net as PolicyNetwork
+    participant Math as reinforce.py
+
+    CLI->>TL: Gọi hàm train_reinforce()
+    activate TL
+    TL->>Env: Khởi tạo môi trường
+    TL->>Net: Khởi tạo PolicyNetwork
+    
+    loop Mỗi Episode
+        TL->>Env: reset()
+        
+        loop Mỗi Step
+            TL->>Net: State -> Action & log_prob
+            TL->>Env: step(Action) -> Next State, Reward
+            TL->>TL: Lưu log_prob, reward
+        end
+
+        %% Monte Carlo update
+        TL->>Math: Chuyển mảng rewards, log_probs
+        activate Math
+        Math->>Math: compute_returns() -> G_t
+        Math->>Math: Chuẩn hoá G_t
+        Math->>Math: Tính Policy Loss
+        Math->>Net: backward() & step()
+        deactivate Math
+        
+        TL->>TL: Checkpoint Best Model
+    end
+    
+    TL-->>CLI: Return rewards history
+    deactivate TL
+```
+
+
+## 3. Các thành phần chính
 
 ### A. Core Algorithm (`sources/reinforce.py`)
 
@@ -54,7 +97,7 @@ $$
 - Gọi hàm `update_policy` sau mỗi Episode.
 - Lưu trữ Model Checkpoints (`.pth`) và vẽ đồ thị.
 
-## 3. Cách thức đánh giá (Evaluation)
+## 4. Cách thức đánh giá (Evaluation)
 
 Chúng ta đánh giá sự thành công của hệ thống dựa trên:
 
