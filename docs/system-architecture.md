@@ -77,8 +77,7 @@ sequenceDiagram
 Triển khai công thức cập nhật mẫu của REINFORCE:
 
 $$
-\theta \leftarrow \theta
-+ \alpha \sum_{t=0}^{T}G_t\nabla_\theta \log \pi_\theta(a_t \mid s_t)
+\theta \leftarrow \theta + \alpha \sum_{t=0}^{T}G_t\nabla_\theta \log \pi_\theta(a_t \mid s_t)
 $$
 
 - **Discounted Returns**: Tính reward-to-go $G_t = \sum_{k=t}^{T}\gamma^{k-t}r_{k+1}$ từ cuối tập (episode) về đầu để tối ưu $O(T)$.
