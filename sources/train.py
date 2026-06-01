@@ -15,12 +15,12 @@ from models.policy import PolicyNetwork
 from reinforce import compute_returns, update_policy
 
 # Constants
-DEFAULT_ENV = "CartPole-v1"
-DEFAULT_EPISODES = 1000
-DEFAULT_LR = 1e-3
-DEFAULT_GAMMA = 0.99
-DEFAULT_HIDDEN_DIM = 128
-DEFAULT_SEED = 123  # Empirically achieves stable convergence for CartPole-v1
+DEFAULT_ENV = "CartPole-v1"      
+DEFAULT_EPISODES = 1000          
+DEFAULT_LR = 1e-3                # Learning rate cho optimizer
+DEFAULT_GAMMA = 0.99             # Hệ số chiết khấu phần thưởng tương lai
+DEFAULT_HIDDEN_DIM = 128         # Số neuron ẩn trong policy network
+DEFAULT_SEED = 123               # Seed ngẫu nhiên; thực nghiệm cho thấy hội tụ ổn định với CartPole-v1
 
 def _write_training_outputs(save_dir, config, episode_rewards, best_reward):
     rewards_path = os.path.join(save_dir, "rewards.txt")
